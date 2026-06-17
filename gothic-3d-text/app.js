@@ -70,10 +70,19 @@ function render(exportTime = time) {
   const depth = Number(controls.depth.value);
   const baseAngle = Number(controls.angle.value) * Math.PI / 180;
   const wobble = Number(controls.wobble.value) / 100;
-  const spin = Math.sin(exportTime * 0.05) * wobble * Math.PI;
-  const angle = baseAngle + spin;
-  const dx = Math.cos(angle) * 1.55;
-  const dy = Math.sin(angle) * 1.55;
+
+  // Real-ish logo rotation: rotate the whole text object around a fake Y axis.
+  // The old version only changed the extrusion vector, so the face stayed locked
+  // in place and the tail just wiggled. This compresses/skews the face too.
+  const phase = exportTime * 0.045;
+  const yRot = Math.sin(phase) * wobble * (Math.PI * 0.72); // max about 130deg at 100%
+  const faceScaleX = Math.max(0.18, Math.abs(Math.cos(yRot)));
+  const shearX = Math.sin(yRot) * 0.18;
+
+  // As the face rotates, the extrusion swings around with it.
+  const angle = baseAngle + Math.sin(yRot) * 0.9;
+  const dx = Math.cos(angle) * (1.2 + Math.abs(Math.sin(yRot)) * 1.1);
+  const dy = Math.sin(angle) * 1.25;
   const glitch = Number(controls.glitch.value);
   const spacing = Number(controls.letterSpacing.value);
 
@@ -82,15 +91,18 @@ function render(exportTime = time) {
     ctx.fillStyle = controls.bg.value;
     ctx.fillRect(0, 0, w, h);
   }
+
+  const x = controls.pixelSnap.checked ? Math.round(w / 2) : w / 2;
+  const y = controls.pixelSnap.checked ? Math.round(h / 2) : h / 2;
+
   ctx.save();
+  ctx.translate(x, y);
+  ctx.transform(faceScaleX, 0, shearX, 1, 0, 0);
   ctx.font = `${size}px '${controls.font.value}', serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-
-  const x = controls.pixelSnap.checked ? Math.round(w / 2) : w / 2;
-  const y = controls.pixelSnap.checked ? Math.round(h / 2) : h / 2;
 
   if (controls.shadow.checked) {
     ctx.shadowColor = '#000';
@@ -101,9 +113,9 @@ function render(exportTime = time) {
   ctx.filter = `blur(${Number(controls.blur.value)}px)`;
   for (let i = depth; i > 0; i--) {
     const n = Math.sin(i * 12.9898 + exportTime) * 43758.5453;
-    const jitter = glitch ? ((n - Math.floor(n)) - 0.5) * glitch * (i / depth) * 0.13 : 0;
+    const jitter = glitch ? ((n - Math.floor(n)) - 0.5) * glitch * (i / Math.max(1, depth)) * 0.13 : 0;
     ctx.fillStyle = shade(controls.extrude.value, i, depth);
-    drawSpacedText(ctx, text, x + dx * i + jitter, y + dy * i, spacing, 'fill');
+    drawSpacedText(ctx, text, dx * i + jitter, dy * i, spacing, 'fill');
   }
 
   ctx.filter = 'none';
@@ -111,8 +123,9 @@ function render(exportTime = time) {
   ctx.lineWidth = Number(controls.strokeWidth.value);
   ctx.strokeStyle = controls.stroke.value;
   ctx.fillStyle = controls.face.value;
-  if (ctx.lineWidth > 0) drawSpacedText(ctx, text, x, y, spacing, 'stroke');
-  drawSpacedText(ctx, text, x, y, spacing, 'fill');
+  if (ctx.lineWidth > 0) drawSpacedText(ctx, text, 0, 0, spacing, 'stroke');
+  drawSpacedText(ctx, text, 0, 0, spacing, 'fill');
+  ctx.restore();
 
   const noise = Number(controls.noise.value);
   if (noise > 0) {
@@ -128,7 +141,6 @@ function render(exportTime = time) {
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(w/2, 0); ctx.lineTo(w/2, h); ctx.moveTo(0, h/2); ctx.lineTo(w, h/2); ctx.stroke();
   }
-  ctx.restore();
 }
 
 function tick() {
