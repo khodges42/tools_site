@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I Ching — Book of Changes</title>
+  <meta name="description" content="A fully client-side I Ching coin casting utility." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <main class="shell">
+    <header class="hero">
+      <div class="sigil">易</div>
+      <p class="kicker">THE BOOK OF CHANGES</p>
+      <h1>I Ching</h1>
+      <p class="sub">A client-side ritual instrument for reflection, pattern recognition, and careful change.</p>
+      <div class="actions">
+        <button id="autoStart" class="primary">Cast coins</button>
+        <button id="manualStart">Enter throws</button>
+      </div>
+    </header>
+
+    <section id="method" class="panel hidden">
+      <h2>Traditional three-coin method</h2>
+      <p>Throw three identical coins six times. Build the hexagram from the bottom line upward.</p>
+      <div class="method-grid">
+        <div><b>Heads</b><span>3</span></div>
+        <div><b>Tails</b><span>2</span></div>
+        <div><b>6</b><span>Old Yin · broken · moving</span></div>
+        <div><b>7</b><span>Young Yang · solid</span></div>
+        <div><b>8</b><span>Young Yin · broken</span></div>
+        <div><b>9</b><span>Old Yang · solid · moving</span></div>
+      </div>
+      <div id="manualButtons" class="throw-buttons">
+        <button data-value="6">6</button><button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button>
+      </div>
+    </section>
+
+    <section id="casting" class="panel hidden">
+      <h2>Casting</h2>
+      <div id="coins" class="coins"><span>◌</span><span>◌</span><span>◌</span></div>
+      <button id="throwBtn" class="primary">Throw</button>
+      <p id="castStatus" class="status">Line 1 waits below the threshold.</p>
+      <div id="hexStack" class="hex-stack" aria-label="Current hexagram lines"></div>
+    </section>
+
+    <section id="result" class="result hidden">
+      <div id="exportCard" class="export-card">
+        <p class="kicker">I CHING READING</p>
+        <p id="stamp" class="stamp"></p>
+        <div class="result-grid">
+          <article class="card">
+            <p class="label">Primary</p>
+            <div id="primaryGlyph" class="big-glyph"></div>
+            <h2 id="primaryTitle"></h2>
+            <p id="primaryMeta"></p>
+          </article>
+          <article class="card" id="changedCard">
+            <p class="label">Changing to</p>
+            <div id="changedGlyph" class="big-glyph"></div>
+            <h2 id="changedTitle"></h2>
+            <p id="changedMeta"></p>
+          </article>
+        </div>
+        <article class="card wide">
+          <h3>Trigrams</h3>
+          <div id="trigramView" class="trigram-view"></div>
+        </article>
+        <article class="card wide">
+          <h3>Reading</h3>
+          <div class="tabs">
+            <button class="tab active" data-tab="traditional">Traditional frame</button>
+            <button class="tab" data-tab="modern">Modern signal</button>
+            <button class="tab" data-tab="lines">Moving lines</button>
+            <button class="tab" data-tab="journal">Journal prompts</button>
+          </div>
+          <div id="readingText" class="reading"></div>
+        </article>
+      </div>
+      <div class="actions">
+        <button id="savePng" class="primary">Save image</button>
+        <button id="restart">Cast again</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1920 @@
+{
+  "kingWen": {
+    "111111": 1,
+    "000000": 2,
+    "100010": 3,
+    "010001": 4,
+    "111010": 5,
+    "010111": 6,
+    "010000": 7,
+    "000010": 8,
+    "111011": 9,
+    "110111": 10,
+    "111000": 11,
+    "000111": 12,
+    "101111": 13,
+    "111101": 14,
+    "001000": 15,
+    "000100": 16,
+    "100110": 17,
+    "011001": 18,
+    "110000": 19,
+    "000011": 20,
+    "100101": 21,
+    "101001": 22,
+    "000001": 23,
+    "100000": 24,
+    "100111": 25,
+    "111001": 26,
+    "100001": 27,
+    "011110": 28,
+    "010010": 29,
+    "101101": 30,
+    "001110": 31,
+    "011100": 32,
+    "001111": 33,
+    "111100": 34,
+    "000101": 35,
+    "101000": 36,
+    "101011": 37,
+    "110101": 38,
+    "001010": 39,
+    "010100": 40,
+    "110001": 41,
+    "100011": 42,
+    "111110": 43,
+    "011111": 44,
+    "000110": 45,
+    "011000": 46,
+    "010110": 47,
+    "011010": 48,
+    "101110": 49,
+    "011101": 50,
+    "100100": 51,
+    "001001": 52,
+    "001011": 53,
+    "110100": 54,
+    "101100": 55,
+    "001101": 56,
+    "011011": 57,
+    "110110": 58,
+    "010011": 59,
+    "110010": 60,
+    "110011": 61,
+    "001100": 62,
+    "101010": 63,
+    "010101": 64
+  },
+  "trigrams": {
+    "111": {
+      "name": "Heaven",
+      "chinese": "乾",
+      "unicode": "☰",
+      "quality": "creative force",
+      "image": "sky"
+    },
+    "000": {
+      "name": "Earth",
+      "chinese": "坤",
+      "unicode": "☷",
+      "quality": "receptive field",
+      "image": "soil"
+    },
+    "100": {
+      "name": "Thunder",
+      "chinese": "震",
+      "unicode": "☳",
+      "quality": "arousing movement",
+      "image": "thunder"
+    },
+    "010": {
+      "name": "Water",
+      "chinese": "坎",
+      "unicode": "☵",
+      "quality": "depth and danger",
+      "image": "water"
+    },
+    "001": {
+      "name": "Mountain",
+      "chinese": "艮",
+      "unicode": "☶",
+      "quality": "stillness and limit",
+      "image": "mountain"
+    },
+    "011": {
+      "name": "Wind",
+      "chinese": "巽",
+      "unicode": "☴",
+      "quality": "penetrating influence",
+      "image": "wind"
+    },
+    "101": {
+      "name": "Fire",
+      "chinese": "離",
+      "unicode": "☲",
+      "quality": "clarity and attachment",
+      "image": "flame"
+    },
+    "110": {
+      "name": "Lake",
+      "chinese": "兌",
+      "unicode": "☱",
+      "quality": "joy and exchange",
+      "image": "lake"
+    }
+  },
+  "hexagrams": [
+    {
+      "number": 1,
+      "unicode": "䷀",
+      "name": "The Creative",
+      "chinese": "乾",
+      "tag": "Force / creative power",
+      "binary": "111111",
+      "upper": "Heaven",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "The Creative: Force / creative power. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Heaven.",
+        "image": "☰ over ☰: sky above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Creative asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 2,
+      "unicode": "䷁",
+      "name": "The Receptive",
+      "chinese": "坤",
+      "tag": "Field / receptive earth",
+      "binary": "000000",
+      "upper": "Earth",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "The Receptive: Field / receptive earth. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Earth.",
+        "image": "☷ over ☷: soil above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Receptive asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 3,
+      "unicode": "䷂",
+      "name": "Difficulty at the Beginning",
+      "chinese": "屯",
+      "tag": "Sprouting under pressure",
+      "binary": "100010",
+      "upper": "Water",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Difficulty at the Beginning: Sprouting under pressure. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Thunder.",
+        "image": "☵ over ☳: water above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Difficulty at the Beginning asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 4,
+      "unicode": "䷃",
+      "name": "Youthful Folly",
+      "chinese": "蒙",
+      "tag": "Learning through uncertainty",
+      "binary": "010001",
+      "upper": "Mountain",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Youthful Folly: Learning through uncertainty. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Water.",
+        "image": "☶ over ☵: mountain above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Youthful Folly asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 5,
+      "unicode": "䷄",
+      "name": "Waiting",
+      "chinese": "需",
+      "tag": "Patient nourishment",
+      "binary": "111010",
+      "upper": "Water",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Waiting: Patient nourishment. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Heaven.",
+        "image": "☵ over ☰: water above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Waiting asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 6,
+      "unicode": "䷅",
+      "name": "Conflict",
+      "chinese": "訟",
+      "tag": "Tension seeking clarity",
+      "binary": "010111",
+      "upper": "Heaven",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Conflict: Tension seeking clarity. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Water.",
+        "image": "☰ over ☵: sky above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Conflict asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 7,
+      "unicode": "䷆",
+      "name": "The Army",
+      "chinese": "師",
+      "tag": "Discipline and collective force",
+      "binary": "010000",
+      "upper": "Earth",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "The Army: Discipline and collective force. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Water.",
+        "image": "☷ over ☵: soil above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Army asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 8,
+      "unicode": "䷇",
+      "name": "Holding Together",
+      "chinese": "比",
+      "tag": "Alliance and belonging",
+      "binary": "000010",
+      "upper": "Water",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Holding Together: Alliance and belonging. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Earth.",
+        "image": "☵ over ☷: water above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Holding Together asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 9,
+      "unicode": "䷈",
+      "name": "Small Taming",
+      "chinese": "小畜",
+      "tag": "Small restraints, gathering force",
+      "binary": "111011",
+      "upper": "Wind",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Small Taming: Small restraints, gathering force. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Heaven.",
+        "image": "☴ over ☰: wind above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Small Taming asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 10,
+      "unicode": "䷉",
+      "name": "Treading",
+      "chinese": "履",
+      "tag": "Careful conduct near danger",
+      "binary": "110111",
+      "upper": "Heaven",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Treading: Careful conduct near danger. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Lake.",
+        "image": "☰ over ☱: sky above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Treading asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 11,
+      "unicode": "䷊",
+      "name": "Peace",
+      "chinese": "泰",
+      "tag": "Heaven and earth in accord",
+      "binary": "111000",
+      "upper": "Earth",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Peace: Heaven and earth in accord. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Heaven.",
+        "image": "☷ over ☰: soil above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Peace asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 12,
+      "unicode": "䷋",
+      "name": "Standstill",
+      "chinese": "否",
+      "tag": "Blocked exchange",
+      "binary": "000111",
+      "upper": "Heaven",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Standstill: Blocked exchange. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Earth.",
+        "image": "☰ over ☷: sky above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Standstill asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 13,
+      "unicode": "䷌",
+      "name": "Fellowship with People",
+      "chinese": "同人",
+      "tag": "Shared fire, common purpose",
+      "binary": "101111",
+      "upper": "Heaven",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "Fellowship with People: Shared fire, common purpose. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Fire.",
+        "image": "☰ over ☲: sky above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Fellowship with People asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 14,
+      "unicode": "䷍",
+      "name": "Great Possession",
+      "chinese": "大有",
+      "tag": "Abundance held with clarity",
+      "binary": "111101",
+      "upper": "Fire",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Great Possession: Abundance held with clarity. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Heaven.",
+        "image": "☲ over ☰: flame above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Great Possession asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 15,
+      "unicode": "䷎",
+      "name": "Modesty",
+      "chinese": "謙",
+      "tag": "Power lowered into usefulness",
+      "binary": "001000",
+      "upper": "Earth",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Modesty: Power lowered into usefulness. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Mountain.",
+        "image": "☷ over ☶: soil above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Modesty asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 16,
+      "unicode": "䷏",
+      "name": "Enthusiasm",
+      "chinese": "豫",
+      "tag": "Energy that mobilizes",
+      "binary": "000100",
+      "upper": "Thunder",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Enthusiasm: Energy that mobilizes. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Earth.",
+        "image": "☳ over ☷: thunder above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Enthusiasm asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 17,
+      "unicode": "䷐",
+      "name": "Following",
+      "chinese": "隨",
+      "tag": "Alignment through response",
+      "binary": "100110",
+      "upper": "Lake",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Following: Alignment through response. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Thunder.",
+        "image": "☱ over ☳: lake above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Following asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 18,
+      "unicode": "䷑",
+      "name": "Work on What Has Been Spoiled",
+      "chinese": "蠱",
+      "tag": "Repairing corruption",
+      "binary": "011001",
+      "upper": "Mountain",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "Work on What Has Been Spoiled: Repairing corruption. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Wind.",
+        "image": "☶ over ☴: mountain above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Work on What Has Been Spoiled asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 19,
+      "unicode": "䷒",
+      "name": "Approach",
+      "chinese": "臨",
+      "tag": "Nearness and oversight",
+      "binary": "110000",
+      "upper": "Earth",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Approach: Nearness and oversight. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Lake.",
+        "image": "☷ over ☱: soil above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Approach asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 20,
+      "unicode": "䷓",
+      "name": "Contemplation",
+      "chinese": "觀",
+      "tag": "Seeing and being seen",
+      "binary": "000011",
+      "upper": "Wind",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Contemplation: Seeing and being seen. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Earth.",
+        "image": "☴ over ☷: wind above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Contemplation asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 21,
+      "unicode": "䷔",
+      "name": "Biting Through",
+      "chinese": "噬嗑",
+      "tag": "Justice cuts through obstruction",
+      "binary": "100101",
+      "upper": "Fire",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Biting Through: Justice cuts through obstruction. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Thunder.",
+        "image": "☲ over ☳: flame above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Biting Through asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 22,
+      "unicode": "䷕",
+      "name": "Grace",
+      "chinese": "賁",
+      "tag": "Adornment and form",
+      "binary": "101001",
+      "upper": "Mountain",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "Grace: Adornment and form. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Fire.",
+        "image": "☶ over ☲: mountain above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Grace asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 23,
+      "unicode": "䷖",
+      "name": "Splitting Apart",
+      "chinese": "剝",
+      "tag": "Decay, stripping away",
+      "binary": "000001",
+      "upper": "Mountain",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Splitting Apart: Decay, stripping away. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Earth.",
+        "image": "☶ over ☷: mountain above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Splitting Apart asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 24,
+      "unicode": "䷗",
+      "name": "Return",
+      "chinese": "復",
+      "tag": "The turning point",
+      "binary": "100000",
+      "upper": "Earth",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Return: The turning point. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Thunder.",
+        "image": "☷ over ☳: soil above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Return asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 25,
+      "unicode": "䷘",
+      "name": "Innocence",
+      "chinese": "無妄",
+      "tag": "Unforced correctness",
+      "binary": "100111",
+      "upper": "Heaven",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Innocence: Unforced correctness. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Thunder.",
+        "image": "☰ over ☳: sky above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Innocence asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 26,
+      "unicode": "䷙",
+      "name": "Great Taming",
+      "chinese": "大畜",
+      "tag": "Stored strength",
+      "binary": "111001",
+      "upper": "Mountain",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Great Taming: Stored strength. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Heaven.",
+        "image": "☶ over ☰: mountain above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Great Taming asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 27,
+      "unicode": "䷚",
+      "name": "Nourishment",
+      "chinese": "頤",
+      "tag": "What feeds and what speaks",
+      "binary": "100001",
+      "upper": "Mountain",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Nourishment: What feeds and what speaks. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Thunder.",
+        "image": "☶ over ☳: mountain above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Nourishment asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 28,
+      "unicode": "䷛",
+      "name": "Great Exceeding",
+      "chinese": "大過",
+      "tag": "A beam under too much weight",
+      "binary": "011110",
+      "upper": "Lake",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "Great Exceeding: A beam under too much weight. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Wind.",
+        "image": "☱ over ☴: lake above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Great Exceeding asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 29,
+      "unicode": "䷜",
+      "name": "The Abysmal",
+      "chinese": "坎",
+      "tag": "Repeated water, practiced danger",
+      "binary": "010010",
+      "upper": "Water",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "The Abysmal: Repeated water, practiced danger. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Water.",
+        "image": "☵ over ☵: water above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Abysmal asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 30,
+      "unicode": "䷝",
+      "name": "The Clinging",
+      "chinese": "離",
+      "tag": "Fire, perception, dependency",
+      "binary": "101101",
+      "upper": "Fire",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "The Clinging: Fire, perception, dependency. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Fire.",
+        "image": "☲ over ☲: flame above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Clinging asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 31,
+      "unicode": "䷞",
+      "name": "Influence",
+      "chinese": "咸",
+      "tag": "Attraction and mutual response",
+      "binary": "001110",
+      "upper": "Lake",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Influence: Attraction and mutual response. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Mountain.",
+        "image": "☱ over ☶: lake above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Influence asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 32,
+      "unicode": "䷟",
+      "name": "Duration",
+      "chinese": "恆",
+      "tag": "Endurance through rhythm",
+      "binary": "011100",
+      "upper": "Thunder",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "Duration: Endurance through rhythm. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Wind.",
+        "image": "☳ over ☴: thunder above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Duration asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 33,
+      "unicode": "䷠",
+      "name": "Retreat",
+      "chinese": "遯",
+      "tag": "Strategic withdrawal",
+      "binary": "001111",
+      "upper": "Heaven",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Retreat: Strategic withdrawal. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Mountain.",
+        "image": "☰ over ☶: sky above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Retreat asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 34,
+      "unicode": "䷡",
+      "name": "Great Power",
+      "chinese": "大壯",
+      "tag": "Force requiring restraint",
+      "binary": "111100",
+      "upper": "Thunder",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Great Power: Force requiring restraint. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Heaven.",
+        "image": "☳ over ☰: thunder above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Great Power asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 35,
+      "unicode": "䷢",
+      "name": "Progress",
+      "chinese": "晉",
+      "tag": "Light rising over earth",
+      "binary": "000101",
+      "upper": "Fire",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Progress: Light rising over earth. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Earth.",
+        "image": "☲ over ☷: flame above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Progress asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 36,
+      "unicode": "䷣",
+      "name": "Darkening of the Light",
+      "chinese": "明夷",
+      "tag": "Keeping inner fire hidden",
+      "binary": "101000",
+      "upper": "Earth",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "Darkening of the Light: Keeping inner fire hidden. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Fire.",
+        "image": "☷ over ☲: soil above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Darkening of the Light asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 37,
+      "unicode": "䷤",
+      "name": "The Family",
+      "chinese": "家人",
+      "tag": "Order within the house",
+      "binary": "101011",
+      "upper": "Wind",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "The Family: Order within the house. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Fire.",
+        "image": "☴ over ☲: wind above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Family asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 38,
+      "unicode": "䷥",
+      "name": "Opposition",
+      "chinese": "睽",
+      "tag": "Difference without severance",
+      "binary": "110101",
+      "upper": "Fire",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Opposition: Difference without severance. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Lake.",
+        "image": "☲ over ☱: flame above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Opposition asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 39,
+      "unicode": "䷦",
+      "name": "Obstruction",
+      "chinese": "蹇",
+      "tag": "Difficulty that teaches route-finding",
+      "binary": "001010",
+      "upper": "Water",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Obstruction: Difficulty that teaches route-finding. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Mountain.",
+        "image": "☵ over ☶: water above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Obstruction asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 40,
+      "unicode": "䷧",
+      "name": "Deliverance",
+      "chinese": "解",
+      "tag": "Release after tension",
+      "binary": "010100",
+      "upper": "Thunder",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Deliverance: Release after tension. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Water.",
+        "image": "☳ over ☵: thunder above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Deliverance asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 41,
+      "unicode": "䷨",
+      "name": "Decrease",
+      "chinese": "損",
+      "tag": "Reduction that clarifies value",
+      "binary": "110001",
+      "upper": "Mountain",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Decrease: Reduction that clarifies value. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Lake.",
+        "image": "☶ over ☱: mountain above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Decrease asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 42,
+      "unicode": "䷩",
+      "name": "Increase",
+      "chinese": "益",
+      "tag": "Growth through contribution",
+      "binary": "100011",
+      "upper": "Wind",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "Increase: Growth through contribution. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Thunder.",
+        "image": "☴ over ☳: wind above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Increase asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 43,
+      "unicode": "䷪",
+      "name": "Breakthrough",
+      "chinese": "夬",
+      "tag": "A decisive declaration",
+      "binary": "111110",
+      "upper": "Lake",
+      "lower": "Heaven",
+      "traditional": {
+        "judgment": "Breakthrough: A decisive declaration. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Heaven.",
+        "image": "☱ over ☰: lake above sky. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Breakthrough asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 44,
+      "unicode": "䷫",
+      "name": "Coming to Meet",
+      "chinese": "姤",
+      "tag": "A sudden encounter",
+      "binary": "011111",
+      "upper": "Heaven",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "Coming to Meet: A sudden encounter. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Heaven above Wind.",
+        "image": "☰ over ☴: sky above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Coming to Meet asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 45,
+      "unicode": "䷬",
+      "name": "Gathering Together",
+      "chinese": "萃",
+      "tag": "Assembly around a center",
+      "binary": "000110",
+      "upper": "Lake",
+      "lower": "Earth",
+      "traditional": {
+        "judgment": "Gathering Together: Assembly around a center. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Earth.",
+        "image": "☱ over ☷: lake above soil. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Gathering Together asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 46,
+      "unicode": "䷭",
+      "name": "Pushing Upward",
+      "chinese": "升",
+      "tag": "Patient ascent",
+      "binary": "011000",
+      "upper": "Earth",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "Pushing Upward: Patient ascent. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Earth above Wind.",
+        "image": "☷ over ☴: soil above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Pushing Upward asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 47,
+      "unicode": "䷮",
+      "name": "Oppression",
+      "chinese": "困",
+      "tag": "Constraint and exhaustion",
+      "binary": "010110",
+      "upper": "Lake",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Oppression: Constraint and exhaustion. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Water.",
+        "image": "☱ over ☵: lake above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Oppression asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 48,
+      "unicode": "䷯",
+      "name": "The Well",
+      "chinese": "井",
+      "tag": "Shared source, enduring structure",
+      "binary": "011010",
+      "upper": "Water",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "The Well: Shared source, enduring structure. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Wind.",
+        "image": "☵ over ☴: water above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Well asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 49,
+      "unicode": "䷰",
+      "name": "Revolution",
+      "chinese": "革",
+      "tag": "Molting, necessary change",
+      "binary": "101110",
+      "upper": "Lake",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "Revolution: Molting, necessary change. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Fire.",
+        "image": "☱ over ☲: lake above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Revolution asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 50,
+      "unicode": "䷱",
+      "name": "The Cauldron",
+      "chinese": "鼎",
+      "tag": "Transformation through culture",
+      "binary": "011101",
+      "upper": "Fire",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "The Cauldron: Transformation through culture. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Wind.",
+        "image": "☲ over ☴: flame above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Cauldron asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 51,
+      "unicode": "䷲",
+      "name": "The Arousing",
+      "chinese": "震",
+      "tag": "Shock and awakening",
+      "binary": "100100",
+      "upper": "Thunder",
+      "lower": "Thunder",
+      "traditional": {
+        "judgment": "The Arousing: Shock and awakening. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Thunder.",
+        "image": "☳ over ☳: thunder above thunder. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Arousing asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 52,
+      "unicode": "䷳",
+      "name": "Keeping Still",
+      "chinese": "艮",
+      "tag": "Stillness and boundary",
+      "binary": "001001",
+      "upper": "Mountain",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Keeping Still: Stillness and boundary. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Mountain above Mountain.",
+        "image": "☶ over ☶: mountain above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Keeping Still asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 53,
+      "unicode": "䷴",
+      "name": "Development",
+      "chinese": "漸",
+      "tag": "Gradual progress",
+      "binary": "001011",
+      "upper": "Wind",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Development: Gradual progress. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Mountain.",
+        "image": "☴ over ☶: wind above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Development asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 54,
+      "unicode": "䷵",
+      "name": "The Marrying Maiden",
+      "chinese": "歸妹",
+      "tag": "Improvised position",
+      "binary": "110100",
+      "upper": "Thunder",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "The Marrying Maiden: Improvised position. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Lake.",
+        "image": "☳ over ☱: thunder above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Marrying Maiden asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 55,
+      "unicode": "䷶",
+      "name": "Abundance",
+      "chinese": "豐",
+      "tag": "Fullness at the peak",
+      "binary": "101100",
+      "upper": "Thunder",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "Abundance: Fullness at the peak. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Fire.",
+        "image": "☳ over ☲: thunder above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Abundance asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 56,
+      "unicode": "䷷",
+      "name": "The Wanderer",
+      "chinese": "旅",
+      "tag": "Movement without permanent home",
+      "binary": "001101",
+      "upper": "Fire",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "The Wanderer: Movement without permanent home. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Mountain.",
+        "image": "☲ over ☶: flame above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Wanderer asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 57,
+      "unicode": "䷸",
+      "name": "The Gentle",
+      "chinese": "巽",
+      "tag": "Wind, penetration, subtle influence",
+      "binary": "011011",
+      "upper": "Wind",
+      "lower": "Wind",
+      "traditional": {
+        "judgment": "The Gentle: Wind, penetration, subtle influence. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Wind.",
+        "image": "☴ over ☴: wind above wind. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Gentle asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 58,
+      "unicode": "䷹",
+      "name": "The Joyous",
+      "chinese": "兌",
+      "tag": "Lake, expression, exchange",
+      "binary": "110110",
+      "upper": "Lake",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "The Joyous: Lake, expression, exchange. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Lake above Lake.",
+        "image": "☱ over ☱: lake above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "The Joyous asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 59,
+      "unicode": "䷺",
+      "name": "Dispersion",
+      "chinese": "渙",
+      "tag": "Dissolving what is frozen",
+      "binary": "010011",
+      "upper": "Wind",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Dispersion: Dissolving what is frozen. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Water.",
+        "image": "☴ over ☵: wind above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Dispersion asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 60,
+      "unicode": "䷻",
+      "name": "Limitation",
+      "chinese": "節",
+      "tag": "Boundaries that make form",
+      "binary": "110010",
+      "upper": "Water",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Limitation: Boundaries that make form. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Lake.",
+        "image": "☵ over ☱: water above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Limitation asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 61,
+      "unicode": "䷼",
+      "name": "Inner Truth",
+      "chinese": "中孚",
+      "tag": "Sincerity at the center",
+      "binary": "110011",
+      "upper": "Wind",
+      "lower": "Lake",
+      "traditional": {
+        "judgment": "Inner Truth: Sincerity at the center. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Wind above Lake.",
+        "image": "☴ over ☱: wind above lake. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Inner Truth asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 62,
+      "unicode": "䷽",
+      "name": "Small Exceeding",
+      "chinese": "小過",
+      "tag": "Small care, precise action",
+      "binary": "001100",
+      "upper": "Thunder",
+      "lower": "Mountain",
+      "traditional": {
+        "judgment": "Small Exceeding: Small care, precise action. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Thunder above Mountain.",
+        "image": "☳ over ☶: thunder above mountain. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Small Exceeding asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 63,
+      "unicode": "䷾",
+      "name": "After Completion",
+      "chinese": "既濟",
+      "tag": "Order achieved, vigilance required",
+      "binary": "101010",
+      "upper": "Water",
+      "lower": "Fire",
+      "traditional": {
+        "judgment": "After Completion: Order achieved, vigilance required. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Water above Fire.",
+        "image": "☵ over ☲: water above flame. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "After Completion asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    },
+    {
+      "number": 64,
+      "unicode": "䷿",
+      "name": "Before Completion",
+      "chinese": "未濟",
+      "tag": "Not yet across",
+      "binary": "010101",
+      "upper": "Fire",
+      "lower": "Water",
+      "traditional": {
+        "judgment": "Before Completion: Not yet across. The old text points toward timing, conduct, and the pattern revealed by the two trigrams: Fire above Water.",
+        "image": "☲ over ☵: flame above water. Study the relationship between what moves above and what supports below."
+      },
+      "modern": "Before Completion asks you to notice the system you are inside. Where is the pressure real, where is it inherited, and where are you mistaking noise for signal? Move with enough intention to change the pattern, but not so much ego that you overwrite the lesson.",
+      "prompts": [
+        "What is changing that I have not fully admitted yet?",
+        "Where am I forcing certainty onto a living process?",
+        "What small action would align me with the actual pattern?"
+      ],
+      "lines": [
+        "Line 1: The change begins at the root. Do less, observe more, and do not confuse the first signal with the whole system.",
+        "Line 2: A response is forming. Accept help, but keep your own center of gravity.",
+        "Line 3: Complexity increases. Avoid dramatic moves made only to escape discomfort.",
+        "Line 4: The pattern is asking for contact. Approach what is difficult with humility and precision.",
+        "Line 5: The central position is active. Lead by making the right thing easier for everyone around you.",
+        "Line 6: The pattern is spent. Do not cling to a form whose teaching is complete."
+      ]
+    }
+  ]
+}
