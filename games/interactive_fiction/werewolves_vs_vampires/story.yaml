@@ -184,10 +184,9 @@ passages:
         effects:
           stats:
             charm: 1
+            wolf_trust: 1
           flags:
             met_hunter: true
-          stats:
-            wolf_trust: 1
 
       - text: Tell her you are not leaving.
         goto: hunter_respect
