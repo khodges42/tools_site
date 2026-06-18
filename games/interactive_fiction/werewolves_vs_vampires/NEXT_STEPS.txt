@@ -1,0 +1,12 @@
+v0.2 DESIGN NOTES
+
+Changes planned from v0.1
+
+- Rewrite the sample story with stronger pacing.
+- Expand to roughly 40-60 passages.
+- Make the vampire bar feel like a real goth club.
+- Add conversation-based trust instead of simple charm checks.
+- Replace the generic blood token with a sticky crimson Roman denarius.
+- Flesh out the werewolves so both factions have clear motivations.
+- Add a dark/light mode toggle on the title screen.
+- Keep all theme customization in CSS instead of YAML.
