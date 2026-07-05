@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Drainboard Orchard</title>
+<style>
+:root{--bg:#15110c;--card:#e5d4ad;--ink:#261b12;--dim:#6f604d;--line:#4e3725;--wet:#26738b;--leaf:#527a32;--red:#a44028;--gold:#bb7d2a}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0d0b08;color:var(--card);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}body{background:radial-gradient(circle at 15% 10%,rgba(187,125,42,.22),transparent 28%),radial-gradient(circle at 84% 76%,rgba(38,115,139,.18),transparent 30%),linear-gradient(135deg,#19120c,#080706 70%)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);mix-blend-mode:screen}.shell{width:min(1180px,100%);min-height:100vh;margin:auto;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px}.mast,.board-wrap,.side,.log{background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:8px 8px 0 #0007}.mast{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px}.mast a{color:var(--red);text-decoration:none;font-weight:800}.mast h1{margin:0;font-size:clamp(28px,6vw,58px);letter-spacing:-.07em;line-height:.9}.mast p{margin:.35rem 0 0;color:var(--dim);max-width:70ch}.board-wrap{padding:12px}.status{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}.meter{border:1px solid #9b8769;background:#eadcbf;padding:8px}.meter span{display:block;color:var(--dim);font-size:11px;text-transform:uppercase}.meter b{font-size:18px}.board{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;touch-action:manipulation;user-select:none}.tile{position:relative;aspect-ratio:1;background:#d8c49a;border:2px solid #8f7959;box-shadow:inset 0 0 0 2px rgba(255,255,255,.18);cursor:pointer;overflow:hidden}.tile.locked{cursor:not-allowed;filter:saturate(.75)}.tile:focus-visible{outline:3px solid var(--red);outline-offset:2px}.tile.wet{background:#c4d0bd}.tile.badwet{animation:shake .18s linear 2;background:#d2a18a}.tile .pipe{position:absolute;inset:0}.seg{position:absolute;background:#6b563d;border:1px solid #3e2d20;box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}.wet .seg.connected{background:#2f8197;border-color:#174653}.badwet .seg.connected{background:#9d3d2b}.n{left:40%;top:-3%;width:20%;height:53%}.s{left:40%;bottom:-3%;width:20%;height:53%}.e{right:-3%;top:40%;width:53%;height:20%}.w{left:-3%;top:40%;width:53%;height:20%}.hub{position:absolute;left:34%;top:34%;width:32%;height:32%;border-radius:50%;background:#6b563d;border:1px solid #3e2d20}.wet .hub.connected{background:#2f8197}.glyph{position:absolute;left:5px;top:3px;font-size:clamp(16px,4vw,24px);z-index:2;text-shadow:1px 1px #f5e9cc}.plant .glyph{color:var(--leaf)}.source .glyph{color:var(--wet)}.crate .glyph{color:var(--red)}.lockmark{position:absolute;right:5px;bottom:3px;color:#795d44;font-size:14px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}button{font:inherit;border:2px solid var(--line);background:#302217;color:#fff3d0;padding:10px 12px;cursor:pointer;box-shadow:inset 4px 0 var(--gold)}button:hover,button:focus-visible{outline:none;background:#4a301d}button.secondary{background:#eadcbf;color:var(--ink);box-shadow:inset 4px 0 var(--wet)}button.danger{box-shadow:inset 4px 0 var(--red)}.side{padding:14px;align-self:start}.side h2{margin:0 0 8px;color:var(--red);font-size:15px;text-transform:uppercase;letter-spacing:.12em}.side p,.side li{line-height:1.45;color:var(--dim)}.side ul{padding-left:1.15rem}.legend{display:grid;gap:7px;margin:10px 0}.legend div{display:flex;justify-content:space-between;border-bottom:1px dashed #9b8769;padding-bottom:4px}.toast{min-height:56px;padding:10px;border-left:4px solid var(--gold);background:#eadcbf;color:var(--ink);line-height:1.4}.log{grid-column:1/-1;padding:10px 14px;color:var(--dim);font-size:12px;line-height:1.4}.win{border-left-color:var(--leaf)}.lose{border-left-color:var(--red)}@keyframes shake{0%,100%{transform:translateX(0)}33%{transform:translateX(-3px)}66%{transform:translateX(3px)}}@media(max-width:840px){.shell{display:flex;flex-direction:column;padding:8px}.mast{align-items:flex-start;flex-direction:column}.status{grid-template-columns:repeat(2,1fr)}.board{gap:4px}.side{order:3}.log{order:4}.mast p{font-size:13px}}@media(max-width:430px){.board-wrap{padding:8px}.status{gap:5px}.meter{padding:6px}.meter b{font-size:15px}.tile{border-width:1px}.controls{grid-template-columns:1fr}button{padding:11px}.side p,.side li{font-size:13px}.glyph{left:3px;top:1px}.lockmark{right:3px;bottom:1px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="mast"><a href="../">← games</a><div><h1>Drainboard Orchard</h1><p>Rotate the gutters in a condemned greenhouse. Feed every plant. Do not soak the cardboard evidence boxes in the basement.</p></div></header>
+<section class="board-wrap" aria-label="Drainboard Orchard game board">
+  <div class="status"><div class="meter"><span>level</span><b id="level">1</b></div><div class="meter"><span>turns</span><b id="turns">0</b></div><div class="meter"><span>budget</span><b id="budget">0</b></div><div class="meter"><span>best streak</span><b id="best">0</b></div></div>
+  <div id="board" class="board"></div>
+  <div class="controls"><button id="rain">run rain</button><button id="new" class="secondary">new puzzle</button><button id="hint" class="secondary">show one honest gutter</button><button id="reset" class="danger">reset level 1</button></div>
+</section>
+<aside class="side"><h2>Rules on the potting bench</h2><p>Tap a gutter to rotate it clockwise. Right-click, long-press, or hold Shift while tapping to rotate backward.</p><ul><li>💧 is the downspout. Water follows matching open pipe ends.</li><li>🌿 planters must all receive water.</li><li>📦 evidence boxes must stay dry.</li><li>🔒 locked gutters cannot be moved.</li></ul><div class="legend"><div><span>straight / elbow / tee / cross</span><b>pipes</b></div><div><span>odd levels</span><b>more plants</b></div><div><span>later levels</span><b>locked bait</b></div></div><div id="toast" class="toast">The roof is leaking. Make it useful.</div></aside>
+<div class="log">This is a turn-based pipe puzzle with procedural boards. Every level has at least one known solution, then gets scrambled with decoys and bad targets.</div>
+</main>
+<script>
+(() => {
+'use strict';
+const N=0,E=1,S=2,W=3, DIRS=[[0,-1],[1,0],[0,1],[-1,0]], OPP=[S,W,N,E], SIZE=7;
+const boardEl=document.getElementById('board'), toast=document.getElementById('toast');
+const els={level:document.getElementById('level'),turns:document.getElementById('turns'),budget:document.getElementById('budget'),best:document.getElementById('best')};
+let state, pressTimer=null, longPress=false;
+function mulberry(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;}}
+function pick(r,a){return a[Math.floor(r()*a.length)]}
+function key(x,y){return x+','+y}
+function tile(type,conns,rot=0){return {type,base:conns.slice(),rot,solution:rot,locked:false,wet:false,badwet:false,connected:[]}}
+function rotConns(base,rot){return base.map(d=>(d+rot+4)%4).sort((a,b)=>a-b)}
+function has(t,d){return rotConns(t.base,t.rot).includes(d)}
+function baseFromConns(conns){return [...new Set(conns)].sort((a,b)=>a-b)}
+function makeLevel(level){
+  const r=mulberry(9137+level*9973), grid=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+  const srcX=1+Math.floor(r()*5), source={x:srcX,y:0};
+  const plantCount=Math.min(5,2+Math.floor(level/2)), targets=[];
+  while(targets.length<plantCount){const side=Math.floor(r()*3);let x,y;if(side===0){x=Math.floor(r()*SIZE);y=SIZE-1}else if(side===1){x=0;y=2+Math.floor(r()*(SIZE-2))}else{x=SIZE-1;y=2+Math.floor(r()*(SIZE-2))}if(!targets.some(t=>t.x===x&&t.y===y)&&!(x===source.x&&y===source.y))targets.push({x,y})}
+  const conns=new Map();
+  function add(x,y,d){const k=key(x,y);if(!conns.has(k))conns.set(k,new Set());conns.get(k).add(d)}
+  for(const target of targets){let x=source.x,y=source.y,guard=0;while((x!==target.x||y!==target.y)&&guard++<80){const choices=[];if(x<target.x)choices.push(E,E);if(x>target.x)choices.push(W,W);if(y<target.y)choices.push(S,S);if(y>target.y)choices.push(N,S);for(let d=0;d<4;d++){const nx=x+DIRS[d][0],ny=y+DIRS[d][1];if(nx>=0&&nx<SIZE&&ny>=0&&ny<SIZE)choices.push(d)}const d=pick(r,choices),nx=x+DIRS[d][0],ny=y+DIRS[d][1];if(nx<0||nx>=SIZE||ny<0||ny>=SIZE)continue;add(x,y,d);add(nx,ny,OPP[d]);x=nx;y=ny}}
+  for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){const c=conns.get(key(x,y));if(c)grid[y][x]=tile('pipe',baseFromConns([...c]),0);else if(r()<.42){const shapes=[[N,S],[E,W],[N,E],[E,S],[S,W],[W,N],[N,E,S],[E,S,W],[S,W,N],[W,N,E],[N,E,S,W]];grid[y][x]=tile('pipe',pick(r,shapes),0)}else grid[y][x]=tile('empty',[],0)}
+  grid[source.y][source.x]=tile('source',[S],0);
+  for(const p of targets){const t=grid[p.y][p.x]||tile('plant',[],0);t.type='plant';grid[p.y][p.x]=t}
+  const crates=2+Math.floor(level/3);let tries=0,placed=0;
+  while(placed<crates&&tries++<120){const x=Math.floor(r()*SIZE),y=1+Math.floor(r()*(SIZE-1));if(grid[y][x].type==='pipe'&&!targets.some(t=>t.x===x&&t.y===y)){grid[y][x].type='crate';placed++}}
+  let needed=0,movable=[];
+  for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){const t=grid[y][x];t.solution=t.rot;if(t.type==='pipe'||t.type==='plant'||t.type==='crate'){const scramble=Math.floor(r()*4);t.rot=(t.rot+scramble)%4;needed+=Math.min(scramble,4-scramble);movable.push(t)}}
+  const locks=Math.min(7,Math.max(0,level-3));
+  for(let i=0;i<locks&&movable.length;i++){const t=pick(r,movable);if(t.type==='pipe'&&r()<.72){t.locked=true;t.rot=t.solution}}
+  return {grid,level,turns:0,budget:Math.max(8,needed+3+Math.floor(level/2)),hinted:false,won:false};
+}
+function draw(){
+  els.level.textContent=state.level;els.turns.textContent=state.turns;els.budget.textContent=state.budget;els.best.textContent=localStorage.drainboardBest||0;boardEl.innerHTML='';
+  for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){const t=state.grid[y][x],b=document.createElement('button');b.className='tile '+t.type+(t.locked?' locked':'')+(t.wet?' wet':'')+(t.badwet?' badwet':'');b.type='button';b.setAttribute('aria-label',`${t.type} at ${x+1},${y+1}${t.locked?', locked':''}. Tap to rotate.`);
+    if(t.type==='source'||t.type==='plant'||t.type==='crate'){const g=document.createElement('span');g.className='glyph';g.textContent=t.type==='source'?'💧':t.type==='plant'?'🌿':'📦';b.appendChild(g)}
+    const p=document.createElement('div');p.className='pipe';const rc=rotConns(t.base,t.rot);for(const d of rc){const s=document.createElement('span');s.className='seg '+['n','e','s','w'][d]+(t.connected.includes(d)?' connected':'');p.appendChild(s)}if(rc.length>1){const h=document.createElement('span');h.className='hub'+(t.connected.length?' connected':'');p.appendChild(h)}b.appendChild(p);
+    if(t.locked){const l=document.createElement('span');l.className='lockmark';l.textContent='🔒';b.appendChild(l)}
+    b.addEventListener('pointerdown',()=>{longPress=false;clearTimeout(pressTimer);pressTimer=setTimeout(()=>{longPress=true;rotate(x,y,-1)},450)});
+    b.addEventListener('pointerup',e=>{clearTimeout(pressTimer);if(!longPress)rotate(x,y,(e.shiftKey?-1:1))});
+    b.addEventListener('contextmenu',e=>{e.preventDefault();rotate(x,y,-1)});boardEl.appendChild(b)}
+}
+function say(msg,kind=''){toast.className='toast '+kind;toast.innerHTML=msg}
+function clearWet(){for(const row of state.grid)for(const t of row){t.wet=false;t.badwet=false;t.connected=[]}}
+function rotate(x,y,dir){const t=state.grid[y][x];if(state.won||t.locked||t.type==='empty'||t.type==='source'){if(t.locked)say('That gutter is nailed down. The old superintendent believed in commitment.');return}t.rot=(t.rot+dir+4)%4;state.turns++;clearWet();draw();if(state.turns>state.budget)say('You are over budget. You can still solve it, but the building committee is writing things down.','lose')}
+function runRain(){clearWet();const q=[];for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++)if(state.grid[y][x].type==='source')q.push([x,y]);const seen=new Set();while(q.length){const [x,y]=q.shift(),t=state.grid[y][x],k=key(x,y);if(seen.has(k))continue;seen.add(k);t.wet=true;const exits=rotConns(t.base,t.rot);for(const d of exits){const nx=x+DIRS[d][0],ny=y+DIRS[d][1];if(nx<0||nx>=SIZE||ny<0||ny>=SIZE)continue;const nt=state.grid[ny][nx];if(nt.type==='empty')continue;if(has(nt,OPP[d])){t.connected.push(d);nt.connected.push(OPP[d]);q.push([nx,ny])}}}
+  let plants=0,wetPlants=0,bad=0;for(const row of state.grid)for(const t of row){if(t.type==='plant'){plants++;if(t.wet)wetPlants++}if(t.type==='crate'&&t.wet){t.badwet=true;bad++}}draw();if(wetPlants===plants&&bad===0){state.won=true;const streak=Number(localStorage.drainboardBest||0);if(state.level>streak)localStorage.drainboardBest=state.level;say(`All ${plants} planters drink and the boxes stay dry. Level ${state.level+1} is worse in a useful way. <button id="nextInline">next leak</button>`,'win');document.getElementById('nextInline').onclick=()=>newLevel(state.level+1)}else if(bad)say(`${wetPlants}/${plants} planters watered, but ${bad} evidence box${bad>1?'es are':' is'} soaked. The mold now has legal standing.`,'lose');else say(`${wetPlants}/${plants} planters watered. The dry ones are judging you with plant patience.`)}
+function hint(){if(state.hinted){say('Only one honest gutter per level. Corruption has limits.');return}const candidates=[];for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){const t=state.grid[y][x];if(!t.locked&&t.type!=='empty'&&t.type!=='source'&&t.rot!==t.solution)candidates.push([x,y,t])}if(!candidates.length){say('Everything important already faces the right way. Try running the rain.');return}const [x,y,t]=pick(mulberry(Date.now()%99999),candidates);t.rot=t.solution;t.locked=true;state.hinted=true;say(`One gutter at row ${y+1}, column ${x+1} remembers its job and locks in place.`);draw()}
+function newLevel(level){state=makeLevel(level);say(level===1?'The roof is leaking. Make it useful.':'A new leak opens upstairs. The plants applaud in total silence.');draw()}
+document.getElementById('rain').onclick=runRain;document.getElementById('new').onclick=()=>newLevel(state.level+1);document.getElementById('hint').onclick=hint;document.getElementById('reset').onclick=()=>{localStorage.removeItem('drainboardBest');newLevel(1)};newLevel(1);
+})();
+</script>
+</body>
+</html>
