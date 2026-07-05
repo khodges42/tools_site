@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Candle Courier</title>
+<style>
+:root{--bg:#120f0c;--paper:#eadfc4;--ink:#21170f;--dim:#756850;--line:#4b3523;--fire:#d9822b;--blue:#356f82;--red:#9f3d2d}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#090806;color:var(--paper);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overscroll-behavior:none}body{background:radial-gradient(circle at 22% 12%,rgba(217,130,43,.18),transparent 28%),radial-gradient(circle at 78% 75%,rgba(53,111,130,.16),transparent 30%),linear-gradient(135deg,#17110c,#070604 75%)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);mix-blend-mode:screen}.shell{width:min(1160px,100%);min-height:100vh;margin:auto;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:12px}.mast,.stage,.side,.log{background:var(--paper);color:var(--ink);border:2px solid var(--line);box-shadow:8px 8px 0 #0008}.mast{grid-column:1/-1;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:12px 14px}.mast a{color:var(--red);font-weight:800;text-decoration:none}.mast h1{margin:0;font-size:clamp(32px,7vw,64px);line-height:.86;letter-spacing:-.08em}.mast p{margin:.45rem 0 0;color:var(--dim);max-width:72ch;line-height:1.35}.stage{padding:10px}.hud{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:8px}.meter{background:#f2e8cf;border:1px solid #a49170;padding:7px;min-width:0}.meter span{display:block;font-size:10px;text-transform:uppercase;color:var(--dim);white-space:nowrap}.meter b{font-size:16px}canvas{display:block;width:100%;height:min(68vh,640px);min-height:430px;background:#1a130e;border:2px solid var(--line);touch-action:none;cursor:crosshair}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}button{font:inherit;border:2px solid var(--line);background:#2b1d13;color:#fff0d0;padding:10px 12px;box-shadow:inset 4px 0 var(--fire);cursor:pointer}button:hover,button:focus-visible{background:#442b19;outline:none}button.secondary{background:#f2e8cf;color:var(--ink);box-shadow:inset 4px 0 var(--blue)}.side{padding:14px;align-self:start}.side h2{font-size:14px;margin:0 0 8px;color:var(--red);letter-spacing:.12em;text-transform:uppercase}.side p,.side li{color:var(--dim);line-height:1.45}.side ul{padding-left:1.1rem}.toast{margin-top:10px;min-height:68px;border-left:4px solid var(--fire);background:#f2e8cf;color:var(--ink);padding:10px;line-height:1.4}.log{grid-column:1/-1;padding:10px 14px;color:var(--dim);font-size:12px;line-height:1.45}.bar{height:8px;background:#d0b98e;border:1px solid #8b7657;margin-top:6px}.fill{height:100%;background:var(--fire);width:100%}@media(max-width:860px){.shell{display:flex;flex-direction:column;padding:8px}.mast{align-items:flex-start;flex-direction:column}.hud{grid-template-columns:repeat(2,1fr)}canvas{height:58vh;min-height:360px}.side{order:3}.log{order:4}}@media(max-width:430px){.stage{padding:7px}.meter{padding:6px}.meter b{font-size:14px}.controls{grid-template-columns:1fr}canvas{min-height:330px}.mast h1{font-size:42px}.side p,.side li{font-size:13px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="mast"><a href="../">← games</a><div><h1>Candle Courier</h1><p>You are a paper moth carrying one stubborn coal through a sleeping house. Draw gusts with your finger or mouse. Light every candle before rain, dust, and bad angles put you out.</p></div></header>
+<section class="stage" aria-label="Candle Courier game">
+  <div class="hud"><div class="meter"><span>room</span><b id="room">1</b></div><div class="meter"><span>lit</span><b id="lit">0/0</b></div><div class="meter"><span>ember</span><b id="ember">100</b><div class="bar"><div id="emberFill" class="fill"></div></div></div><div class="meter"><span>breath</span><b id="breath">100</b><div class="bar"><div id="breathFill" class="fill"></div></div></div><div class="meter"><span>best</span><b id="best">0</b></div></div>
+  <canvas id="game" width="960" height="620"></canvas>
+  <div class="controls"><button id="start">start / retry room</button><button id="next" class="secondary">new house</button></div>
+</section>
+<aside class="side"><h2>Matches found under the sink</h2><p>Drag to draw a gust. The moth is light: short taps nudge, long strokes shove. Gusts cost breath; breath refills only when you stop bossing the air around.</p><ul><li>🕯 Touch dark candles to light them.</li><li>💧 Avoid drips. They wound the ember.</li><li>🪟 Blue vents push whether you like it or not.</li><li>⬛ Furniture blocks the moth and breaks lazy straight lines.</li></ul><div id="toast" class="toast">First move: drag from behind the moth toward a candle. You are not flying the moth. You are arguing with the room.</div></aside>
+<div class="log">A static Canvas game. No assets, no server, no leaderboard. The house is generated from a seed; the best room reached is saved in localStorage.</div>
+</main>
+<script>
+(() => {
+'use strict';
+const canvas=document.getElementById('game'), ctx=canvas.getContext('2d');
+const els={room:document.getElementById('room'),lit:document.getElementById('lit'),ember:document.getElementById('ember'),breath:document.getElementById('breath'),best:document.getElementById('best'),emberFill:document.getElementById('emberFill'),breathFill:document.getElementById('breathFill'),toast:document.getElementById('toast')};
+const W=960,H=620; let running=false,level=1,seed=0,last=0,won=false,dead=false,pointer=null,gusts=[];
+let moth,walls,candles,drips,vents,sparks;
+function rndFactory(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;}}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))} function dist(a,b,c,d){return Math.hypot(a-c,b-d)}
+function rectHit(x,y,r,rec){return x+r>rec.x&&x-r<rec.x+rec.w&&y+r>rec.y&&y-r<rec.y+rec.h}
+function lineColor(a){return `rgba(238,223,196,${a})`}
+function makeLevel(n,keepSeed){seed=keepSeed?seed:(Date.now()&0xfffffff); const r=rndFactory(seed+n*9199); won=false;dead=false;running=true;gusts=[];sparks=[];
+  moth={x:70,y:H-80,vx:0,vy:0,r:11,ember:100,breath:100,inv:0,score:0};
+  walls=[{x:0,y:0,w:W,h:18},{x:0,y:H-18,w:W,h:18},{x:0,y:0,w:18,h:H},{x:W-18,y:0,w:18,h:H}];
+  const count=4+Math.min(5,Math.floor(n/2));
+  for(let i=0;i<count;i++){let w=80+r()*135,h=36+r()*70,x=110+r()*(W-260),y=70+r()*(H-170); if(dist(x+w/2,y+h/2,moth.x,moth.y)<180){i--;continue} walls.push({x,y,w,h});}
+  candles=[]; const targetCount=2+Math.min(4,Math.floor((n+1)/2)); let tries=0;
+  while(candles.length<targetCount&&tries++<600){let x=90+r()*(W-180),y=70+r()*(H-150); if(walls.some(q=>rectHit(x,y,25,q)))continue; if(dist(x,y,moth.x,moth.y)<210)continue; if(candles.some(c=>dist(x,y,c.x,c.y)<150))continue; candles.push({x,y,lit:false,flame:0});}
+  drips=[]; for(let i=0;i<5+n*2;i++){let x=40+r()*(W-80),y=30+r()*(H-80); if(walls.some(q=>rectHit(x,y,18,q)))continue; drips.push({x,y,phase:r()*6.28,rate:.7+r()*1.4,hit:0});}
+  vents=[]; for(let i=0;i<1+Math.floor(n/3);i++){let x=80+r()*(W-160),y=70+r()*(H-140),ang=r()*Math.PI*2; vents.push({x,y,ang,power:22+r()*20});}
+  toast(n===1?'Drag behind the moth toward a candle. Furniture matters; bounce shots are legal and stylish.':'New room. The house has learned a slightly worse kind of weather.'); updateHud();}
+function toast(t){els.toast.textContent=t}
+function drawRoom(){ctx.fillStyle='#19120d';ctx.fillRect(0,0,W,H);ctx.save();ctx.globalAlpha=.18;ctx.strokeStyle='#eadfc4';for(let x=38;x<W;x+=38){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}for(let y=38;y<H;y+=38){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}ctx.restore();
+  for(const v of vents){ctx.save();ctx.translate(v.x,v.y);ctx.rotate(v.ang);ctx.fillStyle='#224c5a';ctx.strokeStyle='#6eb1c2';ctx.lineWidth=2;ctx.fillRect(-22,-13,44,26);ctx.strokeRect(-22,-13,44,26);ctx.beginPath();ctx.moveTo(22,0);ctx.lineTo(50,-12);ctx.lineTo(50,12);ctx.closePath();ctx.fill();ctx.restore();}
+  for(const w of walls){ctx.fillStyle='#392718';ctx.fillRect(w.x,w.y,w.w,w.h);ctx.strokeStyle='#7f6240';ctx.lineWidth=2;ctx.strokeRect(w.x+1,w.y+1,w.w-2,w.h-2);}
+  for(const d of drips){const pulse=(Math.sin(performance.now()/500*d.rate+d.phase)+1)/2;ctx.beginPath();ctx.fillStyle=pulse>.68?'#5fa6bd':'#315b68';ctx.globalAlpha=.55+pulse*.35;ctx.arc(d.x,d.y,5+pulse*8,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}
+  for(const c of candles){ctx.fillStyle='#e8d7ad';ctx.fillRect(c.x-7,c.y-17,14,34);ctx.strokeStyle='#4b3523';ctx.strokeRect(c.x-7,c.y-17,14,34);if(c.lit){ctx.beginPath();ctx.fillStyle='#eaa34c';ctx.arc(c.x,c.y-22,10+Math.sin(performance.now()/130+c.x)*3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle='#fff0b8';ctx.arc(c.x,c.y-25,4,0,Math.PI*2);ctx.fill();}else{ctx.beginPath();ctx.strokeStyle='#74634d';ctx.arc(c.x,c.y-22,17,0,Math.PI*2);ctx.stroke();}}
+}
+function drawMoth(){ctx.save();ctx.translate(moth.x,moth.y);const ang=Math.atan2(moth.vy,moth.vx)||0;ctx.rotate(ang);ctx.fillStyle='#eadfc4';ctx.strokeStyle='#2c1d12';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(-2,-9,16,8,-.5,0,Math.PI*2);ctx.ellipse(-2,9,16,8,.5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#2c1d12';ctx.fillRect(-8,-3,18,6);ctx.beginPath();ctx.fillStyle=moth.ember>35?'#e48632':'#b74630';ctx.arc(12,0,5+moth.ember/45,0,Math.PI*2);ctx.fill();ctx.restore();
+  ctx.beginPath();ctx.fillStyle='rgba(232,134,50,.12)';ctx.arc(moth.x,moth.y,35+moth.ember*.35,0,Math.PI*2);ctx.fill();}
+function drawGusts(){for(const g of gusts){ctx.beginPath();ctx.strokeStyle=lineColor(g.life*.55);ctx.lineWidth=2+g.life*6;ctx.moveTo(g.x,g.y);ctx.lineTo(g.x-g.vx*7,g.y-g.vy*7);ctx.stroke();}if(pointer){ctx.beginPath();ctx.strokeStyle='rgba(234,223,196,.75)';ctx.lineWidth=4;ctx.moveTo(pointer.x0,pointer.y0);ctx.lineTo(pointer.x,pointer.y);ctx.stroke();ctx.beginPath();ctx.fillStyle='rgba(234,223,196,.18)';ctx.arc(pointer.x0,pointer.y0,18,0,Math.PI*2);ctx.fill();}}
+function update(dt){if(!running||won||dead)return; moth.ember-=dt*(2.8+level*.18); moth.breath=clamp(moth.breath+dt*19,0,100); moth.inv=Math.max(0,moth.inv-dt);
+  for(const v of vents){const dx=moth.x-v.x,dy=moth.y-v.y,d=Math.hypot(dx,dy); if(d<165){const fall=1-d/165; moth.vx+=Math.cos(v.ang)*v.power*fall*dt; moth.vy+=Math.sin(v.ang)*v.power*fall*dt;}}
+  for(const g of gusts){const d=dist(moth.x,moth.y,g.x,g.y); if(d<150){const f=(1-d/150)*g.life*75; moth.vx+=g.vx*f*dt; moth.vy+=g.vy*f*dt;} g.life-=dt*.9;}
+  gusts=gusts.filter(g=>g.life>0);
+  moth.vx*=Math.pow(.985,dt*60); moth.vy*=Math.pow(.985,dt*60); let nx=moth.x+moth.vx*dt, ny=moth.y+moth.vy*dt;
+  for(const w of walls){if(rectHit(nx,moth.y,moth.r,w)){moth.vx*=-.42; nx=moth.x} if(rectHit(moth.x,ny,moth.r,w)){moth.vy*=-.42; ny=moth.y}}
+  moth.x=clamp(nx,22,W-22); moth.y=clamp(ny,22,H-22);
+  for(const d of drips){const pulse=(Math.sin(performance.now()/500*d.rate+d.phase)+1)/2;if(pulse>.7&&dist(moth.x,moth.y,d.x,d.y)<18+pulse*10&&moth.inv<=0){moth.ember-=18;moth.inv=.8;sparks.push({x:moth.x,y:moth.y,t:1});toast('A ceiling drip kissed the coal. Rude house.')}}
+  for(const c of candles){if(!c.lit&&dist(moth.x,moth.y,c.x,c.y)<26){c.lit=true;moth.ember=clamp(moth.ember+22,0,100);sparks.push({x:c.x,y:c.y,t:1.4});toast('Candle lit. The room gets less certain of itself.')}}
+  for(const s of sparks)s.t-=dt; sparks=sparks.filter(s=>s.t>0);
+  if(moth.ember<=0){dead=true;running=false;toast('The coal went black. Retry the room; use shorter gusts and let breath refill.')} if(candles.every(c=>c.lit)){won=true;running=false;const best=Number(localStorage.candleCourierBest||0);if(level>best)localStorage.candleCourierBest=level;toast('Room cleared. Press start / retry room for the next room, or new house for a new seed.');level++;} updateHud();}
+function draw(){drawRoom();for(const s of sparks){ctx.beginPath();ctx.fillStyle=`rgba(232,134,50,${s.t})`;ctx.arc(s.x,s.y,38*(1.5-s.t/1.4),0,Math.PI*2);ctx.fill();}drawGusts();drawMoth();if(!running){ctx.fillStyle='rgba(9,8,6,.56)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#eadfc4';ctx.textAlign='center';ctx.font='700 28px ui-monospace,monospace';ctx.fillText(dead?'coal out':won?'room cleared':'candle courier',W/2,H/2-12);ctx.font='16px ui-monospace,monospace';ctx.fillText(dead?'press start to retry':'press start to continue',W/2,H/2+24);ctx.textAlign='left';}}
+function loop(t){const dt=Math.min(.033,(t-last)/1000||.016);last=t;update(dt);draw();requestAnimationFrame(loop)}
+function updateHud(){els.room.textContent=level;const lit=candles?candles.filter(c=>c.lit).length:0,total=candles?candles.length:0;els.lit.textContent=lit+'/'+total;els.ember.textContent=Math.max(0,Math.round(moth?moth.ember:100));els.breath.textContent=Math.round(moth?moth.breath:100);els.emberFill.style.width=clamp(moth?moth.ember:100,0,100)+'%';els.breathFill.style.width=clamp(moth?moth.breath:100,0,100)+'%';els.best.textContent=localStorage.candleCourierBest||0;}
+function pos(e){const r=canvas.getBoundingClientRect(),p=e.touches?e.touches[0]:e;return {x:(p.clientX-r.left)*W/r.width,y:(p.clientY-r.top)*H/r.height}}
+function down(e){e.preventDefault();if(!moth)makeLevel(level,true);const p=pos(e);pointer={x0:p.x,y0:p.y,x:p.x,y:p.y};}
+function move(e){if(!pointer)return;e.preventDefault();const p=pos(e);pointer.x=p.x;pointer.y=p.y;const dx=pointer.x-pointer.x0,dy=pointer.y-pointer.y0,len=Math.hypot(dx,dy);if(len>16&&moth.breath>1){const cost=Math.min(1.8,moth.breath);moth.breath-=cost;gusts.push({x:pointer.x0,y:pointer.y0,vx:dx/len,vy:dy/len,life:Math.min(1,len/130)});pointer.x0=pointer.x;pointer.y0=pointer.y;}}
+function up(e){if(!pointer)return;e.preventDefault();const dx=pointer.x-pointer.x0,dy=pointer.y-pointer.y0,len=Math.hypot(dx,dy);if(len>8&&moth.breath>3){moth.breath-=3;gusts.push({x:pointer.x0,y:pointer.y0,vx:dx/len,vy:dy/len,life:Math.min(1.2,len/90)});}pointer=null;updateHud();}
+canvas.addEventListener('mousedown',down);canvas.addEventListener('mousemove',move);window.addEventListener('mouseup',up);canvas.addEventListener('touchstart',down,{passive:false});canvas.addEventListener('touchmove',move,{passive:false});window.addEventListener('touchend',up,{passive:false});
+document.getElementById('start').addEventListener('click',()=>makeLevel(level,true));document.getElementById('next').addEventListener('click',()=>{level=1;makeLevel(level,false)});
+makeLevel(1,false);running=false;requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
