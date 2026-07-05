@@ -3,158 +3,177 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Arcade Index</title>
-
+<title>Games // tools_site</title>
 <style>
 :root{
-    --bg:#070816;
-    --panel:rgba(12,16,36,.82);
-    --ink:#f4f7ff;
-    --muted:#9aa7d9;
-    --cyan:#71f6ff;
-    --pink:#ff5fd7;
-    --gold:#ffd36b;
+    --bg:#10100e;
+    --paper:#d8d0b8;
+    --ink:#1b1b18;
+    --muted:#6f6a5d;
+    --line:#403b32;
+    --accent:#b1472f;
+    --blue:#2d6f73;
+    --green:#5d7d37;
 }
-
-*{ box-sizing:border-box; }
-
+*{box-sizing:border-box}
+html{background:#090907}
 body{
     margin:0;
     min-height:100vh;
-    overflow:hidden;
-    font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    color:var(--ink);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color:var(--paper);
     background:
-        radial-gradient(circle at 20% 15%, rgba(255,95,215,.25), transparent 28%),
-        radial-gradient(circle at 80% 70%, rgba(113,246,255,.18), transparent 30%),
-        var(--bg);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+        radial-gradient(circle at 18% 14%,rgba(177,71,47,.22),transparent 24%),
+        radial-gradient(circle at 82% 72%,rgba(45,111,115,.16),transparent 28%),
+        linear-gradient(135deg,#11110f,#090907 65%);
 }
-
-body::before{
+body:before{
     content:"";
     position:fixed;
-    inset:-20%;
-    background-image:
-        linear-gradient(rgba(113,246,255,.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(113,246,255,.12) 1px, transparent 1px);
-    background-size:48px 48px;
-    transform:perspective(500px) rotateX(60deg);
-    animation:gridDrift 12s linear infinite;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),
+        repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 80px);
+    mix-blend-mode:screen;
 }
-
-body::after{
-    content:"✦  ⚔  ◆  ☾  ✧  ◈  ★  ✦  ⚙";
-    position:fixed;
-    inset:auto 0 12%;
-    font-size:4rem;
-    letter-spacing:2rem;
-    color:rgba(255,255,255,.05);
-    white-space:nowrap;
-    animation:parallax 22s linear infinite;
+.wrap{
+    width:min(920px,94vw);
+    margin:0 auto;
+    padding:clamp(18px,5vw,54px) 0;
 }
-
-@keyframes gridDrift{
-    from{ transform:perspective(500px) rotateX(60deg) translateY(0); }
-    to{ transform:perspective(500px) rotateX(60deg) translateY(48px); }
-}
-
-@keyframes parallax{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
-}
-
 .index{
     position:relative;
-    width:min(760px,92vw);
-    padding:2.5rem;
-    background:var(--panel);
-    border:1px solid rgba(113,246,255,.45);
-    box-shadow:
-        0 0 40px rgba(113,246,255,.18),
-        inset 0 0 30px rgba(255,95,215,.08);
-    backdrop-filter:blur(10px);
+    background:var(--paper);
+    color:var(--ink);
+    border:2px solid var(--line);
+    box-shadow:12px 12px 0 #0008;
 }
-
+.index:before{
+    content:"tools_site/games :: public folder :: no warranty";
+    display:block;
+    padding:.55rem .8rem;
+    color:#f0ead7;
+    background:var(--line);
+    border-bottom:2px solid var(--line);
+    font-size:.78rem;
+    letter-spacing:.04em;
+}
+.inner{padding:clamp(18px,4vw,38px)}
 h1{
     margin:0;
-    text-align:center;
-    font-size:clamp(2rem,7vw,4rem);
-    color:var(--cyan);
-    text-shadow:0 0 16px rgba(113,246,255,.8);
+    font-size:clamp(2.2rem,8vw,5rem);
+    letter-spacing:-.08em;
+    line-height:.9;
 }
-
+.kicker{
+    display:inline-block;
+    margin:0 0 .7rem;
+    padding:.2rem .45rem;
+    background:var(--accent);
+    color:#fff8e8;
+    font-size:.78rem;
+    transform:rotate(-1deg);
+}
 .subtitle{
-    margin:1rem 0 2.5rem;
-    text-align:center;
+    max-width:68ch;
+    margin:1.2rem 0 1.6rem;
     color:var(--muted);
+    line-height:1.55;
 }
-
-.shelf{
-    border-top:1px solid rgba(255,255,255,.12);
+.manifesto{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:1.2rem 0 2rem;
 }
-
-.entry{
-    display:flex;
-    justify-content:space-between;
-    gap:1rem;
-    padding:1.1rem;
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px solid rgba(255,255,255,.12);
-    transition:.18s ease;
-}
-
-.entry:hover{
-    background:rgba(113,246,255,.08);
-    transform:translateX(8px);
-    box-shadow:inset 4px 0 var(--pink);
-}
-
-.title{
-    color:var(--gold);
-}
-
-.tag{
-    color:var(--muted);
+.note{
+    border:1px solid #9b927c;
+    background:#eee6ce;
+    padding:.85rem;
+    line-height:1.45;
     font-size:.9rem;
 }
-
+.note b{color:var(--accent)}
+.shelf{border-top:2px solid var(--line)}
+.entry{
+    display:grid;
+    grid-template-columns:1.2fr 1.8fr auto;
+    gap:1rem;
+    align-items:start;
+    padding:1rem 0;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid #9b927c;
+}
+.entry:hover .title{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.title{font-weight:800;color:var(--blue)}
+.desc{color:var(--muted);line-height:1.4;font-size:.92rem}
+.badge{
+    border:1px solid var(--line);
+    color:var(--line);
+    padding:.18rem .35rem;
+    font-size:.72rem;
+    white-space:nowrap;
+}
 .footer{
     margin-top:2rem;
-    text-align:center;
+    padding-top:1rem;
     color:var(--muted);
-    font-size:.85rem;
+    border-top:1px dashed #9b927c;
+    font-size:.82rem;
+    line-height:1.5;
+}
+.ascii{
+    margin:1rem 0 0;
+    color:#8a4b38;
+    font-size:.72rem;
+    white-space:pre;
+    overflow:auto;
+}
+@media(max-width:720px){
+    .manifesto{grid-template-columns:1fr}
+    .entry{grid-template-columns:1fr;gap:.35rem}
+    .badge{width:max-content}
+    .index{box-shadow:6px 6px 0 #0008}
 }
 </style>
 </head>
-
 <body>
+<div class="wrap">
 <main class="index">
-    <h1>Game Index</h1>
+    <div class="inner">
+        <div class="kicker">assorted browser experiments</div>
+        <h1>Games</h1>
+        <div class="subtitle">
+            A small shelf of static web games, toys, mistakes, and midnight experiments. Some are hand-built. Some are vibe coded. Some are generated with very little direction and then cleaned up later. Some are surprisingly good. Some may be broken in public.
+        </div>
 
-    <div class="subtitle">
-        Games and games accessories
-    </div>
+        <section class="manifesto" aria-label="catalog notes">
+            <div class="note"><b>Static only.</b> These should run on Cloudflare Pages with plain files: HTML, CSS, JavaScript, and whatever trouble a browser can make by itself.</div>
+            <div class="note"><b>Uneven on purpose.</b> Treat this less like a polished arcade and more like a demoscene folder, a sketchbook, or a shoebox full of weird little disks.</div>
+        </section>
 
-    <nav class="shelf">
-        <a class="entry" href="./interactive_fiction/">
-            <span class="title">▸ Interactive Fiction Library</span>
-            <span class="tag">a fancy way to say text adventure?</span>
-        </a>
+        <nav class="shelf" aria-label="games list">
+            <a class="entry" href="./interactive_fiction/">
+                <span class="title">Interactive Fiction Library</span>
+                <span class="desc">A text-adventure-ish library entry. Earlier experiment, possibly fancy, possibly haunted by the phrase “interactive fiction.”</span>
+                <span class="badge">story</span>
+            </a>
 
-        <a class="entry" href="./star-marrow/">
-            <span class="title">▸ Star-Marrow</span>
-            <span class="tag">cyber-occult micro RPG // static HTML</span>
-        </a>
-    </nav>
+            <a class="entry" href="./star-marrow/">
+                <span class="title">Star-Marrow</span>
+                <span class="desc">Municipal transcendence, cassette tape memory, abandoned timelines, and a future that died but left the lights on.</span>
+                <span class="badge">rpg</span>
+            </a>
+        </nav>
 
-    <div class="footer">
-         WELCOME TO YOUR DOOM (and stuff)
+        <div class="footer">
+            No leaderboard. No accounts. No promise that anything here is finished. If something rules, great. If something breaks, that is also historically consistent with obscure personal websites.
+            <div class="ascii">.oO demo folder / 2am build / refresh if cursed Oo.</div>
+        </div>
     </div>
 </main>
+</div>
 </body>
 </html>
