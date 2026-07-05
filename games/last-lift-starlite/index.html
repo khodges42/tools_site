@@ -53,7 +53,7 @@ function loop(ts){if(!last)last=ts;let dt=Math.min(.05,(ts-last)/1000);last=ts;s
 function bindHold(id,key){const b=document.getElementById(id);const on=e=>{e.preventDefault();input[key]=true},off=e=>{e.preventDefault();input[key]=false};b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('pointerleave',off)}
 bindHold('up','up');bindHold('down','down');bindHold('brake','brake');document.getElementById('open').addEventListener('click',openDoor);
 addEventListener('keydown',e=>{if(e.repeat)return;const k=e.key.toLowerCase();if(k==='arrowup'||k==='w')input.up=true;if(k==='arrowdown'||k==='s')input.down=true;if(k===' ')input.brake=true;if(k==='o'||k==='enter')openDoor();if(k==='r'&&s.over)newGame();});addEventListener('keyup',e=>{const k=e.key.toLowerCase();if(k==='arrowup'||k==='w')input.up=false;if(k==='arrowdown'||k==='s')input.down=false;if(k===' ')input.brake=false;});
-function resize(){const dpr=Math.min(2,devicePixelRatio||1),r=canvas.getBoundingClientRect();canvas.width=Math.max(320,Math.floor(r.width*dpr));canvas.height=Math.max(320,Math.floor(r.height*dpr));ctx.setTransform(dpr,0,0,dpr,0,0);canvas.width=Math.floor(r.width*dpr);canvas.height=Math.floor(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
+function resize(){const r=canvas.getBoundingClientRect();canvas.width=Math.max(320,Math.floor(r.width));canvas.height=Math.max(320,Math.floor(r.height));}
 addEventListener('resize',resize);newGame();setTimeout(resize,30);requestAnimationFrame(loop);
 })();
 </script>
