@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Tilt Reliquary</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="mast">
+      <a class="back" href="../">← games</a>
+      <div>
+        <h1>Tilt Reliquary</h1>
+        <p>Roll the witness through the machine without waking the red bells.</p>
+      </div>
+      <button id="soundBtn" type="button" aria-label="Toggle sound">sound off</button>
+    </header>
+
+    <section class="stage-wrap" aria-label="Tilt Reliquary game area">
+      <canvas id="game" width="720" height="720"></canvas>
+      <div id="startPanel" class="panel">
+        <p class="kicker">STATIC SITE / MOTION RITUAL / ONE FILE SYSTEM</p>
+        <h2>Calibrate the floor.</h2>
+        <p>
+          The reliquary only opens for a moving device. Tilt your phone, drag with a mouse,
+          or use WASD/arrow keys. Collect seven blue seals, then enter the center aperture.
+        </p>
+        <ul>
+          <li>Green lines are walls.</li>
+          <li>Red bells punish fast, careless crossings.</li>
+          <li>The floor slowly forgets which way is down.</li>
+        </ul>
+        <button id="startBtn" type="button">begin / request motion</button>
+      </div>
+      <div id="message" class="message" aria-live="polite"></div>
+    </section>
+
+    <aside class="hud">
+      <div><span>seals</span><strong id="seals">0 / 7</strong></div>
+      <div><span>charge</span><strong id="charge">100</strong></div>
+      <div><span>time</span><strong id="time">00:00</strong></div>
+      <div><span>best</span><strong id="best">--:--</strong></div>
+      <div><span>input</span><strong id="inputMode">waiting</strong></div>
+      <button id="resetBtn" type="button">reset run</button>
+    </aside>
+
+    <section class="notes">
+      <h2>Rules found scratched into the case</h2>
+      <p>
+        Every seal makes the bells less patient. The witness is magnetic: walls shove it away,
+        bells drink charge, and the aperture refuses you until the seventh seal is awake.
+      </p>
+      <p>
+        Desktop fallback is deliberate, not consolation. A mouse becomes a gravity wand.
+      </p>
+    </section>
+  </main>
+  <script src="./game.js"></script>
+</body>
+</html>
