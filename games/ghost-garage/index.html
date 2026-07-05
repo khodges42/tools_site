@@ -5,261 +5,34 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ghost Garage // tools_site</title>
 <style>
-:root{
-  --bg:#080807;--panel:#15130f;--ink:#eee2c8;--muted:#a89778;--line:#514431;
-  --amber:#e7b75d;--rust:#b65a35;--red:#d66d62;--green:#9fbb6a;--blue:#6ec4c2;
-  --oil:#07090a;--paper:#d8d0b8;
-}
-*{box-sizing:border-box}
-html{background:#050504}
-body{
-  margin:0;min-height:100vh;color:var(--ink);
-  font:16px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(182,90,53,.22),transparent 27%),
-    radial-gradient(circle at 85% 65%,rgba(110,196,194,.12),transparent 31%),
-    linear-gradient(145deg,#11100d,#080807 70%);
-}
-body:after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:30;
-  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);
-  mix-blend-mode:screen;
-}
-.shell{
-  width:min(1220px,100%);
-  margin:auto;
-  padding:14px;
-  display:grid;
-  grid-template-columns:270px 1fr 300px;
-  gap:12px;
-}
-.box{
-  background:linear-gradient(145deg,rgba(24,22,17,.96),rgba(9,9,8,.98));
-  border:1px solid var(--line);
-  box-shadow:inset 0 0 0 2px #060605,0 10px 35px #0009;
-}
-.mast{
-  grid-column:1/-1;padding:14px 16px;display:flex;justify-content:space-between;gap:1rem;align-items:center;
-  border-top:3px solid var(--rust);
-}
-.logo{font-size:clamp(25px,5vw,48px);letter-spacing:.08em;color:var(--amber);text-shadow:2px 2px #4a1e18;margin:0}
-.sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-a{color:var(--blue)}
-.side{padding:14px}
-.side h2,.side h3{
-  font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);
-  border-bottom:1px solid var(--line);padding-bottom:6px;margin:8px 0 10px;
-}
-.stage{min-width:0;overflow:hidden}
-.scene{
-  position:relative;height:280px;overflow:hidden;border-bottom:1px solid var(--line);
-  background:linear-gradient(#0b0e10,#1c1712 55%,#0b0a09);
-}
-.scene:before{
-  content:"";position:absolute;left:-20%;right:-20%;bottom:-55%;height:110%;
-  background:
-    linear-gradient(90deg,transparent 49%,rgba(231,183,93,.18) 50%,transparent 51%),
-    linear-gradient(0deg,transparent 49%,rgba(231,183,93,.12) 50%,transparent 51%);
-  background-size:82px 82px;transform:perspective(520px) rotateX(66deg);transform-origin:bottom;
-}
-.garage-door{position:absolute;left:8%;right:8%;top:30px;height:130px;border:2px solid #2a2924;background:repeating-linear-gradient(0deg,#15130f 0 16px,#1f1b14 16px 18px)}
-.car{position:absolute;left:50%;bottom:44px;width:390px;height:115px;transform:translateX(-50%)}
-.car .body{position:absolute;left:25px;right:25px;bottom:30px;height:55px;background:#612b25;border:2px solid #c77754;clip-path:polygon(8% 38%,27% 10%,68% 8%,87% 38%,98% 50%,92% 78%,12% 78%,2% 50%)}
-.car .glass{position:absolute;left:130px;top:27px;width:130px;height:36px;background:#111d20;border:2px solid #6ec4c2;clip-path:polygon(12% 100%,35% 0,86% 0,100% 100%)}
-.wheel{position:absolute;bottom:18px;width:58px;height:58px;border-radius:50%;background:#060606;border:7px solid #3a3932;box-shadow:inset 0 0 0 7px #10100e}
-.wheel.l{left:68px}.wheel.r{right:72px}
-.hood{position:absolute;left:82px;bottom:82px;color:#f0d7a7;font-size:11px;transform:rotate(-3deg)}
-.smoke{position:absolute;right:35px;bottom:82px;color:#aaa;opacity:.55}
-.laptop{position:absolute;right:12px;bottom:10px;color:var(--blue);font-size:12px;background:#07090a;border:1px solid #335;padding:4px 7px}
-.place{position:absolute;left:14px;bottom:12px;background:#07090add;color:var(--amber);border-left:3px solid var(--amber);padding:4px 8px}
-.story{padding:18px 20px;min-height:260px}
-.story p{margin:0 0 1em}
-.story b{color:var(--amber)}
-.story .lil{color:#d783b8}.story .sys{color:var(--blue)}.story .bad{color:var(--red)}.story .good{color:var(--green)}
-.choices{padding:0 14px 16px;display:grid;gap:8px}
-button{
-  font:inherit;color:var(--ink);background:#181610;border:1px solid #534936;padding:11px 12px;text-align:left;cursor:pointer;border-radius:0;
-  box-shadow:inset 3px 0 #6b6049;
-}
-button:hover{background:#241f16;border-color:var(--amber)}
-button.primary{box-shadow:inset 3px 0 var(--amber)}
-button.danger{box-shadow:inset 3px 0 var(--red)}
-button:disabled{opacity:.4;cursor:not-allowed}
-.stat{margin-bottom:9px}.statline{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-.bar{height:7px;background:#070706;border:1px solid #373126}.fill{height:100%;background:#a58c59}
-.tags{display:flex;flex-wrap:wrap;gap:5px}.tag{font-size:11px;padding:4px 6px;border:1px solid #544938;background:#0d0c0a;color:#cfc1a2}
-.console{font-size:12px;color:#9fe1dd;background:#050808;border:1px solid #283d3c;padding:9px;white-space:pre-wrap;min-height:80px}
-.parts{display:grid;gap:8px}.part{padding:8px;border:1px solid #453b2c;background:#11100d}.part strong{display:block;color:var(--amber)}.part small{color:var(--muted)}
-.note{font-size:12px;color:var(--muted);padding:9px;border-left:2px solid var(--rust);background:#1a130f}
-.controls{display:grid;gap:6px;margin-top:10px}.controls button{font-size:12px;padding:7px}
-.footer{grid-column:1/-1;text-align:center;color:#696150;font-size:10px;padding:6px}
-@media(max-width:900px){
-  .shell{display:flex;flex-direction:column;padding:8px}.scene{height:220px}.car{width:320px}.side{padding:12px}
-  .mast{align-items:flex-start}.mast .sub{display:none}
-}
+:root{--bg:#070706;--panel:#14120f;--ink:#eee2c8;--muted:#a99b82;--line:#514431;--amber:#e7b75d;--rust:#b65a35;--red:#d66d62;--green:#9fbb6a;--blue:#6ec4c2;--oil:#050607}*{box-sizing:border-box}html{background:#050504}body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:radial-gradient(circle at 15% 12%,rgba(182,90,53,.22),transparent 28%),radial-gradient(circle at 90% 70%,rgba(110,196,194,.13),transparent 32%),linear-gradient(145deg,#11100d,#070706 72%)}body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 4px);mix-blend-mode:screen}.shell{width:min(1280px,100%);margin:auto;padding:14px;display:grid;grid-template-columns:300px 1fr 330px;gap:12px}.box{background:linear-gradient(145deg,rgba(23,21,17,.97),rgba(9,9,8,.98));border:1px solid var(--line);box-shadow:inset 0 0 0 2px #060605,0 10px 35px #0009}.mast{grid-column:1/-1;padding:14px 16px;display:flex;justify-content:space-between;gap:1rem;align-items:center;border-top:3px solid var(--rust)}.logo{font-size:clamp(25px,5vw,48px);letter-spacing:.08em;color:var(--amber);text-shadow:2px 2px #4a1e18;margin:0}.sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}a{color:var(--blue)}.side{padding:14px}.side h2,.side h3,.tune h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px;margin:8px 0 10px}.stage{min-width:0;overflow:hidden}.story{padding:18px 20px;border-bottom:1px solid var(--line);min-height:215px;background:linear-gradient(#17130f,#100e0b)}.story p{margin:0 0 1em}.story b{color:var(--amber)}.story .lil{color:#d783b8}.story .mara{color:#9fbb6a}.story .dad{color:#c9b27c}.tune{padding:16px}.status{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.pill{border:1px solid #443a2b;background:#0d0c0a;padding:8px}.pill span{display:block;color:var(--muted);font-size:11px}.pill strong{font-size:18px;color:var(--amber)}.diagram{height:210px;border:1px solid #2e342f;background:radial-gradient(circle at 55% 45%,rgba(110,196,194,.11),transparent 38%),#070909;margin-bottom:14px}.diagram svg{width:100%;height:100%}.diag-line{fill:none;stroke:#6ec4c2;stroke-width:4;opacity:.65}.diag-ex{stroke:#d66d62}.diag-fuel{stroke:#9fbb6a}.diag-part{fill:#121817;stroke:#6ec4c2;stroke-width:2}.diag-block{fill:#1a1712;stroke:#e7b75d;stroke-width:2}.diag-hot{filter:drop-shadow(0 0 8px rgba(231,183,93,.7))}.controls{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.control{border:1px solid #3f3628;background:#100f0c;padding:10px}.control label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}.control input{width:100%}.maps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.map{border:1px solid #3f3628;background:#0b0b09;padding:10px}.map h3{font-size:12px;color:var(--amber);margin:0 0 7px}.cells{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.cell{padding:7px 4px;text-align:center;background:#15130f;border:1px solid #30291f;color:#c9bda4;font-size:12px}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{font:inherit;color:var(--ink);background:#181610;border:1px solid #534936;padding:10px 12px;text-align:left;cursor:pointer;border-radius:0;box-shadow:inset 3px 0 #6b6049}button:hover{background:#241f16;border-color:var(--amber)}button.primary{box-shadow:inset 3px 0 var(--amber)}button.danger{box-shadow:inset 3px 0 var(--red)}button:disabled{opacity:.4;cursor:not-allowed}.part{padding:8px;border:1px solid #453b2c;background:#11100d;margin-bottom:7px}.part strong{display:block;color:var(--amber)}.part small{color:var(--muted)}.tag{display:inline-block;font-size:11px;padding:4px 6px;border:1px solid #544938;background:#0d0c0a;color:#cfc1a2;margin:0 5px 5px 0}.log{font-size:12px;color:#9fe1dd;background:#050808;border:1px solid #283d3c;padding:9px;white-space:pre-wrap;min-height:110px}.note{font-size:12px;color:var(--muted);padding:9px;border-left:2px solid var(--rust);background:#1a130f}.footer{grid-column:1/-1;text-align:center;color:#696150;font-size:10px;padding:6px}@media(max-width:950px){.shell{display:flex;flex-direction:column;padding:8px}.controls,.maps,.status{grid-template-columns:1fr}.mast .sub{display:none}}
 </style>
 </head>
 <body>
 <div class="shell">
-  <header class="mast box">
-    <div>
-      <p class="sub">S14 grief machine // laptop tune // choice-based garage sim</p>
-      <h1 class="logo">GHOST GARAGE</h1>
-    </div>
-    <a href="../">← games</a>
-  </header>
-
-  <aside class="side box">
-    <h2>Lilith</h2>
-    <div id="stats"></div>
-    <h3>Pockets / Shelf</h3>
-    <div id="inv" class="tags"></div>
-    <h3>ECU Console</h3>
-    <div id="console" class="console"></div>
-  </aside>
-
-  <main class="stage box">
-    <div class="scene">
-      <div class="garage-door"></div>
-      <div class="car">
-        <div class="body"></div><div class="glass"></div><div class="wheel l"></div><div class="wheel r"></div>
-        <div class="hood">S14 // dust map intact</div><div class="smoke" id="smoke">~~</div><div class="laptop">laptop + dream</div>
-      </div>
-      <div id="place" class="place"></div>
-    </div>
-    <div id="story" class="story"></div>
-    <div id="choices" class="choices"></div>
-  </main>
-
-  <aside class="side box">
-    <h2>Build Sheet</h2>
-    <div id="parts" class="parts"></div>
-    <h3>Work Order</h3>
-    <div id="objective" class="note"></div>
-    <div class="controls">
-      <button id="save">● SAVE GARAGE NIGHT</button>
-      <button id="load">◀ LOAD LAST NIGHT</button>
-      <button id="reset" class="danger">NEW BUILD</button>
-    </div>
-  </aside>
-
-  <div class="footer">fictional SR20-adjacent tuning toy · not a calibration guide · do not tune actual grief at 17 psi</div>
+<header class="mast box"><div><p class="sub">S14 grief machine // story-gated dyno puzzles // fictional tuning toy</p><h1 class="logo">GHOST GARAGE</h1></div><a href="../">← games</a></header>
+<aside class="side box"><h2>Stage</h2><div id="stageCard" class="note"></div><h3>Unlocked Parts</h3><div id="parts"></div><h3>Inventory / ghosts</h3><div id="inv"></div></aside>
+<main class="stage box"><section id="story" class="story"></section><section class="tune"><h2>Tune Console</h2><div class="status"><div class="pill"><span>Power</span><strong id="power">--</strong></div><div class="pill"><span>Torque</span><strong id="torque">--</strong></div><div class="pill"><span>Reliability</span><strong id="safe">--</strong></div><div class="pill"><span>Result</span><strong id="result">Ready</strong></div></div><div class="diagram"><svg viewBox="0 0 720 260" role="img" aria-label="Abstract SR20 engine diagram"><text x="24" y="34" fill="#a99b82" font-size="14">INTAKE</text><rect id="diagIntercooler" class="diag-part" x="24" y="55" width="120" height="62" rx="10"></rect><path class="diag-line" d="M145 86 L230 86"/><circle id="diagTurbo" class="diag-part" cx="255" cy="86" r="39"></circle><circle cx="255" cy="86" r="16" fill="#070909" stroke="#6ec4c2"/><path class="diag-line" d="M294 86 L350 86 L350 128"/><text x="350" y="34" fill="#a99b82" font-size="14">CYLINDER BANK</text><rect class="diag-block" x="328" y="128" width="260" height="94" rx="12"></rect><rect class="diag-part" x="348" y="150" width="42" height="50" rx="6"></rect><rect class="diag-part" x="408" y="150" width="42" height="50" rx="6"></rect><rect class="diag-part" x="468" y="150" width="42" height="50" rx="6"></rect><rect class="diag-part" x="528" y="150" width="42" height="50" rx="6"></rect><path class="diag-line diag-ex" d="M588 175 C640 175,666 148,684 105"/><text x="610" y="92" fill="#a99b82" font-size="14">EXHAUST</text><rect id="diagFuel" class="diag-part" x="48" y="180" width="170" height="50" rx="10"></rect><text x="86" y="211" fill="#9fbb6a" font-size="19">FUEL</text><path class="diag-line diag-fuel" d="M218 205 L328 186"/><rect id="diagEcu" class="diag-part" x="520" y="42" width="132" height="60" rx="10"></rect><text x="558" y="78" fill="#6ec4c2" font-size="19">ECU</text><path class="diag-line" d="M520 72 L410 128"/></svg></div><div class="controls" id="controls"></div><div class="maps"><div class="map"><h3>Fuel Map AFR</h3><div id="fuelMap" class="cells"></div></div><div class="map"><h3>Ignition Map</h3><div id="timingMap" class="cells"></div></div></div><div class="buttons"><button class="primary" id="runBtn">Run Pull</button><button id="hintBtn">Ask Mara / read notes</button></div></section></main>
+<aside class="side box"><h2>Target</h2><div id="target" class="note"></div><h3>Dyno Log</h3><div id="log" class="log"></div><h3>Save</h3><button id="save">● SAVE NIGHT</button> <button id="load">◀ LOAD</button> <button id="reset" class="danger">RESET</button></aside>
+<div class="footer">fictional SR20-adjacent tuning puzzle · not a real tuning guide · all numbers are arcade nonsense</div>
 </div>
-
 <script>
-const PARTS=[
-  {id:'fluids',name:'fresh fluids',hp:0,reliability:12,cost:140,story:'Oil, coolant, trans fluid. Boring stuff. The stuff adults do before trying to become a legend.'},
-  {id:'wideband',name:'wideband O2',hp:8,reliability:10,cost:220,story:'A glowing number that tells the truth even when forum posts do not.'},
-  {id:'cams',name:'drop-in cams',hp:22,reliability:-3,cost:650,story:'A little chop at idle. The car starts sounding like it has opinions.'},
-  {id:'turbo',name:'used ball-bearing turbo',hp:62,reliability:-12,cost:900,story:'Craigslist. Cash. Gas station lot. A stranger who understands exactly one kind of sadness.'},
-  {id:'fuel',name:'bigger injectors + pump',hp:35,reliability:8,cost:520,story:'Fuel system stops being a prayer and starts being a plan.'},
-  {id:'clutch',name:'mean clutch',hp:0,reliability:8,cost:480,story:'Left leg gym membership. Parking lots become negotiation.'}
+const STAGES=[
+{ id:'wake', title:'Basemap: make it idle', part:'fresh fluids + consult cable', inv:'old cigarettes', minHp:132, maxHp:170, minSafe:72, target:'Get the car to idle and survive a gentle pull. Rich is okay. Knock is not.', story:`The tarp comes off in one dusty sheet. The S14 is red under the garage light, except where it is primer, except where it is memory.\n\nHer dad left a note under the wiper: **fluids first. don't be a hero.**\n\nLilith reads it twice, annoyed that the dead can still be right. Then she balances the laptop on the fender and loads the least cursed basemap she can find.`, hint:'For the first pull, keep boost low, fuel rich, and timing mild. The goal is clean idle, not Instagram.' , ideal:{boost:7,fuel:11.8,timing:12,rev:6200}},
+{ id:'wideband', title:'Street Tune: trust the number', part:'wideband O2 + fresh plugs', inv:'tinny nightcore playlist', minHp:155, maxHp:205, minSafe:68, target:'Make decent power on 93 while keeping AFR close and knock low.', story:`The wideband glows from the vent like a tiny judgmental moon.\n\nThird gear. Industrial road. Laptop battery at 13%. Some nightcore remix buzzes through blown speakers.\n\nThe car pulls clean, then leans out for half a second. Lilith lifts before the sound becomes expensive. Data, unfortunately, has a point.`, hint:'Add some boost, keep AFR around high 11s, and do not get greedy with timing yet.', ideal:{boost:11,fuel:11.7,timing:15,rev:6800}},
+{ id:'cams', title:'Cams: make the idle mean', part:'drop-in cams', inv:'receipt from 2009', minHp:185, maxHp:245, minSafe:62, target:'The cams want revs and timing, but the idle gets touchy. Find the window.', story:`The cams were still in the box. He bought them, never installed them, and apparently kept the receipt because men will archive anything except an apology.\n\nThe first start chops hard enough to make Lilith grin before she can stop herself. It sounds broken in a way that promises it is not.`, hint:'Cams like a little more rev and timing. Too much boost before fuel support will make the log ugly.', ideal:{boost:12,fuel:11.9,timing:18,rev:7400}},
+{ id:'turbo', title:'Craigslist Turbo: spool and grief', part:'used ball-bearing turbo', inv:'Mara’s number on receipt paper', minHp:240, maxHp:330, minSafe:55, target:'Use the bigger turbo without turning the motor into glitter. The safe solution needs fuel and restraint.', story:`Mara shows up at the gas station in a primer coupe with one headlight and a passenger seat full of fast-food bags.\n\nShe says the turbo came off her brother’s car. Says it flat, like she has practiced making it small enough to carry.\n\nThey check shaft play under sodium lights. Two strangers, both pretending this is only about parts.`, hint:'The turbo wants boost, but the engine wants fuel. Keep AFR richer and timing conservative.', ideal:{boost:16,fuel:11.4,timing:16,rev:7200}},
+{ id:'run', title:'Midnight Run: no permission', part:'bigger injectors + pump + clutch', inv:'toolbox that survived the crying', minHp:300, maxHp:420, minSafe:50, target:'Final run. Hit the power window without blowing it up. You are not tuning for his approval.', story:`At the line, Lilith looks over at the empty passenger seat and waits for the old question to show up.\n\nWould he like this? Would he get it? Would he be proud?\n\nThe light changes before the answer does. Good. She is tired of asking ghosts for tech inspection.`, hint:'Final setup can take more boost, but timing still kills. Richer fuel and a sane rev limit keep the ending alive.', ideal:{boost:19,fuel:11.3,timing:17,rev:7600}}
 ];
-
-const NODES={
-start:{
- place:'The garage, after midnight',
- text:`The S14 sits under a tarp like a rumor nobody wanted to finish.\n\nLilith's dad bought it when she was still young enough to think every promise had a calendar attached. He said they would build it together. Then work got busy. Then she got busy. Then grief got permanent.\n\nOn the workbench: a laptop, a cracked consult cable, a box of fluids, and an old pack of cigarettes hidden behind the toolbox.`,
- choices:[
-  ['Pull the tarp off',()=>go('tarp')],
-  ['Open the toolbox first',()=>{gain('toolbox');S.nerve++;go('toolbox')}],
-  ['Smoke one of the stale cigarettes',()=>{S.grief++;S.flags.cig=true;go('cig')}]
- ]},
-tarp:{place:'Dust map',text:`The tarp comes off in one dramatic dusty cough.\n\nThe paint is worse than the photos in her memory. The hood has a dent shaped like someone set a whole childhood on it. But the car is real. Not a metaphor. Not a shrine.\n\nA note is tucked under the wiper: **needs fluids before start. don't be a hero.**`,choices:[['Do the responsible thing',()=>install('fluids','first_start')],['Ignore the note and crank it',()=>{S.reliability-=12;S.grief++;go('dry_start')}]]},
-toolbox:{place:'Workbench',text:`The top drawer sticks. Inside: 10mm sockets, electrical tape, zip ties, a tiny screwdriver, and one receipt from 2009 for parts he never installed.\n\nShe grips the handle until the toolbox becomes the only solid thing in the room. Then the crying hits. Ugly, animal, honest. She hugs the toolbox because nobody ever tells you grief has handles.`,choices:[['Let it happen',()=>{S.heart+=2;go('tarp')}],['Get mad and start working',()=>{S.nerve+=2;go('tarp')}]]},
-cig:{place:'Open garage door',text:`The cigarette is stale and terrible. It tastes like dust, cardboard, and somebody else's unfinished twenties.\n\nFor a second she imagines him laughing: not approval exactly. More like recognition. Like, yeah, kid, I also made dumb little rituals to survive myself.`,choices:[['Put it out and work',()=>go('tarp')]]},
-dry_start:{place:'Bad idea bay',text:`The starter coughs. The fuel pump whines like it remembers being betrayed. The engine does not catch.\n\nThe laptop shows battery at 13%. The garage smells like varnish and panic. Somewhere, every forum elder opens one eye.`,choices:[['Okay okay, fluids first',()=>install('fluids','first_start')]]},
-first_start:{place:'First start attempt',text:`Fresh fluids. New battery. Laptop balanced on the fender, tinny nightcore coming through speakers that were already bad in 2011.\n\nThe basemap loads. The engine catches, stumbles, almost dies, then finds idle like a person remembering their name.\n\nLilith laughs so hard she has to sit on the floor.`,choices:[['Run a gentle street tune',()=>go('street_tune')],['Call it a night and listen to it idle',()=>{S.heart++;go('idle')}]]},
-idle:{place:'Idle, garage door open',text:`The idle hunts. The exhaust fogs the cold air. The car is not finished. Neither is she.\n\nFor once, unfinished does not mean failed. It means there is still something to touch tomorrow.`,choices:[['Street tune anyway',()=>go('street_tune')]]},
-street_tune:{place:'Industrial road',text:`Third gear. Laptop glow. 93 octane in the tank and terror in her mouth.\n\nThe car pulls clean enough to feel like permission. The tune is conservative, rich, safe-ish. The old boost gauge twitches like a haunted compass.`,choices:[['Add wideband before getting brave',()=>install('wideband','wideband_scene')],['Turn it up on vibes alone',()=>{S.power+=18;S.reliability-=18;go('knock')}]]},
-wideband_scene:{place:'Truth number',text:`The wideband reads rich at idle, lean on tip-in, and spiritually bankrupt during boost.\n\nGood. Data is better than vibes. Vibes are for playlists and Craigslist descriptions.`,choices:[['Clean up the fuel map',()=>{S.tune+=2;S.reliability+=6;go('parts_menu')}]]},
-knock:{place:'Third pull regret',text:`The car pings once. Just once. The kind of sound that makes your spine become a spreadsheet.\n\nLilith lifts. The engine survives, but the lesson writes itself in hot metal.`,choices:[['Buy instrumentation like a grownup',()=>install('wideband','wideband_scene')],['Pretend that never happened',()=>{S.nerve++;go('parts_menu')}]]},
-parts_menu:{place:'Parts bay / story bay',text:`Now the car works. Which is when the real disease begins.\n\nEvery part on the shelf is also a conversation she never got to have: what would he have chosen, what would he have hated, what would she choose if nobody's ghost got a vote?`,choices:()=>availableParts().concat([
- ['Go to the Craigslist turbo meetup',()=>go('meetup'),()=>has('turbo')],
- ['Enter the midnight run',()=>go('race'),()=>S.power>=185 && S.tune>=2],
- ['Just sit with the car for a minute',()=>go('approval')]
-])},
-meetup:{place:'Gas station off 99',text:`The turbo seller arrives in a primer-gray coupe with one headlight and a passenger seat full of fast-food bags.\n\nHer name is Mara. She says the turbo came off her brother's car after he died. She says it too casually, like a person carrying glass in a paper bag.\n\nThey stand under sodium lights, two strangers in grief, inspecting shaft play like it can explain anything.`,choices:[['Talk about cars only',()=>{S.nerve++;go('meetup_parts')}],['Admit why this build matters',()=>{S.heart+=2;S.flags.mara=true;go('meetup_parts')}]]},
-meetup_parts:{place:'Gas station receipt paper',text:`Mara knocks two hundred off the price and writes her number on the receipt.\n\n"Send me a video when it spools," she says. "Not for me. For him. Or whatever."\n\nLilith understands exactly what "or whatever" means.`,choices:[['Install the turbo',()=>{if(!has('turbo'))install('turbo','post_turbo');else go('post_turbo')}]]},
-post_turbo:{place:'Boost leak opera',text:`The turbo install takes twelve hours, three stripped bolts, one thrown wrench, and a sandwich eaten with black fingernails.\n\nAt first start, a coupler pops off with the sound of a raccoon being launched from a cannon. Lilith laughs until she cries again. Different cry this time. Less collapse. More weather.`,choices:[['Fix the coupler and tune it',()=>{S.tune++;S.power+=20;S.reliability-=2;go('parts_menu')}]]},
-approval:{place:'Passenger seat',text:`She sits in the passenger seat and asks the empty driver's seat if this is okay.\n\nNo answer. Obviously. Ghosts are rude that way.\n\nThen a better thought arrives: maybe approval was never the thing. Maybe the work is not to become the daughter he imagined. Maybe the work is to become the woman who can turn the key and live with the sound.`,choices:[['Keep building for herself',()=>{S.heart+=2;S.flags.self=true;go('parts_menu')}]]},
-race:{place:'Midnight run',text:()=>`The lineup is a Civic with laptop stickers, a Mustang doing too much, and Mara in the primer coupe if grief decided to wear eyeliner.\n\nLilith stages the S14. Power: ${S.power} hp-ish. Reliability: ${S.reliability}. Tune confidence: ${S.tune}.\n\nThe light drops.`,
- choices:[
-  ['Send it',()=>finishRace(false)],
-  ['Run safe boost',()=>finishRace(true)]
- ]},
-win:{place:'Shoulder of the road',text:`The S14 does not win cleanly. Nothing in this game does.\n\nBut it finishes. Mara whoops. Lilith's hands shake. The toolbox in the trunk rattles over every expansion joint like applause from a very practical ghost.\n\nShe opens the hood and the engine ticks hot in the dark. Not fixed forever. Not approved forever. Just alive tonight.`,choices:[['Ending: alive tonight',()=>go('ending')]]},
-blown:{place:'White smoke',text:`Top of third, the engine lets go.\n\nNot movie dramatic. Worse: expensive, final, dumb. Smoke behind her. Oil under her. Silence so large it becomes a room.\n\nLilith leans against the fender and starts laughing, then crying, then both.\n\nThe car is broken. The story is not.`,choices:[['Pull the engine someday',()=>go('ending')]]},
-ending:{place:'Save point',text:`In the garage, Lilith writes the next list on cardboard: compression test, leakdown, clutch maybe, call Mara, sleep.\n\nUnder it she writes one more thing: **I don't need permission to keep going.**`,choices:[['Start over',()=>reset()]]}
-};
-
-const S0={node:'start',power:128,reliability:58,tune:0,heart:0,nerve:0,grief:0,spent:0,inv:[],flags:{},installed:{}};
-let S=JSON.parse(JSON.stringify(S0));
-
-function has(id){return !!S.installed[id]}
-function gain(item){if(!S.inv.includes(item))S.inv.push(item)}
-function install(id,next){
- const p=PARTS.find(x=>x.id===id); if(!p || has(id)){go(next);return}
- S.installed[id]=true; S.spent+=p.cost; S.power+=p.hp; S.reliability+=p.reliability; gain(p.name); log(`${p.name.toUpperCase()}\n${p.story}\n+$${p.cost} spent`);
- go(next);
-}
-function availableParts(){
- return PARTS.filter(p=>!has(p.id) && p.id!=='fluids' && !(p.id==='wideband' && S.node==='parts_menu')).map(p=>[
-  `Install ${p.name} ($${p.cost})`,()=>install(p.id,'parts_menu')
- ]);
-}
-function finishRace(safe){
- const score=S.power + S.tune*18 + S.heart*6 + (safe?12:0);
- const risk=100-S.reliability + (safe?-18:18) - S.tune*7;
- if(risk>62 || (!safe && S.reliability<42)) go('blown');
- else if(score>210) go('win');
- else go('blown');
-}
-function go(id){S.node=id;render()}
-function reset(){S=JSON.parse(JSON.stringify(S0));localStorage.removeItem('ghost-garage-save');render();log('NEW BUILD // tarp reinstalled in memory only')}
-function save(){localStorage.setItem('ghost-garage-save',JSON.stringify(S));log('SAVED // another night in the garage preserved')}
-function load(){const raw=localStorage.getItem('ghost-garage-save');if(raw){S=JSON.parse(raw);render();log('LOADED // last garage night resumed')}else log('NO SAVE FOUND // the garage shrugs')}
-function clamp(n){return Math.max(0,Math.min(100,n))}
-function stat(name,value,max=100){return `<div class="stat"><div class="statline"><span>${name}</span><span>${value}</span></div><div class="bar"><div class="fill" style="width:${clamp(value/max*100)}%"></div></div></div>`}
-function textOf(node){return typeof node.text==='function'?node.text():node.text}
-function choicesOf(node){return typeof node.choices==='function'?node.choices():node.choices}
-function fmt(t){
- return t.split('\n\n').map(p=>`<p>${p
-  .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
-  .replace(/Lilith/g,'<span class="lil">Lilith</span>')
-  .replace(/Mara/g,'<span class="good">Mara</span>')}</p>`).join('');
-}
-function render(){
- const node=NODES[S.node];
- document.getElementById('place').textContent=node.place;
- document.getElementById('story').innerHTML=fmt(textOf(node));
- document.getElementById('stats').innerHTML=[
-  stat('Power hp-ish',S.power,300),stat('Reliability',S.reliability),stat('Tune confidence',S.tune*20,100),
-  stat('Heart',S.heart*14,100),stat('Nerve',S.nerve*14,100)
- ].join('');
- document.getElementById('inv').innerHTML=(S.inv.length?S.inv:['empty pockets']).map(x=>`<span class="tag">${x}</span>`).join('');
- document.getElementById('parts').innerHTML=PARTS.map(p=>`<div class="part"><strong>${has(p.id)?'✓ ':''}${p.name}</strong><small>${p.hp>=0?'+':''}${p.hp} hp · ${p.reliability>=0?'+':''}${p.reliability} reliability · $${p.cost}</small></div>`).join('');
- document.getElementById('objective').textContent=objective();
- document.getElementById('smoke').textContent=S.reliability<35?'!!!':S.power>210?'~~~~':'~~';
- const choiceBox=document.getElementById('choices');
- choiceBox.innerHTML='';
- choicesOf(node).forEach(([label,fn,cond],i)=>{
-  if(cond && !cond()) return;
-  const b=document.createElement('button'); b.textContent=label; if(i===0)b.className='primary'; b.onclick=fn; choiceBox.appendChild(b);
- });
-}
-function objective(){
- if(!has('fluids')) return 'Make the car start without disrespecting every bearing in the engine.';
- if(S.node==='parts_menu') return 'Build power, collect stories, and decide whose approval matters.';
- if(S.node==='race') return 'Choose glory, mercy, or expensive smoke.';
- return 'Keep the S14 alive long enough for the next scene.';
-}
-function log(msg){document.getElementById('console').textContent=msg}
-document.getElementById('save').onclick=save;
-document.getElementById('load').onclick=load;
-document.getElementById('reset').onclick=reset;
-render();
-log('CONSULT LINK READY\nbase map loaded\nnightcore bitrate: unforgivable');
+const S0={stage:0,passed:{},settings:{boost:7,fuel:12.0,timing:12,rev:6500},last:null,log:'CONSULT LINK READY\nbase map loaded\nwaiting for first pull'};let S=JSON.parse(JSON.stringify(S0));
+const $=id=>document.getElementById(id);function stage(){return STAGES[S.stage]||STAGES[STAGES.length-1]}function clamp(n,a,b){return Math.max(a,Math.min(b,n))}function fmt(t){return t.split('\n\n').map(p=>`<p>${p.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/Lilith/g,'<span class="lil">Lilith</span>').replace(/Mara/g,'<span class="mara">Mara</span>').replace(/dad|he |his /gi,m=>m)}</p>`).join('')}
+function score(){let st=stage(),x=S.settings;let e=st.ideal;let boostPower=x.boost*9.2,revPower=(x.rev-6000)/90,timingPower=x.timing*4.2,fuelPower=(12.4-Math.abs(x.fuel-11.8))*13;let hp=Math.round(72+boostPower+revPower+timingPower+fuelPower+S.stage*18);let tq=Math.round(105+x.boost*8.5+x.timing*2.1-Math.abs(x.fuel-11.6)*14);let afrBad=Math.abs(x.fuel-e.fuel)*18;let boostBad=Math.max(0,x.boost-e.boost)*5+Math.max(0,e.boost-x.boost)*1.5;let timingBad=Math.max(0,x.timing-e.timing)*8+Math.max(0,e.timing-x.timing)*2;let revBad=Math.max(0,x.rev-e.rev)/45;let safe=Math.round(clamp(100-afrBad-boostBad-timingBad-revBad+S.stage*1.5,0,100));let knock=Math.max(0,Math.round((x.timing-e.timing)*1.6+(x.boost-e.boost)*.9+Math.max(0,x.fuel-11.9)*3));return{hp,tq,safe,knock,pass:hp>=st.minHp&&hp<=st.maxHp&&safe>=st.minSafe&&knock<8}}
+function controls(){const defs=[['boost','Boost target','psi',5,22,.5],['fuel','WOT AFR','',10.8,12.6,.1],['timing','Timing','°',8,24,.5],['rev','Rev limit','rpm',6000,8200,100]];$('controls').innerHTML=defs.map(([k,label,u,min,max,step])=>`<div class="control"><label><span>${label}</span><b id="${k}Val">${S.settings[k]}${u}</b></label><input type="range" min="${min}" max="${max}" step="${step}" value="${S.settings[k]}" data-k="${k}"></div>`).join('');document.querySelectorAll('input[type=range]').forEach(r=>r.oninput=e=>{let k=e.target.dataset.k;S.settings[k]=Number(e.target.value);render(false)} )}
+function maps(r){let fuel=[S.settings.fuel+.4,S.settings.fuel+.2,S.settings.fuel,S.settings.fuel-.1,S.settings.fuel+.3,S.settings.fuel+.1,S.settings.fuel,S.settings.fuel-.2];let tim=[S.settings.timing-4,S.settings.timing-2,S.settings.timing,S.settings.timing+1,S.settings.timing-3,S.settings.timing-1,S.settings.timing+1,S.settings.timing+2];$('fuelMap').innerHTML=fuel.map(v=>`<div class="cell">${v.toFixed(1)}</div>`).join('');$('timingMap').innerHTML=tim.map(v=>`<div class="cell">${Math.round(v)}°</div>`).join('')}
+function render(rebuild=true){let st=stage(),r=score();$('story').innerHTML=fmt(st.story);$('stageCard').innerHTML=`<b>${st.title}</b><br>${st.part}`;$('target').innerHTML=`${st.target}<br><br><b>Window:</b> ${st.minHp}-${st.maxHp} hp, reliability ${st.minSafe}+`;let parts=STAGES.slice(0,S.stage+1);$('parts').innerHTML=parts.map(p=>`<div class="part"><strong>${p.part}</strong><small>${p.title}</small></div>`).join('');$('inv').innerHTML=parts.map(p=>`<span class="tag">${p.inv}</span>`).join('');$('power').textContent=r.hp;$('torque').textContent=r.tq;$('safe').textContent=r.safe+'%';$('result').textContent=S.last||'Ready';$('log').textContent=S.log;if(rebuild)controls();maps(r);['diagTurbo','diagFuel','diagEcu','diagIntercooler'].forEach(id=>$(id).classList.toggle('diag-hot',r.pass));}
+function run(){let st=stage(),r=score();let lines=[`DYNO PULL // ${st.title}`,`power ${r.hp} hp / torque ${r.tq} lb-ft`,`reliability ${r.safe}% / knock ${r.knock}`];if(r.pass){S.last='PASS';lines.push('PASS: the map works. The story moves.');if(S.stage<STAGES.length-1){S.stage++;let next=stage();S.settings=JSON.parse(JSON.stringify(next.ideal));S.settings.boost=Math.max(5,next.ideal.boost-2);lines.push(`UNLOCKED: ${next.part}`)}else{lines.push('ENDING: Lilith stops asking the empty seat for permission. The car is alive tonight.')}}else{S.last='MISS';if(r.hp<st.minHp)lines.push('MISS: not enough power. It drives, but the goal wants more.');if(r.hp>st.maxHp)lines.push('MISS: too much heat for this chapter. Back it down.');if(r.safe<st.minSafe)lines.push('MISS: unsafe map. Richen it, cut timing, or lower boost.');if(r.knock>=8)lines.push('MISS: knock is ugly. Timing/boost are bullying the motor.')}S.log=lines.join('\n');render()}
+function hint(){S.log=`MARA / NOTES\n${stage().hint}\n\nDad's old margin note: change one thing, run it, write down what happened.`;render()}function save(){localStorage.setItem('ghost-garage-tune-save',JSON.stringify(S));S.log='SAVED // another garage night kept';render()}function load(){let raw=localStorage.getItem('ghost-garage-tune-save');if(raw){S=JSON.parse(raw);S.log+='\nLOADED // back under the fluorescent lights'}render()}function reset(){S=JSON.parse(JSON.stringify(S0));render()}
+$('runBtn').onclick=run;$('hintBtn').onclick=hint;$('save').onclick=save;$('load').onclick=load;$('reset').onclick=reset;render();
 </script>
 </body>
 </html>
