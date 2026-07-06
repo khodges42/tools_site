@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 5
+version: 6
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -81,6 +81,10 @@ flags:
   rome_evening_gaius_seen: false
   rome_evening_varro_seen: false
   rome_evening_patron_pressure: false
+  late_empire_archive_opened: false
+  late_empire_family_found: false
+  late_empire_fountain_found: false
+  late_empire_record_found: false
 inventory: [family_token, workshop_key, forbidden_text, patron_ring, rent_tablet, wax_portrait]
 context:
   rome:
@@ -98,13 +102,15 @@ context:
 credits:
   title: "Credits and Fan Project Notice"
   text: |
-    Built with Loom. This is an unofficial, free fan project. Release packaging must include the current required fan-program logo and exact legal notice before publication.
+    Built with Loom. This is an unofficial, free fan project. Before public release, complete the fan-project release checklist in LEGAL.md.
 passages:
   character:
     type: character
-    title: "Before the Blood"
+    title: "Nine Days' Rent"
     text: |
-      Rome does not ask what clan you belong to. Not yet.
+      Dawn is already warming the roof tiles when {{name}} wakes.
 
-      First, it asks what you owe, what you can afford, who would notice if you vanished, and what you are willing to become before any monster offers to help.
+      Rent is due in nine days. The bread queue is longer than yesterday. Someone downstairs is shouting about water, and Livia has left a cup upside down on the table: the household sign for come home before dark.
+
+      Rome has work for you. It always does.
     goto: rome_arrival
