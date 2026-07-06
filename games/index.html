@@ -1,298 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Games // tools_site</title>
 <style>
-:root{
-    --bg:#10100e;
-    --paper:#d8d0b8;
-    --ink:#1b1b18;
-    --muted:#6f6a5d;
-    --line:#403b32;
-    --accent:#b1472f;
-    --blue:#2d6f73;
-    --green:#5d7d37;
-}
-*{box-sizing:border-box}
-html{background:#090907}
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    color:var(--paper);
-    background:
-        radial-gradient(circle at 18% 14%,rgba(177,71,47,.22),transparent 24%),
-        radial-gradient(circle at 82% 72%,rgba(45,111,115,.16),transparent 28%),
-        linear-gradient(135deg,#11110f,#090907 65%);
-}
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-        repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),
-        repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 80px);
-    mix-blend-mode:screen;
-}
-.wrap{
-    width:min(920px,94vw);
-    margin:0 auto;
-    padding:clamp(18px,5vw,54px) 0;
-}
-.index{
-    position:relative;
-    background:var(--paper);
-    color:var(--ink);
-    border:2px solid var(--line);
-    box-shadow:12px 12px 0 #0008;
-}
-.index:before{
-    content:"tools_site/games :: public folder :: no warranty";
-    display:block;
-    padding:.55rem .8rem;
-    color:#f0ead7;
-    background:var(--line);
-    border-bottom:2px solid var(--line);
-    font-size:.78rem;
-    letter-spacing:.04em;
-}
-.inner{padding:clamp(18px,4vw,38px)}
-h1{
-    margin:0;
-    font-size:clamp(2.2rem,8vw,5rem);
-    letter-spacing:-.08em;
-    line-height:.9;
-}
-.kicker{
-    display:inline-block;
-    margin:0 0 .7rem;
-    padding:.2rem .45rem;
-    background:var(--accent);
-    color:#fff8e8;
-    font-size:.78rem;
-    transform:rotate(-1deg);
-}
-.subtitle{
-    max-width:68ch;
-    margin:1.2rem 0 1.6rem;
-    color:var(--muted);
-    line-height:1.55;
-}
-.manifesto{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin:1.2rem 0 2rem;
-}
-.note{
-    border:1px solid #9b927c;
-    background:#eee6ce;
-    padding:.85rem;
-    line-height:1.45;
-    font-size:.9rem;
-}
-.note b{color:var(--accent)}
-.shelf{border-top:2px solid var(--line)}
-.entry{
-    display:grid;
-    grid-template-columns:1.2fr 1.8fr auto;
-    gap:1rem;
-    align-items:start;
-    padding:1rem 0;
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px solid #9b927c;
-}
-.entry:hover .title{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
-.title{font-weight:800;color:var(--blue)}
-.desc{color:var(--muted);line-height:1.4;font-size:.92rem}
-.badge{
-    border:1px solid var(--line);
-    color:var(--line);
-    padding:.18rem .35rem;
-    font-size:.72rem;
-    white-space:nowrap;
-}
-.footer{
-    margin-top:2rem;
-    padding-top:1rem;
-    color:var(--muted);
-    border-top:1px dashed #9b927c;
-    font-size:.82rem;
-    line-height:1.5;
-}
-.ascii{
-    margin:1rem 0 0;
-    color:#8a4b38;
-    font-size:.72rem;
-    white-space:pre;
-    overflow:auto;
-}
-@media(max-width:720px){
-    .manifesto{grid-template-columns:1fr}
-    .entry{grid-template-columns:1fr;gap:.35rem}
-    .badge{width:max-content}
-    .index{box-shadow:6px 6px 0 #0008}
-}
+:root{--bg:#10100e;--paper:#d8d0b8;--ink:#1b1b18;--muted:#6f6a5d;--line:#403b32;--accent:#b1472f;--blue:#2d6f73;--green:#5d7d37}*{box-sizing:border-box}html{background:#090907}body{margin:0;min-height:100vh;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--paper);background:radial-gradient(circle at 18% 14%,rgba(177,71,47,.22),transparent 24%),radial-gradient(circle at 82% 72%,rgba(45,111,115,.16),transparent 28%),linear-gradient(135deg,#11110f,#090907 65%)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 80px);mix-blend-mode:screen}.wrap{width:min(920px,94vw);margin:0 auto;padding:clamp(18px,5vw,54px) 0}.index{position:relative;background:var(--paper);color:var(--ink);border:2px solid var(--line);box-shadow:12px 12px 0 #0008}.index:before{content:"tools_site/games :: public folder :: no warranty";display:block;padding:.55rem .8rem;color:#f0ead7;background:var(--line);border-bottom:2px solid var(--line);font-size:.78rem;letter-spacing:.04em}.inner{padding:clamp(18px,4vw,38px)}h1{margin:0;font-size:clamp(2.2rem,8vw,5rem);letter-spacing:-.08em;line-height:.9}.kicker{display:inline-block;margin:0 0 .7rem;padding:.2rem .45rem;background:var(--accent);color:#fff8e8;font-size:.78rem;transform:rotate(-1deg)}.subtitle{max-width:68ch;margin:1.2rem 0 1.6rem;color:var(--muted);line-height:1.55}.manifesto{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.2rem 0 2rem}.note{border:1px solid #9b927c;background:#eee6ce;padding:.85rem;line-height:1.45;font-size:.9rem}.note b{color:var(--accent)}.shelf{border-top:2px solid var(--line)}.entry{display:grid;grid-template-columns:1.2fr 1.8fr auto;gap:1rem;align-items:start;padding:1rem 0;color:var(--ink);text-decoration:none;border-bottom:1px solid #9b927c}.entry:hover .title{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.title{font-weight:800;color:var(--blue)}.desc{color:var(--muted);line-height:1.4;font-size:.92rem}.badge{border:1px solid var(--line);color:var(--line);padding:.18rem .35rem;font-size:.72rem;white-space:nowrap}.footer{margin-top:2rem;padding-top:1rem;color:var(--muted);border-top:1px dashed #9b927c;font-size:.82rem;line-height:1.5}.ascii{margin:1rem 0 0;color:#8a4b38;font-size:.72rem;white-space:pre;overflow:auto}@media(max-width:720px){.manifesto{grid-template-columns:1fr}.entry{grid-template-columns:1fr;gap:.35rem}.badge{width:max-content}.index{box-shadow:6px 6px 0 #0008}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<main class="index">
-    <div class="inner">
-        <div class="kicker">assorted browser experiments</div>
-        <h1>Games</h1>
-        <div class="subtitle">
-            A small shelf of static web games, toys, mistakes, and midnight experiments. Some are hand-built. Some are vibe coded. Some are generated with very little direction and then cleaned up later. Some are surprisingly good. Some may be broken in public.
-        </div>
-
-        <section class="manifesto" aria-label="catalog notes">
-            <div class="note"><b>Static only.</b> These should run on Cloudflare Pages with plain files: HTML, CSS, JavaScript, and whatever trouble a browser can make by itself.</div>
-            <div class="note"><b>Uneven on purpose.</b> Treat this less like a polished arcade and more like a demoscene folder, a sketchbook, or a shoebox full of weird little disks.</div>
-        </section>
-
-        <nav class="shelf" aria-label="games list">
-            <a class="entry" href="./concertina-animal/">
-                <span class="title">Concertina Animal</span>
-                <span class="desc">A two-sided folding game: choose perforations, reverse whole strips, hide every printed tooth inside the stack, and leave three eyes showing before the animal gets too thick to close.</span>
-                <span class="badge">folding</span>
-            </a>
-
-            <a class="entry" href="./neap-treaty/">
-                <span class="title">Neap Treaty</span>
-                <span class="desc">A tide-equalization game: drag one moon-pull across connected pools, pinch runaway channels, and make seven little bodies of water agree before salt seals their edges.</span>
-                <span class="badge">tide</span>
-            </a>
-
-            <a class="entry" href="./sourceless-shadow/">
-                <span class="title">Sourceless Shadow</span>
-                <span class="desc">A projection-geometry game: drag a stolen moonlight around the roofs, cast chimney and laundry shadows over bright windows, and keep the cats out of borrowed darkness.</span>
-                <span class="badge">shadow</span>
-            </a>
-
-            <a class="entry" href="./palimpsest-wound/">
-                <span class="title">Palimpsest Wound</span>
-                <span class="desc">A restraint game about damaged paper: scrape returning ink away from a descending reading line, but every correction bruises the page and teaches old text where to bloom next.</span>
-                <span class="badge">erasure</span>
-            </a>
-
-            <a class="entry" href="./murmuration-mercy/">
-                <span class="title">Murmuration Mercy</span>
-                <span class="desc">An indirect flock-shaping game: clap near the edges of a dusk murmuration, send panic waves through starlings, dodge red kites, and keep the collective shape alive until the tower clock goes dull.</span>
-                <span class="badge">flock</span>
-            </a>
-
-            <a class="entry" href="./bellrope-verdict/">
-                <span class="title">Bellrope Verdict</span>
-                <span class="desc">A hanging-mobile physics game: study rope tension, cut only a few cords, hush the sway, and settle the red witness bead into a brass saucer without waking the bell choir.</span>
-                <span class="badge">tension</span>
-            </a>
-
-            <a class="entry" href="./darkroom-dodger/">
-                <span class="title">Darkroom Dodger</span>
-                <span class="desc">A silver-gelatin darkroom game: paint invisible exposure under the enlarger, dodge highlights, develop latent density, stop the tray, and fix prints before fog ruins the paper.</span>
-                <span class="badge">darkroom</span>
-            </a>
-
-            <a class="entry" href="./linotype-wake/">
-                <span class="title">Linotype Wake</span>
-                <span class="desc">A hot-metal typing game: set a small-town obituary by rhythmically feeding matrices, cooling the left and right magazines, scraping burrs, and casting clean slugs before the machine locks solid.</span>
-                <span class="badge">typing</span>
-            </a>
-
-            <a class="entry" href="./seven-stamps-st-orla/">
-                <span class="title">Seven Stamps for St. Orla</span>
-                <span class="desc">A policy-deduction returns desk game: read receipts, inspect strange merchandise, apply contradictory handwritten amendments, and choose the right stamp before trust collapses.</span>
-                <span class="badge">bureaucracy</span>
-            </a>
-
-            <a class="entry" href="./last-lift-starlite/">
-                <span class="title">Last Lift at Starlite</span>
-                <span class="desc">A real-time elevator dispatch game: run the last working lift in a rain-rotted motel, fighting momentum, fuse heat, impatient guests, and the terrible geometry of stopping one floor too late.</span>
-                <span class="badge">elevator</span>
-            </a>
-
-            <a class="entry" href="./candle-courier/">
-                <span class="title">Candle Courier</span>
-                <span class="desc">A real-time wind-drawing game: guide a paper moth carrying one coal through a sleeping house, lighting candles while ceiling drips, vents, furniture, ember heat, and breath make every shove matter.</span>
-                <span class="badge">wind</span>
-            </a>
-
-            <a class="entry" href="./roof-cat-smuggler/">
-                <span class="title">Roof Cat Smuggler</span>
-                <span class="desc">A real-time rooftop stealth run: steal moon-milk bottles, hide in chimneys, dodge sweeping porch lights, manage dash breath, and get back through the open window before the landlord follows your bell.</span>
-                <span class="badge">stealth</span>
-            </a>
-
-            <a class="entry" href="./moth-frequency/">
-                <span class="title">Moth Frequency</span>
-                <span class="desc">A real-time shortwave tuning hunt: sweep the band, aim a roof-wire antenna, manage gain and battery, and copy five moth-coded broadcasts through weather ghosts and county appliance noise.</span>
-                <span class="badge">radio</span>
-            </a>
-
-            <a class="entry" href="./junk-drawer-saints/">
-                <span class="title">Junk Drawer Saints</span>
-                <span class="desc">A five-night placement-crafting score attack: turn buttons, bones, wire, wax, and rot into useful little miracles for impossible neighborhood requests before the drawer jams shut.</span>
-                <span class="badge">crafting</span>
-            </a>
-
-            <a class="entry" href="https://tuna.khod.net">
-                <span class="title">Tuna No Crust</span>
-                <span class="desc">An SR20 engine tuning simulator: adjust fuel, ignition, boost, and supporting setup decisions while trying to make power without turning your lovely little Nissan heart into glitter.</span>
-                <span class="badge">tuning</span>
-            </a>
-
-            <a class="entry" href="./ghost-garage/">
-                <span class="title">Ghost Garage</span>
-                <span class="desc">A choice-based S14 grief-and-tuning story: Lilith changes fluids, loads a basemap, buys questionable parts, meets another haunted car person, and tries to build something without needing permission from the dead.</span>
-                <span class="badge">story/tune</span>
-            </a>
-
-            <a class="entry" href="./borrowed-teeth-library/">
-                <span class="title">Borrowed Teeth Library</span>
-                <span class="desc">A twelve-round occult lending-desk strategy game: buy cursed books, shelve them for tag adjacency bonuses, serve impossible patrons, and keep gossip from killing the library.</span>
-                <span class="badge">strategy</span>
-            </a>
-
-            <a class="entry" href="./interactive_fiction/">
-                <span class="title">Interactive Fiction Library</span>
-                <span class="desc">A text-adventure-ish library entry. Earlier experiment, possibly fancy, possibly haunted by the phrase “interactive fiction.”</span>
-                <span class="badge">story</span>
-            </a>
-
-            <a class="entry" href="./star-marrow/">
-                <span class="title">Star-Marrow</span>
-                <span class="desc">Municipal transcendence, cassette tape memory, abandoned timelines, and a future that died but left the lights on.</span>
-                <span class="badge">rpg</span>
-            </a>
-
-            <a class="entry" href="./tilt-reliquary/">
-                <span class="title">Tilt Reliquary</span>
-                <span class="desc">A gyroscope maze ritual about rolling a witness through drifting walls, red bells, and a center aperture that only opens after seven seals.</span>
-                <span class="badge">motion</span>
-            </a>
-
-            <a class="entry" href="./tensor-altar/">
-                <span class="title">Tensor Altar</span>
-                <span class="desc">A touch and gyroscope tesseract toy where you slice, unfold, and tap impossible rooms inside a projected 4D cube.</span>
-                <span class="badge">4d</span>
-            </a>
-        </nav>
-
-        <div class="footer">
-            No leaderboard. No accounts. No promise that anything here is finished. If something rules, great. If something breaks, that is also historically consistent with obscure personal websites.
-        </div>
-        <pre class="ascii" aria-hidden="true">        _             _
+<div class="wrap"><main class="index"><div class="inner">
+<div class="kicker">assorted browser experiments</div>
+<h1>Games</h1>
+<div class="subtitle">A small shelf of static web games, toys, mistakes, and midnight experiments. Some are hand-built. Some are vibe coded. Some are generated with very little direction and then cleaned up later. Some are surprisingly good. Some may be broken in public.</div>
+<section class="manifesto" aria-label="catalog notes"><div class="note"><b>Static only.</b> These should run on Cloudflare Pages with plain files: HTML, CSS, JavaScript, and whatever trouble a browser can make by itself.</div><div class="note"><b>Uneven on purpose.</b> Treat this less like a polished arcade and more like a demoscene folder, a sketchbook, or a shoebox full of weird little disks.</div></section>
+<nav class="shelf" aria-label="games list">
+<a class="entry" href="./unseconding/"><span class="title">Unseconding</span><span class="desc">A clock-phase game: drag a hush around the dial, delay individual hands, survive the burst of borrowed time, and stop the red gate from hearing too many hands say now.</span><span class="badge">phase</span></a>
+<a class="entry" href="./concertina-animal/"><span class="title">Concertina Animal</span><span class="desc">A two-sided folding game: choose perforations, reverse whole strips, hide every printed tooth inside the stack, and leave three eyes showing before the animal gets too thick to close.</span><span class="badge">folding</span></a>
+<a class="entry" href="./neap-treaty/"><span class="title">Neap Treaty</span><span class="desc">A tide-equalization game: drag one moon-pull across connected pools, pinch runaway channels, and make seven little bodies of water agree before salt seals their edges.</span><span class="badge">tide</span></a>
+<a class="entry" href="./sourceless-shadow/"><span class="title">Sourceless Shadow</span><span class="desc">A projection-geometry game: drag a stolen moonlight around the roofs, cast chimney and laundry shadows over bright windows, and keep the cats out of borrowed darkness.</span><span class="badge">shadow</span></a>
+<a class="entry" href="./palimpsest-wound/"><span class="title">Palimpsest Wound</span><span class="desc">A restraint game about damaged paper: scrape returning ink away from a descending reading line, but every correction bruises the page and teaches old text where to bloom next.</span><span class="badge">erasure</span></a>
+<a class="entry" href="./murmuration-mercy/"><span class="title">Murmuration Mercy</span><span class="desc">An indirect flock-shaping game: clap near the edges of a dusk murmuration, send panic waves through starlings, dodge red kites, and keep the collective shape alive until the tower clock goes dull.</span><span class="badge">flock</span></a>
+<a class="entry" href="./bellrope-verdict/"><span class="title">Bellrope Verdict</span><span class="desc">A hanging-mobile physics game: study rope tension, cut only a few cords, hush the sway, and settle the red witness bead into a brass saucer without waking the bell choir.</span><span class="badge">tension</span></a>
+<a class="entry" href="./darkroom-dodger/"><span class="title">Darkroom Dodger</span><span class="desc">A silver-gelatin darkroom game: paint invisible exposure under the enlarger, dodge highlights, develop latent density, stop the tray, and fix prints before fog ruins the paper.</span><span class="badge">darkroom</span></a>
+<a class="entry" href="./linotype-wake/"><span class="title">Linotype Wake</span><span class="desc">A hot-metal typing game: set a small-town obituary by rhythmically feeding matrices, cooling the left and right magazines, scraping burrs, and casting clean slugs before the machine locks solid.</span><span class="badge">typing</span></a>
+<a class="entry" href="./seven-stamps-st-orla/"><span class="title">Seven Stamps for St. Orla</span><span class="desc">A policy-deduction returns desk game: read receipts, inspect strange merchandise, apply contradictory handwritten amendments, and choose the right stamp before trust collapses.</span><span class="badge">bureaucracy</span></a>
+<a class="entry" href="./last-lift-starlite/"><span class="title">Last Lift at Starlite</span><span class="desc">A real-time elevator dispatch game: run the last working lift in a rain-rotted motel, fighting momentum, fuse heat, impatient guests, and the terrible geometry of stopping one floor too late.</span><span class="badge">elevator</span></a>
+<a class="entry" href="./candle-courier/"><span class="title">Candle Courier</span><span class="desc">A real-time wind-drawing game: guide a paper moth carrying one coal through a sleeping house, lighting candles while ceiling drips, vents, furniture, ember heat, and breath make every shove matter.</span><span class="badge">wind</span></a>
+<a class="entry" href="./roof-cat-smuggler/"><span class="title">Roof Cat Smuggler</span><span class="desc">A real-time rooftop stealth run: steal moon-milk bottles, hide in chimneys, dodge sweeping porch lights, manage dash breath, and get back through the open window before the landlord follows your bell.</span><span class="badge">stealth</span></a>
+<a class="entry" href="./moth-frequency/"><span class="title">Moth Frequency</span><span class="desc">A real-time shortwave tuning hunt: sweep the band, aim a roof-wire antenna, manage gain and battery, and copy five moth-coded broadcasts through weather ghosts and county appliance noise.</span><span class="badge">radio</span></a>
+<a class="entry" href="./junk-drawer-saints/"><span class="title">Junk Drawer Saints</span><span class="desc">A five-night placement-crafting score attack: turn buttons, bones, wire, wax, and rot into useful little miracles for impossible neighborhood requests before the drawer jams shut.</span><span class="badge">crafting</span></a>
+<a class="entry" href="https://tuna.khod.net"><span class="title">Tuna No Crust</span><span class="desc">An SR20 engine tuning simulator: adjust fuel, ignition, boost, and supporting setup decisions while trying to make power without turning your lovely little Nissan heart into glitter.</span><span class="badge">tuning</span></a>
+<a class="entry" href="./ghost-garage/"><span class="title">Ghost Garage</span><span class="desc">A choice-based S14 grief-and-tuning story: Lilith changes fluids, loads a basemap, buys questionable parts, meets another haunted car person, and tries to build something without needing permission from the dead.</span><span class="badge">story/tune</span></a>
+<a class="entry" href="./borrowed-teeth-library/"><span class="title">Borrowed Teeth Library</span><span class="desc">A twelve-round occult lending-desk strategy game: buy cursed books, shelve them for tag adjacency bonuses, serve impossible patrons, and keep gossip from killing the library.</span><span class="badge">strategy</span></a>
+<a class="entry" href="./interactive_fiction/"><span class="title">Interactive Fiction Library</span><span class="desc">A text-adventure-ish library entry. Earlier experiment, possibly fancy, possibly haunted by the phrase “interactive fiction.”</span><span class="badge">story</span></a>
+<a class="entry" href="./star-marrow/"><span class="title">Star-Marrow</span><span class="desc">Municipal transcendence, cassette tape memory, abandoned timelines, and a future that died but left the lights on.</span><span class="badge">rpg</span></a>
+<a class="entry" href="./tilt-reliquary/"><span class="title">Tilt Reliquary</span><span class="desc">A gyroscope maze ritual about rolling a witness through drifting walls, red bells, and a center aperture that only opens after seven seals.</span><span class="badge">motion</span></a>
+<a class="entry" href="./tensor-altar/"><span class="title">Tensor Altar</span><span class="desc">A touch and gyroscope tesseract toy where you slice, unfold, and tap impossible rooms inside a projected 4D cube.</span><span class="badge">4d</span></a>
+</nav>
+<div class="footer">No leaderboard. No accounts. No promise that anything here is finished. If something rules, great. If something breaks, that is also historically consistent with obscure personal websites.</div>
+<pre class="ascii" aria-hidden="true">        _             _
    ____/ /____  ____  (_)___  ____ _
   / __  / ___/ / __ \/ / __ \/ __ `/
  / /_/ / /    / /_/ / / / / / /_/ /
  \__,_/_/     \____/_/_/ /_/\__, /
                            /____/</pre>
-    </div>
-</main>
-</div>
+</div></main></div>
 </body>
 </html>
