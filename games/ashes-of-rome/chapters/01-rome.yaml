@@ -1,0 +1,76 @@
+passages:
+  rome_arrival:
+    type: story
+    title: "Rome, While You Are Still Alive"
+    text: |
+      Dawn reaches the Subura by argument: shutters thrown open, carts cursing at corners, bread ovens breathing into alleys already warm with bodies.
+
+      {{name}} has no prophecy. There is rent due in nine days.
+
+      This first chapter establishes economic position, work, education, attachments, politics, religion, art, enemies, and obligations through play.
+    choices:
+      - text: "Begin with the household that expects you home."
+        goto: rome_family
+        effects:
+          flags:
+            rome_attachment_family: true
+      - text: "Begin with the work that owns your daylight."
+        goto: rome_work
+        effects:
+          flags:
+            rome_attachment_work: true
+      - text: "Begin with the argument you should have walked away from."
+        goto: rome_cause
+        effects:
+          flags:
+            rome_attachment_cause: true
+      - text: "Begin with the thing you make when nobody is paying."
+        goto: rome_art
+        effects:
+          flags:
+            rome_attachment_art: true
+
+  rome_family:
+    type: story
+    title: "The Household"
+    text: |
+      Foundation passage. Develop a concrete household, obligations, class position, and a relationship worth carrying across centuries.
+    choices:
+      - text: "Return to the street."
+        goto: rome_crossroads
+
+  rome_work:
+    type: story
+    title: "The Day's Work"
+    text: |
+      Foundation passage. Establish work, economic class, access to the city, skills, debts, and who profits from the player's labor.
+    choices:
+      - text: "Return to the street."
+        goto: rome_crossroads
+
+  rome_cause:
+    type: story
+    title: "The Argument"
+    text: |
+      Foundation passage. Establish an intellectual, political, religious, neighborhood, or labor conflict with specific people and stakes.
+    choices:
+      - text: "Return to the street."
+        goto: rome_crossroads
+
+  rome_art:
+    type: story
+    title: "The Unpaid Thing"
+    text: |
+      Foundation passage. Establish an artistic practice, audience, rival, patron, or private obsession with consequences beyond a personality label.
+    choices:
+      - text: "Return to the street."
+        goto: rome_crossroads
+
+  rome_crossroads:
+    type: story
+    title: "Nine Days Until Rent"
+    text: |
+      The foundation ends here for now. The next development pass should deepen mortal Rome before advancing history.
+    choices:
+      - text: "Walk the city again."
+        goto: rome_arrival
