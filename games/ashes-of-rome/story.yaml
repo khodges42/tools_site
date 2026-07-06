@@ -3,20 +3,16 @@ slug: "ashes-of-rome"
 author: "Kass"
 version: 1
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
-
 ui:
   auto_save: true
   show_back: false
   show_stats: false
   show_inventory: false
   auto_context_links: true
-
 debug:
   validate: true
   show_warnings: true
-
 start: character
-
 chapters:
   - chapters/01-rome.yaml
   - chapters/02-late-empire.yaml
@@ -25,10 +21,9 @@ chapters:
   - chapters/05-plague.yaml
   - chapters/06-renaissance.yaml
   - chapters/07-revolution.yaml
-  - chapters/08-world-wars.yaml
+  - chapters/08-modernity.yaml
   - chapters/09-late-century.yaml
   - chapters/10-modern-nights.yaml
-
 character:
   fields:
     name:
@@ -40,25 +35,9 @@ character:
       label: "Pronouns"
       default: "they"
       options:
-        - label: "she/her"
-          value: "she"
-          subject: "she"
-          object: "her"
-          possessive: "her"
-          reflexive: "herself"
-        - label: "they/them"
-          value: "they"
-          subject: "they"
-          object: "them"
-          possessive: "their"
-          reflexive: "themself"
-        - label: "he/him"
-          value: "he"
-          subject: "he"
-          object: "him"
-          possessive: "his"
-          reflexive: "himself"
-
+        - {label: "she/her", value: "she", subject: "she", object: "her", possessive: "her", reflexive: "herself"}
+        - {label: "they/them", value: "they", subject: "they", object: "them", possessive: "their", reflexive: "themself"}
+        - {label: "he/him", value: "he", subject: "he", object: "him", possessive: "his", reflexive: "himself"}
 stats:
   humanity: 7
   hunger: 0
@@ -66,7 +45,6 @@ stats:
   learning: 0
   influence: 0
   resolve: 0
-
 flags:
   embraced: false
   clan_chosen: false
@@ -74,13 +52,7 @@ flags:
   rome_attachment_work: false
   rome_attachment_cause: false
   rome_attachment_art: false
-
-inventory:
-  - family_token
-  - workshop_key
-  - forbidden_text
-  - patron_ring
-
+inventory: [family_token, workshop_key, forbidden_text, patron_ring]
 context:
   rome:
     label: "Rome"
@@ -88,12 +60,10 @@ context:
   torpor:
     label: "Torpor"
     text: "The deathlike sleep of the Kindred. In this story it is also a machine for missing history and waking to consequences."
-
 credits:
   title: "Credits and Fan Project Notice"
   text: |
     Built with Loom. This is an unofficial, free fan project. Release packaging must include the current required fan-program logo and exact legal notice before publication.
-
 passages:
   character:
     type: character
