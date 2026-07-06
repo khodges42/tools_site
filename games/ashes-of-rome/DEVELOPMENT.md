@@ -57,7 +57,8 @@ Every scheduled pass should:
 - Loom story manifest created.
 - Ten-era chapter spine scaffolded.
 - Mortal Rome opening now has concrete household, work, civic-conflict, and art/patronage branches instead of placeholder foundation text.
-- Durable Rome flags and stats exist for obligation, risk, household protection, forbidden texts, public standing, secret art, and patron debt.
+- Durable Rome flags and stats exist for obligation, risk, household protection, forbidden texts, public standing, secret art, patron debt, nightfall, rent pressure, and first supernatural observation.
+- The repeatable `rome_arrival -> branch -> rome_crossroads -> rome_arrival` loop has been closed; the first slice now converges into nightfall and ends rather than allowing repeated stat/item farming.
 - Long-term consequence model documented but not yet implemented.
 - Fan-project release checklist exists in LEGAL.md; verify current official program terms and assets before public release.
 
@@ -116,6 +117,45 @@ Story note:
 
 - Avoid making every Rome seed telegraph its future form in narration. Lines that explicitly list “schoolroom rumor, family boast, heresy, or evidence” explain the consequence system to the player. Prefer one concrete immediate consequence now and let later centuries reveal the transformation unexpectedly.
 
+### Pass 2 - Nightfall convergence and hub closure
+
+Diagnosis:
+
+- The highest-priority review item was gameplay/runtime structure: the Rome hub allowed infinite replay of mutually incompatible branches and repeated stat/item effects.
+- Loom already supports conditional choices through `requires` and `conditions`, including flags, stats, items, and nested groups. No engine change was needed for this pass.
+- `docs/loom-writing.md` exists under `games/ashes-of-rome/docs/loom-writing.md`, not top-level `docs/loom-writing.md`. Future prompts should use the local path or search before assuming the path.
+- The chapter needed state-aware convergence, not a new era. The Embrace should remain withheld until the mortal life has more pressure and texture.
+
+Changes made:
+
+- Bumped `story.yaml` to version 3 because the state schema and save fingerprint changed.
+- Added nightfall/rent flags: `rome_nightfall_started`, `rome_collector_met`, `rome_varro_claimed`, `rome_fountain_threatened`, `rome_gaius_hunted`, and `rome_cold_observer_seen`.
+- Replaced the artifact-listing crossroads prose with generic convergence text that does not claim the player saw every branch artifact.
+- Removed the `Walk the city again -> rome_arrival` loop. The first playable slice now moves from one daylight branch into a nightfall rent crisis and then an ending beat.
+- Added conditional nightfall routes unlocked by actual state:
+  - `rome_patron_debt` unlocks Varro/rent pressure.
+  - `rome_public_stand` unlocks Prisca/fountain/rent pressure.
+  - `rome_protected_tablets` unlocks Gaius/forbidden-text/rent pressure.
+  - `rome_secret_sketch` unlocks wax portrait/rent pressure.
+  - A fallback bare-rent route remains available for lower-flag paths.
+- Introduced one quietly supernatural observer as a watcher whose attention is legible through debt, records, patronage, danger, or art. The scene does not name clan, sire, sect, or Embrace.
+- Revised one early line that over-explained possible long-term transformations for the forbidden text; it now keeps focus on immediate memory and obligation.
+
+Testing notes:
+
+- Re-fetched updated `story.yaml` after commit and confirmed version 3 plus new flags are present.
+- Re-fetched the new Chapter 1 nightfall section and confirmed all conditional crossroads choices point to defined passages and the final nightfall passage is `type: ending`.
+- Checked Loom engine source: `requires.flag`, `requires.not_flag`, `requires.flags`, stat checks, item checks, and choice effects are supported. The new conditional route structure uses supported syntax.
+- Full live browser/static-server testing was not available in this run. A review pass should verify YAML parsing, visible choices under each daylight branch, item removal behavior, and the ending restart behavior in a browser.
+
+Remaining weaknesses:
+
+- The fallback bare-rent route is always visible, even when more specific state-aware nightfall choices are visible. That is acceptable for now as a voluntary avoidance option, but a future pass may want stricter route selection or a dedicated “avoid the obvious thread” framing.
+- The game still only allows one daylight attachment before nightfall. That fixes farming but may make the first slice feel narrower than intended. A future pass could implement a bounded day with two or three non-repeatable stops using visited flags.
+- The old observer is effective as pressure, but still generic. The next pass should decide whether he is attached to debt, art, records, civic disorder, or forbidden learning based on player behavior, without exposing clan logic.
+- The story still lacks an explicit date/reign anchor. Do not make precise legal claims until this is pinned.
+- Runtime delivery remains intentionally unchanged. `index.html` still references Loom through `@main`; this should be pinned or replaced only after inspecting Kass's intended static CDN setup.
+
 ## Immediate next target
 
-Build the rent-collection/nightfall convergence scene, but first close the repeatable hub exploit. The convergence should read actual flags/items, make two mortal obligations collide, introduce one mortal antagonist and one quietly supernatural observer, and leave the player with a costly unresolved problem rather than advancing to the Embrace.
+Review the browser behavior of the nightfall structure first. If it works, implement a bounded multi-stop day or second evening scene that lets two daylight threads collide before the old observer speaks directly. The next content pass should also choose a historically plausible date/reign anchor before making Roman law or censorship details more precise.
