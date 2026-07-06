@@ -46,7 +46,11 @@ Every scheduled pass should:
 
 ## Player feedback inbox
 
-No playtest feedback yet.
+### High priority - runtime delivery architecture
+
+- Kass explicitly corrected the assumption that the project lacked static CDN infrastructure. Do not invent or assume a deployment architecture.
+- Kass was interested in the fact that jsDelivr can serve a public GitHub repository directly. Treat that as an available option, not an automatic final decision.
+- Before changing Loom delivery again, inspect the actual Loom deployment/static-CDN setup and choose deliberately. For production, never describe `@main` as pinned; use a release tag or immutable commit SHA if jsDelivr is retained.
 
 ## Current foundation status
 
@@ -91,6 +95,27 @@ Remaining weaknesses:
 - No sire candidates are present yet. The next pass should introduce pressure from one or two plausible mortal-world observers without turning them into clan menus.
 - `index.html` still references Loom with `@main`; pin or document the intended CDN version before any public link from the games index.
 
+### Review 1 - Pass 1 critique
+
+Verdict:
+
+- This pass materially improved the game, not just the scaffolding. The Rome chapter now has named people, material pressures, social class, work, neighborhood conflict, art, patronage, and choices that produce state with plausible long-term transformation potential.
+- The strongest material is the overlap between ordinary survival and future historical consequence: altered debt dates, copied petitions, forbidden verses, diverted water, and funerary portraiture are better seeds than abstract morality labels.
+
+Priority feedback for the next development pass:
+
+1. **Fix the repeatable hub before adding more content.** `rome_crossroads -> rome_arrival` currently permits infinite replay of branches, repeated stat gains, repeated item effects, and mutually incompatible choices. Replace the loop with a bounded day structure or gate each branch/choice with visited flags. This is the highest gameplay/runtime issue.
+2. **Build the convergence from actual state.** The current crossroads prose names every artifact regardless of player history. The nightfall/rent scene should branch or condition text from flags/items and make at least two previously chosen threads collide. Do not merely summarize state.
+3. **Introduce supernatural attention indirectly.** Add a quietly supernatural observer whose interest is legible through what the player did, not through clan exposition. Keep mortal antagonist pressure primary so the Embrace remains an intrusion into an already meaningful life.
+4. **Preserve the best historical mode.** Continue grounding Rome in rent, water access, copying, patronage, household dependency, and material objects. Before making precise legal or political claims, verify the specific period and institution; the current broad framing is evocative but the project still needs an explicit date/reign anchor before legal procedures or censorship details become more specific.
+5. **Runtime delivery: follow user feedback first.** Inspect the actual Loom/static-CDN setup before changing URLs. If jsDelivr remains the choice, replace `@main` with a release tag or commit SHA before public release. Do not call a branch reference pinned.
+6. **Release/legal checklist is intentionally incomplete.** `LEGAL.md` correctly avoids inventing terms, but no public release or games-index link should happen until current official fan-content requirements, required marks/assets, attribution/disclaimer text, and free/noncommercial constraints are verified against the official current source.
+7. **Testing gap remains real.** Source inspection confirms structure but not live behavior. A future pass should perform a browser/static-server smoke test of YAML loading, chapter merge, validation, choice effects, save compatibility, and mobile layout. Do this before expanding far beyond Chapter 1.
+
+Story note:
+
+- Avoid making every Rome seed telegraph its future form in narration. Lines that explicitly list “schoolroom rumor, family boast, heresy, or evidence” explain the consequence system to the player. Prefer one concrete immediate consequence now and let later centuries reveal the transformation unexpectedly.
+
 ## Immediate next target
 
-Build the rent-collection/nightfall convergence scene. It should read existing branch flags/items, avoid mentioning artifacts the player never saw, introduce one mortal antagonist and one quietly supernatural observer, and force the player's first chosen obligation to collide with survival. Do not advance to the Embrace yet.
+Build the rent-collection/nightfall convergence scene, but first close the repeatable hub exploit. The convergence should read actual flags/items, make two mortal obligations collide, introduce one mortal antagonist and one quietly supernatural observer, and leave the player with a costly unresolved problem rather than advancing to the Embrace.
