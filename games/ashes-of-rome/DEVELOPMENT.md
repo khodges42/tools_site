@@ -52,10 +52,45 @@ No playtest feedback yet.
 
 - Loom story manifest created.
 - Ten-era chapter spine scaffolded.
-- Mortal Rome opening scaffolded around household, work, cause, and art attachment vectors.
+- Mortal Rome opening now has concrete household, work, civic-conflict, and art/patronage branches instead of placeholder foundation text.
+- Durable Rome flags and stats exist for obligation, risk, household protection, forbidden texts, public standing, secret art, and patron debt.
 - Long-term consequence model documented but not yet implemented.
 - Fan-project release checklist exists in LEGAL.md; verify current official program terms and assets before public release.
 
+## Development pass log
+
+### Pass 1 - Mortal Rome material stakes
+
+Diagnosis:
+
+- The project rules correctly prioritized mortal Rome, but Chapter 1 still contained placeholder branches.
+- The main technical risk in this pass was not the absence of an engine feature; Loom already supports stats, flags, inventory, conditions, chapter loading, and context notes. The story needed concrete state first.
+- The current `index.html` still loads Loom from `loom-engine@main`; that is acceptable for internal iteration but should be pinned to a tag or commit before public release.
+
+Changes made:
+
+- Bumped `story.yaml` to version 2 because the state schema changed and existing saves should not be assumed compatible.
+- Added new stats: `obligation` and `risk`.
+- Added Rome-specific durable flags for Livia/Gaius, forbidden texts, public civic action, secret artwork, and patron debt.
+- Added inventory seeds for family token, forbidden text, patron ring, rent tablet, and wax portrait.
+- Added context entries for the Subura and patronage.
+- Replaced Chapter 1 placeholders with a playable first slice: household crisis, notary work, fountain dispute, and wax portrait commission.
+- Each branch now creates at least one concrete relationship, obligation, risk, or artifact that can transform across centuries.
+
+Testing notes:
+
+- Re-fetched updated `story.yaml` and `chapters/01-rome.yaml` through GitHub after commit.
+- Confirmed the story manifest now contains the expanded state fields and version 2.
+- Confirmed Chapter 1 has reachable passages from `rome_arrival` to each branch and back to `rome_crossroads`.
+- Full browser testing was not available in this run. Next review should specifically check Loom validation in-browser because YAML syntax and passage reachability were inspected through source rather than a live Cloudflare/static preview.
+
+Remaining weaknesses:
+
+- `rome_crossroads` currently summarizes all possible branch artifacts, even if the player did not encounter all of them. This needs conditional text support, separate convergence passages, or more careful prose that only references universal consequences.
+- The current loop lets the player revisit the city and accumulate contradictory choices. That may be useful during development, but the playable chapter needs a deliberate day structure.
+- No sire candidates are present yet. The next pass should introduce pressure from one or two plausible mortal-world observers without turning them into clan menus.
+- `index.html` still references Loom with `@main`; pin or document the intended CDN version before any public link from the games index.
+
 ## Immediate next target
 
-Deepen Chapter 1 into a real mortal-Rome play experience. Replace placeholder branches with specific characters, material stakes, class positions, and overlapping situations. The player should finish the mortal foundation with at least two relationships and one obligation that future chapters can transform.
+Build the rent-collection/nightfall convergence scene. It should read existing branch flags/items, avoid mentioning artifacts the player never saw, introduce one mortal antagonist and one quietly supernatural observer, and force the player's first chosen obligation to collide with survival. Do not advance to the Embrace yet.
