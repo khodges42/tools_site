@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 2
+version: 3
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -60,6 +60,12 @@ flags:
   rome_public_stand: false
   rome_secret_sketch: false
   rome_patron_debt: false
+  rome_nightfall_started: false
+  rome_collector_met: false
+  rome_varro_claimed: false
+  rome_fountain_threatened: false
+  rome_gaius_hunted: false
+  rome_cold_observer_seen: false
 inventory: [family_token, workshop_key, forbidden_text, patron_ring, rent_tablet, wax_portrait]
 context:
   rome:
