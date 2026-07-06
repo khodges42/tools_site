@@ -348,55 +348,57 @@ passages:
 
   rome_crossroads:
     type: story
-    title: "Nine Days Until Rent"
+    title: "The Day Asks for a Second Thing"
     text: |
-      By dusk, Rome has taken your labor and left fingerprints. The room above the dyer waits. The rent tablet waits. So do the people who learned, today, whether you can be useful, frightened, brave, profitable, or blamed.
+      By late afternoon, Rome has taken your labor and left fingerprints. The room above the dyer waits. The rent tablet waits. So do the people who learned, today, whether you can be useful, frightened, brave, profitable, or blamed.
 
-      The city does not offer a clean path back through the morning. A choice made in daylight has narrowed the night.
+      The first choice did not close the day. It only taught the city where to press next.
     choices:
-      - text: "Answer Varro's messenger before the rent collector sees you."
-        goto: rome_night_varro_and_rent
+      - text: "Let the patron's message follow you home."
+        goto: rome_evening_patron_livia
         requires:
           flag: rome_patron_debt
         effects:
           flags:
-            rome_nightfall_started: true
-            rome_varro_claimed: true
-            rome_collector_met: true
-      - text: "Warn Prisca before the foreman's names reach the wrong tablet."
-        goto: rome_night_fountain_and_rent
+            rome_evening_second_stop: true
+            rome_evening_livia_seen: true
+            rome_evening_patron_pressure: true
+      - text: "Warn Prisca before Marcus's paperwork makes the fountain theft official."
+        goto: rome_evening_prisca_marcus
         requires:
           flag: rome_public_stand
         effects:
           flags:
-            rome_nightfall_started: true
-            rome_fountain_threatened: true
-            rome_collector_met: true
-      - text: "Recover Gaius's hidden verses before Livia has to choose for him."
-        goto: rome_night_gaius_and_rent
+            rome_evening_second_stop: true
+            rome_evening_prisca_seen: true
+            rome_evening_marcus_seen: true
+      - text: "Find Gaius before the notary's errand finds him first."
+        goto: rome_evening_gaius_marcus
         requires:
           flag: rome_protected_tablets
         effects:
           flags:
-            rome_nightfall_started: true
-            rome_gaius_hunted: true
-            rome_collector_met: true
-      - text: "Take the honest face where it can do the most damage."
-        goto: rome_night_wax_and_rent
+            rome_evening_second_stop: true
+            rome_evening_gaius_seen: true
+            rome_evening_marcus_seen: true
+      - text: "Carry the honest face through Prisca's back door."
+        goto: rome_evening_wax_prisca
         requires:
           flag: rome_secret_sketch
         effects:
           flags:
-            rome_nightfall_started: true
-            rome_collector_met: true
-      - text: "Carry the hidden record home before Marcus can ask what you kept."
-        goto: rome_night_record_and_rent
+            rome_evening_second_stop: true
+            rome_evening_prisca_seen: true
+            rome_evening_varro_seen: true
+      - text: "Bring the hidden record where Livia can decide whether survival needs proof."
+        goto: rome_evening_record_livia
         requires:
           flag: rome_secret_record
         effects:
           flags:
-            rome_nightfall_started: true
-            rome_collector_met: true
+            rome_evening_second_stop: true
+            rome_evening_livia_seen: true
+            rome_evening_marcus_seen: true
       - text: "Go home because you chose not to carry anyone else's weapon."
         goto: rome_night_bare_rent
         requires:
@@ -411,19 +413,168 @@ passages:
             rome_nightfall_started: true
             rome_collector_met: true
 
+  rome_evening_patron_livia:
+    type: story
+    title: "A Name at the Stair"
+    text: |
+      The messenger reaches the insula before you do. He waits beside Livia's brazier with a sealed note, too clean to sit and too young to understand why everyone in the room is staring at his sandals.
+
+      If the seal belongs to Varro, the house wants the funeral image before dawn. If it belongs to Marcus's grain broker, the altered debt has already started eating someone else's week. Either way, the name on the wax is heavier than the tablet that says rent.
+
+      Livia looks from the messenger to you. She does not ask whether this patron can help. She asks what he will own afterward.
+    choices:
+      - text: "Let the patron's name buy the household one more night."
+        goto: rome_night_varro_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_varro_claimed: true
+            rome_collector_met: true
+          stats:
+            obligation: 1
+            influence: 1
+      - text: "Send the messenger away and keep the household out of his mouth."
+        goto: rome_night_varro_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_varro_claimed: true
+            rome_collector_met: true
+          stats:
+            risk: 1
+            resolve: 1
+
+  rome_evening_prisca_marcus:
+    type: story
+    title: "Flour on the Record"
+    text: |
+      Prisca's bakery is half-barred when you arrive. A sack of flour has split across the floor, white as road dust, and Marcus's runner is reading from a tablet as if bread ovens obey written notices.
+
+      The builder's men have changed their story. The fountain was never public, they say. The crowd never named the bathhouse owner. Prisca never bled. Marcus can make that lie clean enough to travel.
+
+      Prisca looks at you once. Not pleading. Measuring. She wants a witness who can also carry a sack.
+    choices:
+      - text: "Stand in the flour and make Marcus's runner write your name too."
+        goto: rome_night_fountain_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_fountain_threatened: true
+            rome_collector_met: true
+          stats:
+            risk: 1
+            resolve: 1
+      - text: "Help Prisca move the flour, then tell her which names to avoid saying aloud."
+        goto: rome_night_fountain_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_fountain_threatened: true
+            rome_collector_met: true
+          stats:
+            humanity: 1
+            obligation: 1
+
+  rome_evening_gaius_marcus:
+    type: story
+    title: "Verses in a Notary's Hand"
+    text: |
+      You find Gaius near Marcus's stall, exactly where a clever boy goes when he wants danger to look like learning. He has ash on one sleeve and the bright face of someone who thinks adults are too frightened of paper.
+
+      Marcus's apprentice is also there, asking whether anyone has seen a schoolboy carrying copied verses. The question sounds casual until you notice the second tablet under his arm: names from the morning search, spaces left open.
+
+      Gaius whispers that the poem is worth the risk. He says this as if poems and risks are weighed by boys instead of collected by men.
+    choices:
+      - text: "Put your own name into the apprentice's empty space and send Gaius home."
+        goto: rome_night_gaius_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_gaius_hunted: true
+            rome_collector_met: true
+          stats:
+            risk: 1
+            obligation: 1
+      - text: "Teach Gaius how to lie badly enough that Marcus underestimates him."
+        goto: rome_night_gaius_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_gaius_hunted: true
+            rome_collector_met: true
+          stats:
+            learning: 1
+            humanity: -1
+
+  rome_evening_wax_prisca:
+    type: story
+    title: "The Face Behind the Oven"
+    text: |
+      Prisca hides the wax study behind the oven because nobody searches hot brick carefully. The sister's face softens there, not into forgiveness, but into heat.
+
+      A woman in a dark veil comes through the back door while Prisca is washing blood from her wrist. She knows Varro's house. She knows the dead sister's real name. When she sees the covered wax, she stops breathing for one whole count.
+
+      Now the portrait is not only leverage. It is testimony from a dead mouth.
+    choices:
+      - text: "Let Prisca keep the study hidden until someone from Varro's house lies again."
+        goto: rome_night_wax_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+          stats:
+            obligation: 1
+            risk: 1
+      - text: "Take the wax back; truth this useful is already becoming a chain."
+        goto: rome_night_wax_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+          stats:
+            resolve: 1
+            learning: 1
+
+  rome_evening_record_livia:
+    type: story
+    title: "What a Room Can Prove"
+    text: |
+      Livia does not read the hidden tablet. She makes you read it aloud while she counts lentils into two bowls instead of three.
+
+      A widow's petition, a reused seal, a list of men at the fountain: whatever you preserved today, it sounds different inside the room. Outside, it was leverage. Here, it is dinner, rent, danger, and the possibility of making someone with better sandals hesitate.
+
+      Marcus's boy knocks before you finish. He says his master wants the copy returned. He does not say how Marcus knew.
+    choices:
+      - text: "Use the tablet tonight, before Marcus can make it disappear."
+        goto: rome_night_record_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Hide it from Marcus, Livia, and everyone who needs hope too loudly."
+        goto: rome_night_record_and_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+          stats:
+            learning: 1
+            obligation: -1
+
   rome_night_varro_and_rent:
     type: story
     title: "The Ring Opens Doors Sideways"
     text: |
-      Varro's messenger finds you near the stairs, a boy in a clean tunic holding a covered lamp and your own impatience against you. The noble house wants the funeral image by morning. The messenger does not say please. People with lamps rarely do.
+      The collector arrives with two porters, not for payment yet, he says, only to measure what furniture can be carried out quickly if payment fails. He notices the seal, the ring, or the messenger's clean sandals before he notices your face.
 
-      Then the landlord's collector arrives with two porters, not for payment yet, he says, only to measure what furniture can be carried out quickly if payment fails. He notices Varro's ring before he notices your face.
-
-      A patron's token can protect a room or mark it for extraction. If you flash the ring, Livia keeps her brazier and sleeping mat tonight, but Varro owns the shape of that mercy. If you hide it, the collector starts pricing the household aloud.
+      A patron's token can protect a room or mark it for extraction. If you use the borrowed name, Livia keeps her brazier and sleeping mat tonight, but someone richer owns the shape of that mercy. If you hide it, the collector starts pricing the household aloud.
 
       Across the alley, under a balcony without a lamp, a pale old man watches the exchange as if listening to music written in debt. When his eyes meet yours, he smiles like someone who has found the instrument he came for.
     choices:
-      - text: "Use Varro's ring and let his name stand between the collector and the room."
+      - text: "Use the borrowed name and let one debt bite another."
         goto: rome_nightfall_debt_end
         effects:
           flags:
@@ -433,7 +584,7 @@ passages:
             obligation: 2
             influence: 1
             humanity: -1
-      - text: "Hide the ring and force the collector to threaten you plainly."
+      - text: "Hide the name and force the collector to threaten you plainly."
         goto: rome_nightfall_debt_end
         effects:
           flags:
