@@ -1,0 +1,105 @@
+title: "Ashes of Rome"
+slug: "ashes-of-rome"
+author: "Kass"
+version: 1
+description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
+
+ui:
+  auto_save: true
+  show_back: false
+  show_stats: false
+  show_inventory: false
+  auto_context_links: true
+
+debug:
+  validate: true
+  show_warnings: true
+
+start: character
+
+chapters:
+  - chapters/01-rome.yaml
+  - chapters/02-late-empire.yaml
+  - chapters/03-fall.yaml
+  - chapters/04-medieval.yaml
+  - chapters/05-plague.yaml
+  - chapters/06-renaissance.yaml
+  - chapters/07-revolution.yaml
+  - chapters/08-world-wars.yaml
+  - chapters/09-late-century.yaml
+  - chapters/10-modern-nights.yaml
+
+character:
+  fields:
+    name:
+      type: text
+      label: "Name"
+      default: "Cassia"
+    pronouns:
+      type: choice
+      label: "Pronouns"
+      default: "they"
+      options:
+        - label: "she/her"
+          value: "she"
+          subject: "she"
+          object: "her"
+          possessive: "her"
+          reflexive: "herself"
+        - label: "they/them"
+          value: "they"
+          subject: "they"
+          object: "them"
+          possessive: "their"
+          reflexive: "themself"
+        - label: "he/him"
+          value: "he"
+          subject: "he"
+          object: "him"
+          possessive: "his"
+          reflexive: "himself"
+
+stats:
+  humanity: 7
+  hunger: 0
+  wealth: 0
+  learning: 0
+  influence: 0
+  resolve: 0
+
+flags:
+  embraced: false
+  clan_chosen: false
+  rome_attachment_family: false
+  rome_attachment_work: false
+  rome_attachment_cause: false
+  rome_attachment_art: false
+
+inventory:
+  - family_token
+  - workshop_key
+  - forbidden_text
+  - patron_ring
+
+context:
+  rome:
+    label: "Rome"
+    text: "Not a museum and not yet a ruin: a crowded city of rent, smoke, patronage, law, labor, temples, baths, alleys, and arguments."
+  torpor:
+    label: "Torpor"
+    text: "The deathlike sleep of the Kindred. In this story it is also a machine for missing history and waking to consequences."
+
+credits:
+  title: "Credits and Fan Project Notice"
+  text: |
+    Built with Loom. This is an unofficial, free fan project. Release packaging must include the current required fan-program logo and exact legal notice before publication.
+
+passages:
+  character:
+    type: character
+    title: "Before the Blood"
+    text: |
+      Rome does not ask what clan you belong to. Not yet.
+
+      First, it asks what you owe, what you can afford, who would notice if you vanished, and what you are willing to become before any monster offers to help.
+    goto: rome_arrival
