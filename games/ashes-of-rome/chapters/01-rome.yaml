@@ -84,7 +84,7 @@ passages:
 
       Gaius watches you bury the tablets in gray powder. His relief is too loud. He thinks you saved poems. Livia knows you bought a future favor with a boy's trust and a woman's fear.
 
-      If those words survive, they may become a schoolroom rumor, a family boast, a heresy, or evidence. If they burn later, Gaius will remember who had the chance to save them.
+      If those words survive, Gaius will remember who helped them cross the first dangerous hour. If they burn later, he will remember who had the chance to save them.
     choices:
       - text: "Carry the ash-smell back into the street."
         goto: rome_crossroads
@@ -124,7 +124,7 @@ passages:
     text: |
       Your daylight belongs to Marcus Fulvius, a notary with soft hands, hard prices, and a client list that touches magistrates, merchants, widows, and men who never give the same name twice.
 
-      You copy contracts in a rented stall near the Forum. Marriage portions. manumission records. shipping claims. Quiet threats disguised as loans. Rome is ruled by people who can afford witnesses.
+      You copy contracts in a rented stall near the Forum. Marriage portions. Manumission records. Shipping claims. Quiet threats disguised as loans. Rome is ruled by people who can afford witnesses.
 
       This morning Marcus gives you two jobs: alter a debt date for a grain broker, or copy a widow's petition exactly even though he says exactness will cost you both a patron.
     choices:
@@ -344,11 +344,207 @@ passages:
     type: story
     title: "Nine Days Until Rent"
     text: |
-      By dusk, Rome has taken your labor and left fingerprints: Livia's charm, Marcus's ink, Prisca's water jar, Varro's ring, Gaius's forbidden verses, a private copy, a face hidden under another face.
+      By dusk, Rome has taken your labor and left fingerprints. The room above the dyer waits. The rent tablet waits. So do the people who learned, today, whether you can be useful, frightened, brave, profitable, or blamed.
 
-      None of these are destiny. They are worse: obligations with names attached.
-
-      The next playable pass should let these threads collide before the Embrace. Rent is still due. Someone should come to collect. Someone should offer help at a price that feels merciful only because the city has made ordinary life so expensive.
+      The city does not offer a clean path back through the morning. A choice made in daylight has narrowed the night.
     choices:
-      - text: "Walk the city again."
-        goto: rome_arrival
+      - text: "Answer Varro's messenger before the rent collector sees you."
+        goto: rome_night_varro_and_rent
+        requires:
+          flag: rome_patron_debt
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_varro_claimed: true
+            rome_collector_met: true
+      - text: "Warn Prisca before the foreman's names reach the wrong tablet."
+        goto: rome_night_fountain_and_rent
+        requires:
+          flag: rome_public_stand
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_fountain_threatened: true
+            rome_collector_met: true
+      - text: "Recover Gaius's hidden verses before Livia has to choose for him."
+        goto: rome_night_gaius_and_rent
+        requires:
+          flag: rome_protected_tablets
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_gaius_hunted: true
+            rome_collector_met: true
+      - text: "Take the honest face where it can do the most damage."
+        goto: rome_night_wax_and_rent
+        requires:
+          flag: rome_secret_sketch
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+      - text: "Go home before another debt learns your name."
+        goto: rome_night_bare_rent
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+
+  rome_night_varro_and_rent:
+    type: story
+    title: "The Ring Opens Doors Sideways"
+    text: |
+      Varro's messenger finds you near the stairs, a boy in a clean tunic holding a covered lamp and your own impatience against you. The noble house wants the funeral image by morning. The messenger does not say please. People with lamps rarely do.
+
+      Then the landlord's collector arrives with two porters, not for payment yet, he says, only to measure what furniture can be carried out quickly if payment fails. He notices Varro's ring before he notices your face.
+
+      A patron's token can protect a room or mark it for extraction. If you flash the ring, Livia keeps her brazier and sleeping mat tonight, but Varro owns the shape of that mercy. If you hide it, the collector starts pricing the household aloud.
+
+      Across the alley, under a balcony without a lamp, a pale old man watches the exchange as if listening to music written in debt. When his eyes meet yours, he smiles like someone who has found the instrument he came for.
+    choices:
+      - text: "Use Varro's ring and let his name stand between the collector and the room."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            obligation: 2
+            influence: 1
+            humanity: -1
+      - text: "Hide the ring and force the collector to threaten you plainly."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            risk: 2
+            resolve: 1
+
+  rome_night_fountain_and_rent:
+    type: story
+    title: "Water Has Witnesses"
+    text: |
+      Prisca's bakery smells of ash and wet flour. She has barred the front with a kneading table because the foreman's men came once already and promised to come back with proper authority.
+
+      The landlord's collector is there too, tapping the rent tablet against his palm. He does not care about the fountain except as leverage. A dry household pays late. A frightened baker pays in names.
+
+      Prisca wants you to repeat the bathhouse owner's name in front of the collector. The collector wants you to deny it was ever said. Either way, he writes something down.
+
+      In the street beyond his shoulder, an old man in a travel-stained cloak watches the tablet more than the people. He seems amused that one scratched line can move so many bodies.
+    choices:
+      - text: "Repeat the name and make the collector part of the record."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            risk: 2
+            influence: 1
+            resolve: 1
+      - text: "Deny the public accusation and keep Prisca alive for a quieter fight."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            humanity: 1
+            obligation: 1
+            influence: -1
+
+  rome_night_gaius_and_rent:
+    type: story
+    title: "Ash After Dark"
+    text: |
+      The dyer's ash is still warm when you dig through it. Your fingers find broken charcoal, wool grease, a bent nail, and finally the wrapped tablets.
+
+      Gaius is not waiting where he promised. Livia is. So is the landlord's collector, who has decided that a household hiding writing may also be hiding money. He asks what you recovered and smiles as if every possible answer belongs to him.
+
+      You can hand over the verses and buy the room one safer night. You can keep them and put Livia between the collector and a boy who wanted forbidden words more than he understood danger.
+
+      From the alley mouth, a pale old man watches your ash-black hands with almost scholarly interest. He does not intervene. He looks like the kind of person who prefers experiments unspoiled.
+    choices:
+      - text: "Give up the tablets to keep Livia's room intact."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          remove_items:
+            - forbidden_text
+          stats:
+            humanity: -1
+            obligation: 1
+            risk: -1
+      - text: "Keep Gaius's verses and make the collector leave empty-handed."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            risk: 2
+            resolve: 1
+            learning: 1
+
+  rome_night_wax_and_rent:
+    type: story
+    title: "A Face Worth Rent"
+    text: |
+      The wax study sweats inside its cloth. Varro's sister stares through every fold you wrap around her, unforgiving and therefore valuable.
+
+      The landlord's collector arrives before you can decide who should see it. He starts with the rent tablet and ends by asking whether the noble house knows you kept a second face. Someone has been talking. Or someone has been buying talk.
+
+      You can trade the study as leverage and keep the room. You can destroy it and leave yourself poorer but harder to use.
+
+      Near the stairs, a pale old man watches the covered wax as if he can see the face through cloth. His expression says he has known many artists and fewer honest ones.
+    choices:
+      - text: "Trade the hidden face for time."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          remove_items:
+            - wax_portrait
+          stats:
+            wealth: 1
+            influence: 1
+            humanity: -1
+      - text: "Crush the wax before it becomes someone else's chain."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          remove_items:
+            - wax_portrait
+          stats:
+            resolve: 2
+            risk: 1
+
+  rome_night_bare_rent:
+    type: story
+    title: "The Collector Has Good Sandals"
+    text: |
+      You go home with nothing impressive enough to frighten a landlord's collector. That may be why he smiles. He has good sandals, a wax tablet, and two porters who look at the room as if it is already broken into parts.
+
+      Livia stands in the doorway without asking whether you succeeded at anything today. In the Subura, that question is rude. The only polite question is how much damage followed you back.
+
+      The collector gives you until the next market day to produce coin, patronage, or someone else's misfortune. Behind him, across the alley, a pale old man watches with the patience of a creditor who is owed something older than money.
+    choices:
+      - text: "Accept the deadline and remember the old man's face."
+        goto: rome_nightfall_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+          stats:
+            obligation: 1
+            resolve: 1
+
+  rome_nightfall_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. Nobody in the room says the old man's name, because nobody knows it yet. But every choice you made today has made a different version of you visible to him: useful liar, public risk, keeper of dangerous words, maker of true faces, survivor with no shield but nerve.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
