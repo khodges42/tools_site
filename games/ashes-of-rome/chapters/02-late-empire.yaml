@@ -1,3 +1,261 @@
-# Chapter 2: Late Empire and Christianization
-# Do not develop this chapter until mortal Rome has attachments and consequences worth transforming.
-passages: {}
+# Chapter 2: Late Empire
+# Playable consequence slice: earlier Roman choices survive as family stories,
+# municipal habits, disputed records, and objects with owners.
+passages:
+  late_empire_arrival:
+    type: story
+    title: "The City Has Changed Its Prayers"
+    text: |
+      Rome is still Rome, which means everyone insists it used to be better.
+
+      The street is narrower than you remember. A shrine you knew is gone behind fresh plaster. The bakery at the old corner sells smaller loaves under a painted cross, and the woman at the counter has Prisca's jaw.
+
+      You know the route to Livia's room without thinking. Your feet take you there and stop in front of a locked storeroom belonging to a church hospice.
+
+      A clerk named Junia notices you staring. "If you're here about the old tenants," she says, "get in line. Half the Subura claims a grandmother who lived in that room."
+    choices:
+      - text: "Ask Junia what the hospice keeps from the old households."
+        goto: late_empire_archive
+        effects:
+          flags:
+            late_empire_archive_opened: true
+      - text: "Go to the bakery and ask who taught them to remember names."
+        goto: late_empire_bakery
+        effects:
+          flags:
+            late_empire_fountain_found: true
+      - text: "Look for the fountain before you look for anyone else."
+        goto: late_empire_fountain
+
+  late_empire_archive:
+    type: story
+    title: "Three Shelves of Other People's Lives"
+    text: |
+      Junia keeps the hospice records in a room that smells of lamp oil, damp wood, and mice. She is not impressed by your face, your questions, or the fact that you know where a stair used to be.
+
+      "People remember houses," she says. "Documents remember owners. Guess which one wins."
+
+      On the third shelf is a bundle of copied petitions and rent accounts. The handwriting changes every few pages. One hand does not. It is yours.
+
+      Someone copied your copy. Then someone copied that. A private record became evidence, then precedent, then office habit. The original truth is buried under two centuries of useful revisions.
+    choices:
+      - text: "Tell Junia which line was changed first."
+        goto: late_empire_archive_confess
+        requires:
+          flag: rome_secret_record
+        effects:
+          flags:
+            late_empire_record_found: true
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Ask who benefits from the records as they are now."
+        goto: late_empire_archive_power
+        effects:
+          stats:
+            learning: 1
+      - text: "Leave the dead paperwork alone and ask about Livia's household."
+        goto: late_empire_family_search
+
+  late_empire_archive_confess:
+    type: story
+    title: "The First Bad Copy"
+    text: |
+      You point to a date. Junia squints.
+
+      "That correction is older than my office."
+
+      You tell her the older version was itself a correction. You tell her where Marcus kept his sand, which stylus he used for clients he feared, and why one widow's petition was copied twice.
+
+      Junia stops smiling. She closes the door before asking how you know.
+
+      Outside, a bell calls people to prayer. Inside, a clerk waits for an answer that cannot fit inside any acceptable biography.
+    choices:
+      - text: "Give her a plausible lie and keep the useful truth between you."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            humanity: -1
+            influence: 1
+      - text: "Say you inherited the story from a copyist who regretted his work."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            obligation: 1
+            learning: 1
+
+  late_empire_archive_power:
+    type: story
+    title: "The Office Outlived the Men"
+    text: |
+      Junia shows you the current ledger. The names are different. The trick is familiar.
+
+      A bathhouse became a warehouse. A warehouse became hospice property. A disputed water channel became a boundary line, then a tax exemption, then a sentence copied by clerks who never saw the fountain.
+
+      No immortal conspiracy was required. Only an office, an advantage, and enough generations of people too busy to reopen an old argument.
+    choices:
+      - text: "Copy the chain of ownership before someone decides it is inconvenient."
+        goto: late_empire_crossroads
+        effects:
+          flags:
+            late_empire_record_found: true
+          stats:
+            learning: 1
+            risk: 1
+      - text: "Ask Junia to show you the property itself."
+        goto: late_empire_fountain
+
+  late_empire_bakery:
+    type: story
+    title: "Bread Remembers Hands"
+    text: |
+      The baker is named Prisca too. When you react, she rolls her eyes.
+
+      "Every third woman in my family is Prisca. It saves money on grave markers."
+
+      She works dough while you talk. The family story concerns a fountain, a foreman, and an ancestor who broke a man's face with a jar. In one version she won. In another she was arrested. In the bakery version, she simply came home angry and kept making bread.
+
+      The story has improved with age. You can see exactly where.
+    choices:
+      - text: "Tell her the part about the crowd repeating the owner's name."
+        goto: late_empire_bakery_name
+        requires:
+          flag: rome_public_stand
+        effects:
+          flags:
+            late_empire_family_found: true
+          stats:
+            influence: 1
+            obligation: 1
+      - text: "Ask what happened to the fountain instead of correcting the story."
+        goto: late_empire_fountain
+      - text: "Buy bread and let the family keep its better version."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            humanity: 1
+
+  late_empire_bakery_name:
+    type: story
+    title: "A Name Still Spoken"
+    text: |
+      You give Prisca the bathhouse owner's name.
+
+      Her hands stop in the dough.
+
+      She knows it. Not as a villain. As a saintly donor whose descendants paid for repairs to a nearby chapel. The old family story and the new public inscription disagree so completely that she laughs.
+
+      "Of course," she says. "That's more Roman than either version."
+
+      She wraps a loaf for you without asking for coin. It is not charity. You have just become part of a family argument.
+    choices:
+      - text: "Take the bread and ask to see the old fountain."
+        goto: late_empire_fountain
+      - text: "Stay and hear what else the family got wrong."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            learning: 1
+            obligation: 1
+
+  late_empire_fountain:
+    type: story
+    title: "Water Under Stone"
+    text: |
+      The fountain still runs, but not where you remember it.
+
+      The basin has been rebuilt. A cross is carved over an older dedication. Children fill jars beneath both without caring. The disputed channel is buried under paving stones, and the private bathhouse is a roofless shell used for storage.
+
+      An old man sits beside the water repairing a sandal. He glances at you once, then at the way you study the stones.
+
+      "You look disappointed," he says. "Were you expecting the city to wait?"
+    choices:
+      - text: "Ask whether he remembers what stood here before."
+        goto: late_empire_fountain_memory
+      - text: "Tell him cities do not wait; people leave evidence."
+        goto: late_empire_fountain_evidence
+        requires:
+          flag: late_empire_record_found
+      - text: "Ignore him and drink."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            resolve: 1
+
+  late_empire_fountain_memory:
+    type: story
+    title: "What the Sandal-Mender Heard"
+    text: |
+      The old man knows four stories about the fountain and trusts none of them.
+
+      One blames corrupt builders. One blames pagans. One blames Christians. One blames a baker whose temper became larger every time the story was told.
+
+      "My grandfather said the important part was simpler," he says. "Someone tried to take the water. Other people made it expensive."
+
+      That is closer to the truth than any name carved in stone.
+    choices:
+      - text: "Carry that version back to Junia's records."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            humanity: 1
+            learning: 1
+
+  late_empire_fountain_evidence:
+    type: story
+    title: "Stone, Water, Wax"
+    text: |
+      You show the sandal-mender the copied chain of ownership. He cannot read all of it, but he recognizes the property marks.
+
+      By sunset, Junia has seen it. So has Prisca. Three people now hold three incompatible versions of the same street.
+
+      You have lived long enough to know what happens next. Not justice. Meetings.
+
+      Somehow, the thought comforts you.
+    choices:
+      - text: "Go back to the room that used to be home."
+        goto: late_empire_crossroads
+        effects:
+          stats:
+            influence: 1
+            obligation: 1
+
+  late_empire_family_search:
+    type: story
+    title: "Livia Became Six People"
+    text: |
+      Junia finds six women named Livia in the hospice rolls and two households claiming descent from each.
+
+      One family says Livia hid forbidden poems. Another says she burned them. A third keeps a bronze charm they insist belonged to her, though the metalwork is a century too new.
+
+      You came looking for a person. History hands you a disagreement.
+    choices:
+      - text: "Visit the family that remembers the poems."
+        goto: late_empire_crossroads
+        requires:
+          flag: rome_protected_tablets
+        effects:
+          flags:
+            late_empire_family_found: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Visit the family with the suspicious bronze charm."
+        goto: late_empire_crossroads
+        effects:
+          flags:
+            late_empire_family_found: true
+          stats:
+            learning: 1
+
+  late_empire_crossroads:
+    type: ending
+    title: "The Street Keeps Its Own Archive"
+    text: |
+      Evening gathers in the Subura.
+
+      Junia locks her records away. Prisca scrapes flour from the bakery table. Children shout beside a fountain whose argument survived longer than most of the people who fought it.
+
+      You remember one day here with unbearable clarity. The city remembers pieces, badly, in bread recipes and boundary lines and family accusations.
+
+      For the first time, you understand that surviving an age does not make you its owner. It only makes you another unreliable witness.
