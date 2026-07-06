@@ -149,6 +149,8 @@ passages:
       - text: "Make a private duplicate before choosing what Marcus sees."
         goto: rome_work_duplicate
         effects:
+          flags:
+            rome_secret_record: true
           stats:
             learning: 1
             risk: 1
@@ -216,12 +218,16 @@ passages:
       - text: "Quietly memorize the foreman's names and marks."
         goto: rome_cause_watch
         effects:
+          flags:
+            rome_secret_record: true
           stats:
             learning: 1
             risk: 1
       - text: "Pull Prisca away before the crowd spends her life for excitement."
         goto: rome_cause_pull
         effects:
+          flags:
+            rome_prisca_spared: true
           stats:
             humanity: 1
             obligation: 1
@@ -383,8 +389,23 @@ passages:
           flags:
             rome_nightfall_started: true
             rome_collector_met: true
-      - text: "Go home before another debt learns your name."
+      - text: "Carry the hidden record home before Marcus can ask what you kept."
+        goto: rome_night_record_and_rent
+        requires:
+          flag: rome_secret_record
+        effects:
+          flags:
+            rome_nightfall_started: true
+            rome_collector_met: true
+      - text: "Go home because you chose not to carry anyone else's weapon."
         goto: rome_night_bare_rent
+        requires:
+          all:
+            - not_flag: rome_patron_debt
+            - not_flag: rome_public_stand
+            - not_flag: rome_protected_tablets
+            - not_flag: rome_secret_sketch
+            - not_flag: rome_secret_record
         effects:
           flags:
             rome_nightfall_started: true
@@ -403,19 +424,21 @@ passages:
       Across the alley, under a balcony without a lamp, a pale old man watches the exchange as if listening to music written in debt. When his eyes meet yours, he smiles like someone who has found the instrument he came for.
     choices:
       - text: "Use Varro's ring and let his name stand between the collector and the room."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_debt_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_debt: true
           stats:
             obligation: 2
             influence: 1
             humanity: -1
       - text: "Hide the ring and force the collector to threaten you plainly."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_debt_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_debt: true
           stats:
             risk: 2
             resolve: 1
@@ -433,19 +456,21 @@ passages:
       In the street beyond his shoulder, an old man in a travel-stained cloak watches the tablet more than the people. He seems amused that one scratched line can move so many bodies.
     choices:
       - text: "Repeat the name and make the collector part of the record."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_public_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_public: true
           stats:
             risk: 2
             influence: 1
             resolve: 1
       - text: "Deny the public accusation and keep Prisca alive for a quieter fight."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_public_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_public: true
           stats:
             humanity: 1
             obligation: 1
@@ -464,10 +489,11 @@ passages:
       From the alley mouth, a pale old man watches your ash-black hands with almost scholarly interest. He does not intervene. He looks like the kind of person who prefers experiments unspoiled.
     choices:
       - text: "Give up the tablets to keep Livia's room intact."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_learning_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_learning: true
           remove_items:
             - forbidden_text
           stats:
@@ -475,10 +501,11 @@ passages:
             obligation: 1
             risk: -1
       - text: "Keep Gaius's verses and make the collector leave empty-handed."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_learning_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_learning: true
           stats:
             risk: 2
             resolve: 1
@@ -497,10 +524,11 @@ passages:
       Near the stairs, a pale old man watches the covered wax as if he can see the face through cloth. His expression says he has known many artists and fewer honest ones.
     choices:
       - text: "Trade the hidden face for time."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_art_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_art: true
           remove_items:
             - wax_portrait
           stats:
@@ -508,15 +536,49 @@ passages:
             influence: 1
             humanity: -1
       - text: "Crush the wax before it becomes someone else's chain."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_art_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_art: true
           remove_items:
             - wax_portrait
           stats:
             resolve: 2
             risk: 1
+
+  rome_night_record_and_rent:
+    type: story
+    title: "A Tablet with Two Shadows"
+    text: |
+      The hidden record feels heavier after dark. Whether it holds a widow's ugly petition, a reused seal, or a set of names caught beside the fountain, it has become a small portable future: proof for someone, threat for someone else.
+
+      Marcus's boy waits near the stair with a message you are not supposed to read twice. The landlord's collector waits above him with two porters and a tablet of his own. They both want the same thing from you: a clean answer that makes someone else's account easier.
+
+      Livia sees the tablet tucked under your sleeve. She does not ask what it says. She asks whether it can keep the room standing.
+
+      Under the opposite arch, a pale old man studies the space between the two tablets and seems delighted that Rome can make paper, wax, hunger, and fear speak in the same hand.
+    choices:
+      - text: "Use the hidden record as leverage and make the room safer tonight."
+        goto: rome_nightfall_record_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+            rome_observer_records: true
+          stats:
+            influence: 1
+            obligation: 1
+            risk: 1
+      - text: "Keep the record hidden, even from Livia, until it can hurt the right person."
+        goto: rome_nightfall_record_end
+        effects:
+          flags:
+            rome_cold_observer_seen: true
+            rome_observer_records: true
+          stats:
+            learning: 1
+            resolve: 1
+            obligation: -1
 
   rome_night_bare_rent:
     type: story
@@ -529,15 +591,16 @@ passages:
       The collector gives you until the next market day to produce coin, patronage, or someone else's misfortune. Behind him, across the alley, a pale old man watches with the patience of a creditor who is owed something older than money.
     choices:
       - text: "Accept the deadline and remember the old man's face."
-        goto: rome_nightfall_end
+        goto: rome_nightfall_bare_end
         effects:
           flags:
             rome_cold_observer_seen: true
+            rome_observer_bare: true
           stats:
             obligation: 1
             resolve: 1
 
-  rome_nightfall_end:
+  rome_nightfall_debt_end:
     type: ending
     title: "A Mercy With Teeth"
     text: |
@@ -545,6 +608,66 @@ passages:
 
       Near midnight, someone knocks once at the street door below and does not knock again.
 
-      Livia wakes. So do you. Nobody in the room says the old man's name, because nobody knows it yet. But every choice you made today has made a different version of you visible to him: useful liar, public risk, keeper of dangerous words, maker of true faces, survivor with no shield but nerve.
+      Livia wakes. So do you. On the stair, where the old man's feet should have left dust, there is only the faint round mark of a ring pressed into damp clay. He noticed the way borrowed names can open a door, and the way you let one debt bite another.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
+
+  rome_nightfall_public_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. By morning, someone has scratched the bathhouse owner's name into the fountain curb in letters too neat for a drunk and too shallow for a worker with time. The old man did not need to hear bravery. He needed to see whether your words could make other mouths dangerous.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
+
+  rome_nightfall_learning_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. The ash under your nails has gone pale, almost silver, though you scrubbed until your fingers hurt. Somewhere below, a boy whispers a line he should not know by heart. The old man noticed what you protected, what you surrendered, and whether forbidden words made you careful or hungry.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
+
+  rome_nightfall_art_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. In the brazier's last light, every face in the room looks briefly more honest than it should: tired, frightened, unwilling to forgive you for seeing them. The old man noticed the private likeness, not because it was beautiful, but because truth became useful in your hands.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
+
+  rome_nightfall_record_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. The hidden tablet has been turned one finger-width from where you left it. Not stolen. Not read aloud. Only corrected, as if someone wanted you to know that records have witnesses even when people do not. The old man noticed the copy behind the copy.
+
+      This is not the Embrace. Not yet. It is the first time the night chooses to look back.
+
+  rome_nightfall_bare_end:
+    type: ending
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. Nothing has been moved. No name appears where it should not. No gift waits on the threshold. The old man noticed restraint, or emptiness, or the discipline of carrying no useful handle. In Rome, even that can be a kind of bait.
 
       This is not the Embrace. Not yet. It is the first time the night chooses to look back.
