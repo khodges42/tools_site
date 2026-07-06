@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 1
+version: 2
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -45,6 +45,8 @@ stats:
   learning: 0
   influence: 0
   resolve: 0
+  obligation: 0
+  risk: 0
 flags:
   embraced: false
   clan_chosen: false
@@ -52,11 +54,23 @@ flags:
   rome_attachment_work: false
   rome_attachment_cause: false
   rome_attachment_art: false
-inventory: [family_token, workshop_key, forbidden_text, patron_ring]
+  rome_helped_livia: false
+  rome_protected_tablets: false
+  rome_promised_gaius: false
+  rome_public_stand: false
+  rome_secret_sketch: false
+  rome_patron_debt: false
+inventory: [family_token, workshop_key, forbidden_text, patron_ring, rent_tablet, wax_portrait]
 context:
   rome:
     label: "Rome"
     text: "Not a museum and not yet a ruin: a crowded city of rent, smoke, patronage, law, labor, temples, baths, alleys, and arguments."
+  subura:
+    label: "Subura"
+    text: "A dense Roman neighborhood of rentals, workshops, stairs, taverns, smoke, water queues, and social pressure. In this story it is home before it is scenery."
+  patronage:
+    label: "Patronage"
+    text: "A Roman relationship of favors, protection, gifts, introductions, and obligations. It can feed you, trap you, or turn your private life into someone else's asset."
   torpor:
     label: "Torpor"
     text: "The deathlike sleep of the Kindred. In this story it is also a machine for missing history and waking to consequences."
