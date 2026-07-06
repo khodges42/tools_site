@@ -5,72 +5,350 @@ passages:
     text: |
       Dawn reaches the Subura by argument: shutters thrown open, carts cursing at corners, bread ovens breathing into alleys already warm with bodies.
 
-      {{name}} has no prophecy. There is rent due in nine days.
+      {{name}} has no prophecy. There is rent due in nine days, a cracked tablet from the landlord's clerk, and three people already acting as if your time belongs to them.
 
-      This first chapter establishes economic position, work, education, attachments, politics, religion, art, enemies, and obligations through play.
+      This is the part of the story before blood, before clan, before any beautiful monster explains your life back to you. Rome wants to know what you will protect while you are still easy to kill.
     choices:
       - text: "Begin with the household that expects you home."
         goto: rome_family
         effects:
           flags:
             rome_attachment_family: true
+          stats:
+            obligation: 1
       - text: "Begin with the work that owns your daylight."
         goto: rome_work
         effects:
           flags:
             rome_attachment_work: true
+          stats:
+            wealth: 1
       - text: "Begin with the argument you should have walked away from."
         goto: rome_cause
         effects:
           flags:
             rome_attachment_cause: true
+          stats:
+            risk: 1
       - text: "Begin with the thing you make when nobody is paying."
         goto: rome_art
         effects:
           flags:
             rome_attachment_art: true
+          stats:
+            learning: 1
 
   rome_family:
     type: story
-    title: "The Household"
+    title: "The Third-Floor Room"
     text: |
-      Foundation passage. Develop a concrete household, obligations, class position, and a relationship worth carrying across centuries.
+      Your household is one room above a dyer's stall, reached by stairs that lean like a drunk witness. The landlord's clerk has scratched the rent date into a wax tablet and left it where everyone can see it.
+
+      Livia, your aunt by affection rather than blood, keeps a brazier low and a tally of who has eaten. She took you in after your first patron died and still calls you child when she wants something impossible.
+
+      Her grandson Gaius waits by the door with a bundle under his tunic: copied verses from a banned poet, borrowed from a tutor who will deny knowing him if the wrong man asks. Livia wants the tablets gone before the morning search reaches this insula. Gaius wants them saved.
     choices:
-      - text: "Return to the street."
+      - text: "Hide the tablets under the dyer's ash and promise Gaius you will recover them tonight."
+        goto: rome_family_ash
+        effects:
+          flags:
+            rome_helped_livia: true
+            rome_protected_tablets: true
+            rome_promised_gaius: true
+          stats:
+            obligation: 2
+            risk: 1
+            learning: 1
+          add_items:
+            - forbidden_text
+      - text: "Burn the copies now and let Livia owe you for keeping the room safe."
+        goto: rome_family_burn
+        effects:
+          flags:
+            rome_helped_livia: true
+          stats:
+            obligation: 1
+            resolve: 1
+      - text: "Tell Gaius to carry his own danger and refuse to make the household choose for him."
+        goto: rome_family_refuse
+        effects:
+          stats:
+            resolve: 1
+            risk: -1
+
+  rome_family_ash:
+    type: story
+    title: "Ash Keeps Secrets Poorly"
+    text: |
+      The dyer curses when you ask for ash but gives it anyway, because Livia once nursed his wife through a fever and because everybody in the Subura is someone's creditor.
+
+      Gaius watches you bury the tablets in gray powder. His relief is too loud. He thinks you saved poems. Livia knows you bought a future favor with a boy's trust and a woman's fear.
+
+      If those words survive, they may become a schoolroom rumor, a family boast, a heresy, or evidence. If they burn later, Gaius will remember who had the chance to save them.
+    choices:
+      - text: "Carry the ash-smell back into the street."
+        goto: rome_crossroads
+
+  rome_family_burn:
+    type: story
+    title: "Smoke Without Witnesses"
+    text: |
+      Wax softens. Scratched lines vanish into heat. Gaius looks at you as if you have murdered a person small enough to fit in his hand.
+
+      Livia says nothing until the smoke is gone. Then she presses a cheap bronze charm into your palm: not payment, not thanks, just proof that she knows exactly what kind of debt this is.
+
+      The household is safer. The boy is not. A future version of this family may remember you as protector, coward, or censor depending on who survives to tell it.
+    choices:
+      - text: "Put the charm away and return to the street."
+        goto: rome_crossroads
+        effects:
+          add_items:
+            - family_token
+
+  rome_family_refuse:
+    type: story
+    title: "The Door Stays Open"
+    text: |
+      You refuse to touch the bundle. Livia's mouth tightens. Gaius grins with all the stupidity of a boy mistaking abandonment for respect.
+
+      He leaves by the stairs, quick and proud. A search party could miss him. A tutor could betray him. Or he could learn that adults survive by placing danger into younger hands and calling it principle.
+
+      You have kept yourself cleaner. Rome notices clean hands only when someone else points at them.
+    choices:
+      - text: "Return to the street before Livia speaks again."
         goto: rome_crossroads
 
   rome_work:
     type: story
-    title: "The Day's Work"
+    title: "The Copyist's Bench"
     text: |
-      Foundation passage. Establish work, economic class, access to the city, skills, debts, and who profits from the player's labor.
+      Your daylight belongs to Marcus Fulvius, a notary with soft hands, hard prices, and a client list that touches magistrates, merchants, widows, and men who never give the same name twice.
+
+      You copy contracts in a rented stall near the Forum. Marriage portions. manumission records. shipping claims. Quiet threats disguised as loans. Rome is ruled by people who can afford witnesses.
+
+      This morning Marcus gives you two jobs: alter a debt date for a grain broker, or copy a widow's petition exactly even though he says exactness will cost you both a patron.
     choices:
-      - text: "Return to the street."
+      - text: "Alter the broker's date and earn Marcus's protection."
+        goto: rome_work_alter
+        effects:
+          flags:
+            rome_patron_debt: true
+          stats:
+            wealth: 2
+            influence: 1
+            humanity: -1
+      - text: "Copy the widow's petition exactly and risk losing the stall's best client."
+        goto: rome_work_exact
+        effects:
+          flags:
+            rome_public_stand: true
+          stats:
+            resolve: 1
+            risk: 1
+            humanity: 1
+      - text: "Make a private duplicate before choosing what Marcus sees."
+        goto: rome_work_duplicate
+        effects:
+          stats:
+            learning: 1
+            risk: 1
+          add_items:
+            - rent_tablet
+
+  rome_work_alter:
+    type: story
+    title: "A Date Moves Like a Knife"
+    text: |
+      One line changes. A debt becomes older. A man you have never met loses time he thought he still had.
+
+      Marcus smiles without warmth and says you understand the city. By noon, the grain broker's runner leaves a coin heavy enough to matter and a warning light enough to pretend it was a joke.
+
+      This is how institutions begin: not with marble, but with useful lies written in a steady hand.
+    choices:
+      - text: "Return to the street with ink under your nails."
+        goto: rome_crossroads
+
+  rome_work_exact:
+    type: story
+    title: "The Petition Remains Ugly"
+    text: |
+      You copy the widow's words as she spoke them: the missing shipment, the dead son, the brother-in-law trying to fold her house into his accounts.
+
+      Marcus reads the result twice. He does not shout. That is worse. Outside, the widow sees your face and understands before you can explain.
+
+      If the petition travels, it may become a case, a scandal, a precedent, or a reason for someone powerful to learn your name.
+    choices:
+      - text: "Return to the street before Marcus decides your wages."
+        goto: rome_crossroads
+
+  rome_work_duplicate:
+    type: story
+    title: "Two Copies"
+    text: |
+      Your public copy can obey Marcus. Your private copy can remember what happened.
+
+      You press the stylus carefully, not because justice requires beauty but because survival sometimes requires a document no one knows exists.
+
+      A secret record is not virtue. It is leverage waiting for a hand brave or desperate enough to use it.
+    choices:
+      - text: "Hide the duplicate and return to the street."
         goto: rome_crossroads
 
   rome_cause:
     type: story
-    title: "The Argument"
+    title: "The Fountain Argument"
     text: |
-      Foundation passage. Establish an intellectual, political, religious, neighborhood, or labor conflict with specific people and stakes.
+      At the neighborhood fountain, a builder's foreman has posted two men to shove tenants out of the water line. He says the pipe is being repaired for public good. Everyone can see the new channel bending toward a private bathhouse.
+
+      A baker named Prisca has already bloodied one man's lip with a water jar. The crowd loves her until the foreman says names will be taken for the magistrate.
+
+      Your household needs this fountain. Your employer needs the builder's contracts. Your silence would be rational and everyone here would hear it.
     choices:
-      - text: "Return to the street."
+      - text: "Stand beside Prisca and make the theft public."
+        goto: rome_cause_stand
+        effects:
+          flags:
+            rome_public_stand: true
+          stats:
+            influence: 1
+            risk: 2
+            resolve: 1
+      - text: "Quietly memorize the foreman's names and marks."
+        goto: rome_cause_watch
+        effects:
+          stats:
+            learning: 1
+            risk: 1
+      - text: "Pull Prisca away before the crowd spends her life for excitement."
+        goto: rome_cause_pull
+        effects:
+          stats:
+            humanity: 1
+            obligation: 1
+
+  rome_cause_stand:
+    type: story
+    title: "Names Taken Aloud"
+    text: |
+      You say the bathhouse owner's name before the foreman can make the argument about disorder. Prisca catches the shape of it and repeats it louder.
+
+      The crowd changes. Not braver, exactly. More specific. Specific anger is harder to sweep away.
+
+      By evening, your name will be in two mouths: one grateful, one paid to remember threats.
+    choices:
+      - text: "Leave before the magistrate's clerk arrives."
+        goto: rome_crossroads
+
+  rome_cause_watch:
+    type: story
+    title: "Useful Cowardice"
+    text: |
+      You stay near the edge and watch. The foreman has a scar through his left brow. One guard wears a military belt too fine for him. The wax seal on the notice is real but reused.
+
+      Prisca sees you seeing and spits near your sandal. She wanted a body beside hers, not a ledger of future possibilities.
+
+      Still, details survive panic. Later, the right detail in the right ear can move more stone than a heroic bruise.
+    choices:
+      - text: "Carry what you noticed back into the street."
+        goto: rome_crossroads
+
+  rome_cause_pull:
+    type: story
+    title: "The Jar Does Not Break"
+    text: |
+      You catch Prisca's wrist before the second swing. She nearly turns the jar on you, then sees the clerk approaching behind the foreman.
+
+      The crowd groans as if denied theater. Prisca hates you for three breaths. On the fourth, she understands she still has hands to knead tomorrow's bread.
+
+      Saving someone from the city's appetite does not stop the theft. It only means one more angry person survives to plan.
+    choices:
+      - text: "Walk away with water still unresolved."
         goto: rome_crossroads
 
   rome_art:
     type: story
-    title: "The Unpaid Thing"
+    title: "The Unpaid Face"
     text: |
-      Foundation passage. Establish an artistic practice, audience, rival, patron, or private obsession with consequences beyond a personality label.
+      Behind the notary stall, when Marcus thinks you are sanding tablets, you shape faces in cheap wax: Livia's suspicion, Gaius's hunger for forbidden words, Prisca's fury at the fountain, your own face as you wish it looked when you were not being useful.
+
+      A young noble, Aelius Varro, finds the hidden board and laughs once before he sees you are not joking. He offers payment for a funeral image of his dead sister, then lowers his voice and asks whether you can make her look forgiving.
+
+      It is art, work, fraud, grief, and patronage in one soft lump warming under your thumb.
     choices:
-      - text: "Return to the street."
+      - text: "Accept Varro's commission and the risk of being owned by it."
+        goto: rome_art_accept
+        effects:
+          flags:
+            rome_patron_debt: true
+          stats:
+            wealth: 1
+            influence: 1
+            obligation: 1
+          add_items:
+            - patron_ring
+      - text: "Refuse to sell forgiveness to a man who wants grief improved."
+        goto: rome_art_refuse
+        effects:
+          stats:
+            resolve: 1
+            risk: 1
+      - text: "Make a private study of the sister's real, unforgiving face."
+        goto: rome_art_secret
+        effects:
+          flags:
+            rome_secret_sketch: true
+          stats:
+            learning: 1
+            risk: 1
+          add_items:
+            - wax_portrait
+
+  rome_art_accept:
+    type: story
+    title: "A Ring for a Lie"
+    text: |
+      Varro leaves a ring as surety. Too much payment for wax, not enough for silence.
+
+      He describes his sister with the impatience of someone editing the dead for an audience. Softer mouth. Gentler brow. Less accusation.
+
+      If you succeed, a noble house may remember you as useful. If the likeness is too true, usefulness can sour into danger.
+    choices:
+      - text: "Pocket the ring and return to the street."
+        goto: rome_crossroads
+
+  rome_art_refuse:
+    type: story
+    title: "No Patron, No Shield"
+    text: |
+      Varro's expression closes like a door in a rich house. He says you mistake yourself for someone with choices.
+
+      Maybe he is right. Maybe the first honest thing you make today is an enemy.
+
+      The wax face on your board slumps in the heat, free of him and useless to you.
+    choices:
+      - text: "Scrape the wax clean and return to the street."
+        goto: rome_crossroads
+
+  rome_art_secret:
+    type: story
+    title: "The Face Under the Face"
+    text: |
+      You ask enough questions to make Varro vain and not enough to make him careful. His sister's real face appears in what he avoids: the argument before she died, the letter he burned, the way he says forgiveness as if it were a household object.
+
+      Your private study is ugly with truth. It could become blackmail, relic, memory, or the only honest image anyone keeps of her.
+    choices:
+      - text: "Wrap the wax study and return to the street."
         goto: rome_crossroads
 
   rome_crossroads:
     type: story
     title: "Nine Days Until Rent"
     text: |
-      The foundation ends here for now. The next development pass should deepen mortal Rome before advancing history.
+      By dusk, Rome has taken your labor and left fingerprints: Livia's charm, Marcus's ink, Prisca's water jar, Varro's ring, Gaius's forbidden verses, a private copy, a face hidden under another face.
+
+      None of these are destiny. They are worse: obligations with names attached.
+
+      The next playable pass should let these threads collide before the Embrace. Rent is still due. Someone should come to collect. Someone should offer help at a price that feels merciful only because the city has made ordinary life so expensive.
     choices:
       - text: "Walk the city again."
         goto: rome_arrival
