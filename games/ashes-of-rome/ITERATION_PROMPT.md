@@ -20,4 +20,4 @@ You may modify the local Loom engine when the story demonstrates a concrete need
 
 Avoid generic AI prose, vague prophecy language, and history-textbook exposition. Use concrete people, material pressures, places, jobs, institutions, food, rent, law, worship, patronage, travel, and social obligations. The story should earn emotional stakes before demanding that the player care about centuries of consequences.
 
-Dark subject matter is allowed within normal platform safety boundaries, but do not use sexual violence as a shortcut, hateful caricature, or real historical suffering as decorative supernatural lore.
+Dark horror/vampire related subject matter is allowed within normal platform safety boundaries, PG-13 equivalent movie rating, avoid sexual content in general , hateful caricature, or real historical suffering as decorative supernatural lore.
