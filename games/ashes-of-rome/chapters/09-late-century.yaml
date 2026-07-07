@@ -1,2 +1,416 @@
-# Chapter 9 placeholder
-passages: {}
+# Chapter 9: The Years of Lead
+# Rome, 1977-1978. The old archive problem returns as databases, dossiers,
+# duplicated keys, political violence, and institutions that can lose a person on purpose.
+passages:
+  late_century_arrival:
+    type: story
+    title: "Carbon Paper"
+    text: |
+      Rome, 1977.
+
+      The machine in the municipal basement is not intelligent. This is the first thing Teresa insists on.
+
+      "It does not know anything," she says, feeding a stack of punched cards into a reader. "It remembers what someone decided to encode. That is worse."
+
+      Upstairs, clerks still stamp paper. Outside, students paste posters over older posters, police vans idle at intersections, and every faction believes history is about to choose a side.
+
+      Teresa has found duplicate identity records tied to addresses you recognize from the occupation. One set leads to living families. The other leads nowhere—and someone has started asking which set is real.
+    choices:
+      - text: "Help Teresa trace who is querying the duplicate identities."
+        goto: late_century_queries
+        effects:
+          stats:
+            learning: 1
+            risk: 1
+      - text: "Check the old hospital network before touching the records."
+        goto: late_century_hospital
+        requires:
+          flag: modernity_joined_hospital
+      - text: "Find the printers. Paper still leaves fingerprints."
+        goto: late_century_press
+        requires:
+          flag: modernity_joined_press
+      - text: "Ask the nocturnal court why mortal files suddenly interest them."
+        goto: late_century_court
+        effects:
+          stats:
+            influence: 1
+            risk: 1
+
+  late_century_queries:
+    type: story
+    title: "Who Asked the Machine"
+    text: |
+      Teresa keeps query logs because her supervisor says they waste paper.
+
+      The pattern is small enough to miss: a housing office checks three names, a police desk checks two, a pension clerk checks four. Then a private clinic checks all nine.
+
+      The clinic closed in 1962.
+
+      You visit after dark. Its brass plate is gone, but the basement lock is new. Inside are filing cabinets, a telephone, and photographs of apartment doors. The system is not hunting people. People are using the system to build a hunting list.
+    choices:
+      - text: "Remove the addresses but leave enough false structure to expose the next query."
+        goto: late_century_honey_record
+        effects:
+          stats:
+            learning: 1
+            resolve: 1
+            risk: 1
+      - text: "Destroy the duplicate records before the list can be completed."
+        goto: late_century_erasure
+        effects:
+          stats:
+            humanity: 1
+            influence: -1
+      - text: "Follow the clinic's telephone line instead of touching the data."
+        goto: late_century_switchboard
+        effects:
+          stats:
+            resolve: 1
+
+  late_century_honey_record:
+    type: story
+    title: "A Lie With a Bell On It"
+    text: |
+      You and Teresa invent a tenth person.
+
+      The address is a condemned room above a shuttered tailor. The pension history is plausible. The ration-card ancestry reaches back to a forged identity created during the occupation. The telephone number rings in an apartment Teresa can watch from a cafe.
+
+      Three nights later, someone enters the condemned building with a copied municipal key.
+
+      He is mortal, frightened, and carrying a camera rather than a weapon. He says he was paid to photograph whoever lives there. He never met the client. Instructions arrived inside library books.
+    choices:
+      - text: "Turn the courier and keep the false identity alive."
+        goto: late_century_library_dead_drop
+        effects:
+          stats:
+            influence: 1
+            obligation: 1
+      - text: "Let him go and watch who panics when no photographs arrive."
+        goto: late_century_court
+        effects:
+          stats:
+            resolve: 1
+            risk: 1
+
+  late_century_erasure:
+    type: story
+    title: "The Cost of Being Missing"
+    text: |
+      Teresa stops you after the third card tray.
+
+      "If we erase them here, they do not only disappear from the hunter. They disappear from pensions, leases, schools. You cannot protect someone by making the state unable to see them at all."
+
+      You have heard versions of this argument for centuries. The archive can be a weapon. It can also be proof that someone was here.
+    choices:
+      - text: "Restore the civil records and separate addresses from identities."
+        goto: late_century_queries
+        effects:
+          stats:
+            humanity: 1
+            learning: 1
+      - text: "Accept the damage and move the families through the old relief routes."
+        goto: late_century_routes
+        requires:
+          flag: modernity_built_relief_routes
+        effects:
+          stats:
+            obligation: 2
+            risk: 1
+
+  late_century_switchboard:
+    type: story
+    title: "A Human Network"
+    text: |
+      The telephone line terminates at a switchboard used by six offices and a newspaper.
+
+      A night operator named Mirella remembers voices. She has no list, only habits: the caller never gives a name, always asks for an outside line, and taps a pencil twice while waiting.
+
+      Mirella heard the same tapping during the occupation, when she was a child hiding beneath her mother's desk.
+
+      Immortality is not required for a method to survive. Sometimes a habit is enough.
+    choices:
+      - text: "Ask Mirella to route the next call through Teresa's office."
+        goto: late_century_library_dead_drop
+        effects:
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Warn her and shut the switchboard out of the investigation."
+        goto: late_century_hospital
+        effects:
+          stats:
+            humanity: 1
+
+  late_century_hospital:
+    type: story
+    title: "The Ward Without a List"
+    text: |
+      The hospital has changed names twice. The night nurse still keeps one rule from the war: no complete list of vulnerable people exists in one room.
+
+      A young doctor named Paolo thinks this is absurd. He wants a proper registry for patients using false names, people sleeping in unused wards, and families avoiding both police and armed political groups.
+
+      He is right about the medical danger. He is wrong about the archive.
+    choices:
+      - text: "Build a split registry: medical facts here, identity keys elsewhere."
+        goto: late_century_routes
+        requires:
+          flag: modernity_split_identity_records
+        effects:
+          stats:
+            learning: 1
+            humanity: 1
+      - text: "Keep the informal system and teach Paolo why it exists."
+        goto: late_century_routes
+        effects:
+          stats:
+            obligation: 1
+      - text: "Use the ward as bait for whoever is mapping safe places."
+        goto: late_century_court
+        effects:
+          stats:
+            humanity: -1
+            risk: 2
+
+  late_century_press:
+    type: story
+    title: "Ink, Again"
+    text: |
+      The press is offset now. Faster, cleaner, louder.
+
+      Lucia's grandson does not know your name. He knows a rule inherited from someone who knew someone: never keep the address list beside the plates.
+
+      Tonight the press has two jobs. One is a public bulletin documenting disappearances without naming safe houses. The other is a forged police circular meant to redirect a raid.
+
+      The printer can finish only one before dawn.
+    choices:
+      - text: "Print the names of the disappeared. Make denial expensive."
+        goto: late_century_public_memory
+        effects:
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Print the false circular and move people tonight."
+        goto: late_century_routes
+        effects:
+          stats:
+            humanity: 1
+            risk: 1
+      - text: "Distribute the plates and method to three smaller shops."
+        goto: late_century_distributed_press
+        requires:
+          flag: modernity_built_redundant_press
+        effects:
+          stats:
+            influence: 1
+            obligation: 1
+
+  late_century_public_memory:
+    type: story
+    title: "Names on Walls"
+    text: |
+      By morning the bulletin is everywhere.
+
+      Some names are students. Some are police. Some belong to people whose politics you despise. Teresa argues to keep all verified names on the sheet.
+
+      "A record that only remembers our dead is a slogan," she says.
+
+      The city answers with torn posters, corrections in pen, new witnesses, and three convincing lies.
+    choices:
+      - text: "Publish corrections publicly, including your own mistakes."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            humanity: 1
+            influence: 1
+      - text: "Keep corrections private until sources can be protected."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            learning: 1
+            risk: -1
+
+  late_century_distributed_press:
+    type: story
+    title: "No Single Door"
+    text: |
+      Three shops receive partial plates. None can expose the whole network.
+
+      The arrangement is slower than one heroic press and harder to destroy. One printer complains that nobody will know who deserves credit.
+
+      You have lived long enough to find that comforting.
+    choices:
+      - text: "Keep authorship distributed with the machinery."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            influence: 1
+            obligation: -1
+      - text: "Create a public imprint so readers know what to trust."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            influence: 2
+            risk: 1
+
+  late_century_routes:
+    type: story
+    title: "The City Beneath the City"
+    text: |
+      The route map would look ridiculous on paper.
+
+      A bakery receives a phrase. A hospital orderly receives a time. A retired tram driver knows which depot gate sticks after rain. A priest knows a cellar. Teresa knows which database update runs on Thursday and which clerk takes a long lunch.
+
+      None of them knows the whole route.
+
+      The method has survived emperors, popes, plague, occupation, and now ministries with fluorescent lights.
+    choices:
+      - text: "Use the network to move the targeted families before the next query."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Use the route backward to identify who is watching each handoff."
+        goto: late_century_court
+        effects:
+          stats:
+            learning: 1
+            risk: 2
+
+  late_century_library_dead_drop:
+    type: story
+    title: "Margins"
+    text: |
+      The instructions are hidden in library books, always beside passages about Rome.
+
+      Not secret codes. Page numbers, times, ordinary names. The reader needs only the right edition.
+
+      Teresa finds the pattern because one book is a cheap reprint of a Renaissance text about a saintly baker. The false Prisca story has become infrastructure.
+
+      A lie printed four centuries ago is now being used to hunt people who have never heard it.
+    choices:
+      - text: "Replace the dead-drop edition with a corrected printing."
+        goto: late_century_final_crisis
+        requires:
+          flag: renaissance_corrected_prisca
+        effects:
+          stats:
+            learning: 1
+            influence: 1
+      - text: "Poison the code with contradictory editions."
+        goto: late_century_final_crisis
+        requires:
+          flag: renaissance_poisoned_archive
+        effects:
+          stats:
+            learning: 2
+            risk: 1
+      - text: "Follow the reader who collects the next instruction."
+        goto: late_century_court
+        effects:
+          stats:
+            risk: 2
+            resolve: 1
+
+  late_century_court:
+    type: story
+    title: "Neutrality, Rebranded"
+    text: |
+      The nocturnal court meets in a private apartment with modern furniture and ancient rules.
+
+      Sabina is still here. Others are not. The court calls the mortal violence regrettable and insists Kindred must remain neutral.
+
+      Then you place photographs of apartment doors on the table.
+
+      One elder recognizes the filing marks before he can hide it. The mortal hunting list is also a feeding map: frightened households, isolated tenants, people unlikely to report a midnight visitor.
+    choices:
+      - text: "Expose the feeding map to every domain holder in Rome."
+        goto: late_century_final_crisis
+        requires:
+          flag: modernity_shared_domain_map
+        effects:
+          stats:
+            influence: 2
+            risk: 2
+      - text: "Trade silence for a binding ban on feeding from mapped households."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            influence: 1
+            obligation: 2
+      - text: "Walk out and give the evidence to Teresa."
+        goto: late_century_final_crisis
+        effects:
+          stats:
+            humanity: 1
+            risk: 2
+
+  late_century_final_crisis:
+    type: story
+    title: "The Cabinet"
+    text: |
+      The raid comes at 2:13 in the morning.
+
+      Not police. Not exactly. Men with copied keys enter the municipal basement while Teresa is upstairs making coffee. They know which cabinet holds the identity key that connects false wartime names to living families.
+
+      You reach the basement before they reach the cabinet.
+
+      Fire would solve one problem and create ten others. Taking the cabinet preserves the key but makes you its single point of failure. Leaving a decoy could reveal the network behind the raid, if you are willing to risk the people named inside.
+    choices:
+      - text: "Destroy the identity key and help the families rebuild proof another way."
+        goto: late_century_epilogue_people
+        effects:
+          stats:
+            humanity: 1
+            obligation: 2
+      - text: "Take the cabinet and become responsible for every name in it."
+        goto: late_century_epilogue_archive
+        effects:
+          stats:
+            influence: 1
+            obligation: 2
+      - text: "Substitute a decoy key and follow the theft upstream."
+        goto: late_century_epilogue_method
+        effects:
+          stats:
+            learning: 2
+            risk: 2
+
+  late_century_epilogue_people:
+    type: ending
+    title: "Proof of Life"
+    text: |
+      By dawn the cabinet is ash and twisted metal.
+
+      Teresa is furious for eleven minutes. Then she starts making a list of churches, unions, schools, landlords, hospitals, and grandmothers who can reconstruct fragments of the truth.
+
+      The work will take years. It will require people to vouch for one another.
+
+      You have seen worse foundations for a city.
+
+  late_century_epilogue_archive:
+    type: ending
+    title: "The Weight of One Key"
+    text: |
+      You carry the cabinet into the night.
+
+      It is heavier than a wax tablet and lighter than the responsibility inside it. Teresa watches you leave without blessing the choice.
+
+      For centuries you have watched institutions turn memory into power. Tonight you have done the same thing personally.
+
+      Somewhere ahead, machines are getting smaller.
+
+  late_century_epilogue_method:
+    type: ending
+    title: "The Query Continues"
+    text: |
+      The thieves take the decoy.
+
+      By sunrise, three offices query names that do not exist. A private clinic telephone rings. A library book moves shelves. A domain holder sends a servant to ask why his map has stopped matching the city.
+
+      Teresa draws arrows between events until the paper covers a wall.
+
+      "The machine is not intelligent," she says again.
+
+      This time, you are less certain that distinction matters.
