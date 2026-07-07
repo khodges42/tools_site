@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 8
+version: 9
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -106,6 +106,29 @@ flags:
   medieval_backed_commune: false
   medieval_gave_routes_to_commune: false
   medieval_helped_commune_records: false
+  plague_bakery_route: false
+  plague_restored_prisca_name: false
+  plague_separated_records: false
+  plague_copied_empty_houses: false
+  plague_saved_girl: false
+  plague_guarded_house: false
+  plague_opened_refuge: false
+  plague_used_network_for_relief: false
+  plague_secured_domain: false
+  plague_routes_reused: false
+  plague_civic_ledger: false
+  plague_chose_flour: false
+  plague_chose_burial: false
+  plague_refuge_rules_copied: false
+  plague_refuge_kept_small: false
+  plague_opposed_scapegoating: false
+  plague_traced_rumor: false
+  plague_public_inventory: false
+  plague_exposed_profiteer: false
+  plague_extorted_supplies: false
+  plague_rejected_feeding_shelters: false
+  plague_shared_feeding_compact: false
+  plague_kept_routes_secret: false
 inventory: [family_token, workshop_key, forbidden_text, patron_ring, rent_tablet, wax_portrait]
 context:
   rome:
