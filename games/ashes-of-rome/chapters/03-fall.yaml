@@ -16,25 +16,18 @@ passages:
       - text: "Help Junia move the hospice records and the people sheltering with them."
         goto: fall_hospice
         effects:
-          flags:
-            fall_saved_archive: true
-          stats:
-            obligation: 1
-            humanity: 1
+          flags: { fall_saved_archive: true }
+          stats: { obligation: 1, humanity: 1 }
       - text: "Go to Prisca's bakery before the street closes."
         goto: fall_bakery
         effects:
-          flags:
-            fall_saved_family: true
-          stats:
-            obligation: 1
+          flags: { fall_saved_family: true }
+          stats: { obligation: 1 }
       - text: "Follow the armed men heading toward the old bathhouse ruins."
         goto: fall_bathhouse
         effects:
-          flags:
-            fall_followed_kindred: true
-          stats:
-            risk: 1
+          flags: { fall_followed_kindred: true }
+          stats: { risk: 1 }
 
   fall_hospice:
     type: story
@@ -49,15 +42,11 @@ passages:
       - text: "Carry the household rolls. People should be harder to erase than property."
         goto: fall_hospice_people
         effects:
-          stats:
-            humanity: 1
-            influence: -1
+          stats: { humanity: 1, influence: -1 }
       - text: "Carry the property records. They are ugly, but power will be rebuilt from them."
         goto: fall_hospice_property
         effects:
-          stats:
-            learning: 1
-            influence: 1
+          stats: { learning: 1, influence: 1 }
 
   fall_hospice_people:
     type: story
@@ -87,9 +76,7 @@ passages:
       - text: "Leave the cellar and help Junia reach shelter."
         goto: fall_night
         effects:
-          stats:
-            humanity: -1
-            learning: 1
+          stats: { humanity: -1, learning: 1 }
 
   fall_bakery:
     type: story
@@ -108,17 +95,12 @@ passages:
       - text: "Take the children and the two people who cannot walk quickly."
         goto: fall_bakery_cart
         effects:
-          stats:
-            humanity: 1
-            obligation: 1
+          stats: { humanity: 1, obligation: 1 }
       - text: "Keep everyone together and use the old water-service passage."
         goto: fall_bakery_tunnel
-        requires:
-          flag: late_empire_fountain_found
+        requires: { flag: late_empire_fountain_found }
         effects:
-          stats:
-            risk: 2
-            resolve: 1
+          stats: { risk: 2, resolve: 1 }
 
   fall_bakery_cart:
     type: story
@@ -135,16 +117,12 @@ passages:
       - text: "Let him see enough to run."
         goto: fall_hunger
         effects:
-          flags:
-            fall_masquerade_risk: true
-          stats:
-            risk: 2
+          flags: { fall_masquerade_risk: true }
+          stats: { risk: 2 }
       - text: "Release him, apologize, and pay with the last coin you carry."
         goto: fall_night
         effects:
-          stats:
-            wealth: -1
-            humanity: 1
+          stats: { wealth: -1, humanity: 1 }
 
   fall_bakery_tunnel:
     type: story
@@ -161,14 +139,11 @@ passages:
       - text: "Keep the families moving and follow the mark afterward."
         goto: fall_bathhouse
         effects:
-          flags:
-            fall_followed_kindred: true
+          flags: { fall_followed_kindred: true }
       - text: "Seal the side passage behind you and get everyone out."
         goto: fall_night
         effects:
-          stats:
-            resolve: 1
-            humanity: 1
+          stats: { resolve: 1, humanity: 1 }
 
   fall_bathhouse:
     type: story
@@ -187,15 +162,11 @@ passages:
       - text: "Ask who gave them the right to divide your neighborhood."
         goto: fall_court_defy
         effects:
-          stats:
-            resolve: 1
-            risk: 2
+          stats: { resolve: 1, risk: 2 }
       - text: "Listen. Learn who intends to own what survives."
         goto: fall_court_listen
         effects:
-          stats:
-            learning: 1
-            influence: 1
+          stats: { learning: 1, influence: 1 }
 
   fall_court_defy:
     type: story
@@ -212,10 +183,8 @@ passages:
       - text: "Leave before courage becomes permission to destroy you."
         goto: fall_night
         effects:
-          flags:
-            fall_refused_domain: true
-          stats:
-            influence: 1
+          flags: { fall_refused_domain: true }
+          stats: { influence: 1 }
 
   fall_court_listen:
     type: story
@@ -232,10 +201,8 @@ passages:
       - text: "Decide later whether knowledge is service or leverage."
         goto: fall_night
         effects:
-          flags:
-            fall_knows_domains: true
-          stats:
-            learning: 1
+          flags: { fall_knows_domains: true }
+          stats: { learning: 1 }
 
   fall_hunger:
     type: story
@@ -250,16 +217,11 @@ passages:
       - text: "Lift the beam and send him away alive."
         goto: fall_night
         effects:
-          stats:
-            hunger: 1
-            humanity: 1
-            resolve: 1
+          stats: { hunger: 1, humanity: 1, resolve: 1 }
       - text: "Feed only enough to quiet the Beast, then pull him free."
         goto: fall_night
         effects:
-          stats:
-            hunger: -1
-            humanity: -1
+          stats: { hunger: -1, humanity: -1 }
 
   fall_night:
     type: story
@@ -276,29 +238,33 @@ passages:
       - text: "Stay awake. There are debts here with living names attached."
         goto: fall_stay
         effects:
-          flags:
-            fall_chose_vigil: true
-          stats:
-            obligation: 1
-            resolve: 1
+          flags: { fall_chose_vigil: true }
+          stats: { obligation: 1, resolve: 1 }
       - text: "Prepare a hidden place and trust the city to become strange without you."
         goto: fall_torpor
         effects:
-          flags:
-            fall_chose_torpor: true
+          flags: { fall_chose_torpor: true }
 
   fall_stay:
-    type: ending
+    type: story
     title: "Keep Watch"
     text: |
       You remain.
 
       Not as Rome's guardian. Cities do not have guardians. They have residents, predators, workers, thieves, saints, bureaucrats, and people who keep showing up because somebody has to relight the oven.
 
-      You stay long enough to see which stories the sack creates, and which lies become useful first.
+      You stay through councils, famines, repairs, and arguments over stones that once belonged to emperors. The old faces vanish. Their habits do not. You learn to sleep for years instead of centuries: a sealed room here, a trusted cellar there, always waking before the map becomes entirely foreign.
+
+      By the twelfth century, your last safe house is compromised. A mason's hammer opens the outer wall at noon. You retreat deeper, hungry and furious, and wait for night while strangers argue over who owns the stone above your head.
+    choices:
+      - text: "Listen. You have survived by learning what changed while you slept."
+        goto: medieval_arrival
+        effects:
+          flags: { medieval_arrived_from_vigil: true }
+          stats: { learning: 1 }
 
   fall_torpor:
-    type: ending
+    type: story
     title: "Under the City"
     text: |
       You choose a chamber beneath old masonry, behind a wall repaired badly enough that nobody will suspect another room.
@@ -308,3 +274,26 @@ passages:
       Above you, the city continues without permission.
 
       Sleep comes like earth filling a grave.
+    choices:
+      - text: "Let the centuries pass."
+        goto: fall_torpor_dream
+
+  fall_torpor_dream:
+    type: story
+    title: "The Weight of Centuries"
+    text: |
+      Torpor does not give you a clean absence.
+
+      Sound arrives without sequence. A foundation settles. Water finds a crack and loses it again. Once, digging stops an arm's length from your chamber. Once, fire heats the stones until old mortar sweats. Voices speak Latin you understand, then Latin you barely recognize, then something descended from it that moves too quickly for dreams.
+
+      Hunger survives every language.
+
+      You dream of the fountain as it was, then as a basin against a church wall you have never seen. Prisca appears as six different women and none of them. Junia's ledgers grow marginal notes in unfamiliar hands.
+
+      The final sound is a bell, followed by three men arguing about ownership.
+    choices:
+      - text: "Wake hungry into a Rome that has forgotten how to pronounce your name."
+        goto: medieval_arrival
+        effects:
+          flags: { medieval_arrived_from_torpor: true }
+          stats: { hunger: 2, resolve: 1 }
