@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 12
+version: 13
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -15,6 +15,7 @@ debug:
 start: character
 chapters:
   - chapters/01-rome.yaml
+  - chapters/01b-embrace-bridge.yaml
   - chapters/02-late-empire.yaml
   - chapters/03-fall.yaml
   - chapters/04-medieval.yaml
@@ -50,6 +51,18 @@ stats:
 flags:
   embraced: false
   clan_chosen: false
+  clan_ventrue: false
+  clan_toreador: false
+  clan_malkavian: false
+  clan_caitiff: false
+  embrace_sire_debt: false
+  embrace_sire_public: false
+  embrace_sire_learning: false
+  embrace_sire_art: false
+  embrace_sire_records: false
+  embrace_sire_bare: false
+  embrace_spared_household: false
+  embrace_bound_to_livia: false
   rome_attachment_family: false
   rome_attachment_work: false
   rome_attachment_cause: false
