@@ -1,2 +1,399 @@
-# Chapter 8 placeholder
-passages: {}
+# Chapter 8: The Open City
+# Rome, 1943-1944. Occupation turns records, routes, and names into immediate weapons.
+passages:
+  modernity_arrival:
+    type: story
+    title: "The Radio Goes Quiet"
+    text: |
+      Rome, September 1943.
+
+      The announcement of the armistice comes through a radio in a print shop after dark. For several minutes nobody speaks. Then everyone speaks at once.
+
+      By morning, German troops are moving through the city. Soldiers who were allies yesterday are prisoners today. Uniforms disappear into ovens and drains. A clerk you know burns one list and hides another.
+
+      The city has become very interested in names.
+    choices:
+      - text: "Go to the print shop. Paper can move faster than soldiers."
+        goto: modernity_press
+        effects:
+          flags:
+            modernity_joined_press: true
+          stats:
+            risk: 1
+      - text: "Go to the hospital network. Curfews do not stop sickness."
+        goto: modernity_hospital
+        effects:
+          flags:
+            modernity_joined_hospital: true
+          stats:
+            obligation: 1
+      - text: "Find the nocturnal court before it decides neutrality is a policy."
+        goto: modernity_court
+        effects:
+          flags:
+            modernity_confronted_court: true
+          stats:
+            influence: 1
+
+  modernity_press:
+    type: story
+    title: "Ink Under Curfew"
+    text: |
+      The press is descended from Beatrice's methods, though nobody here knows her name. Movable type has become linotype, handbills have become newspapers, and the old instinct remains: make enough copies that confiscation becomes arithmetic.
+
+      Lucia, the night editor, has three jobs waiting. False ration cards. A warning sheet naming streets under search. A list of safe rooms that should never exist on paper.
+
+      "You have good eyes," she says. "Choose what they are for."
+    choices:
+      - text: "Print the warning sheet and distribute it before dawn."
+        goto: modernity_warning_run
+        effects:
+          flags:
+            modernity_printed_warnings: true
+          stats:
+            risk: 2
+            influence: 1
+      - text: "Make ration cards. Hunger is also a weapon."
+        goto: modernity_ration_cards
+        effects:
+          flags:
+            modernity_forged_ration_cards: true
+          stats:
+            humanity: 1
+            learning: 1
+      - text: "Memorize the safe rooms, then destroy the list."
+        goto: modernity_routes
+        effects:
+          flags:
+            modernity_destroyed_safehouse_list: true
+          stats:
+            resolve: 1
+
+  modernity_warning_run:
+    type: story
+    title: "A Thousand Small Alarms"
+    text: |
+      The press runs hot enough to make the cellar unbearable. Lucia prints street names in heavy type and leaves the reason deliberately vague. A warning that explains too much becomes evidence.
+
+      Before dawn, bundles leave under vegetables, laundry, and a coffin that contains only newspapers and two bricks for weight.
+
+      You recognize the method. In 1849, names of the dead went to walls and presses. Now names of streets move ahead of raids.
+    choices:
+      - text: "Carry a bundle into the old neighborhoods yourself."
+        goto: modernity_raid
+        effects:
+          stats:
+            risk: 1
+            obligation: 1
+      - text: "Stay with Lucia and prepare a second press site."
+        goto: modernity_second_press
+        effects:
+          flags:
+            modernity_built_redundant_press: true
+
+  modernity_ration_cards:
+    type: story
+    title: "The Useful Lie Returns"
+    text: |
+      The cards are excellent. That is the danger.
+
+      A bad forgery feeds nobody. A perfect forgery, repeated too often, teaches the authorities exactly what to inspect. You introduce three tiny inconsistencies and rotate them between neighborhoods.
+
+      Lucia watches you ruin your own work with professional interest.
+
+      "Where did you learn that?"
+
+      There is no answer short enough for the night.
+    choices:
+      - text: "Teach the method, not the history."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_distributed_forgery_method: true
+          stats:
+            learning: 1
+            humanity: 1
+
+  modernity_second_press:
+    type: story
+    title: "The Press That Does Not Exist"
+    text: |
+      You move spare type, paper, and ink through three separate routes. Nobody carries enough to prove what the pieces become together.
+
+      The second press lives behind a repair shop. The mechanic complains that ink is harder to remove from hands than grease.
+
+      When the first shop is searched two weeks later, the paper keeps appearing anyway.
+    choices:
+      - text: "Move the network before the searchers learn its shape."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_cellular_network: true
+          stats:
+            influence: 1
+
+  modernity_hospital:
+    type: story
+    title: "Diagnosis: K"
+    text: |
+      The hospital has invented a disease.
+
+      Patients with the false diagnosis are placed behind a warning sign and kept away from inspectors. The doctors disagree about how many lies medicine can survive. The nurses are too busy to debate philosophy.
+
+      Sister Elena gives you a stack of admission cards. Some names are real. Some are false. Some are real names belonging to people who must become false for a while.
+    choices:
+      - text: "Separate the medical record from the identity record."
+        goto: modernity_split_records
+        effects:
+          flags:
+            modernity_split_identity_records: true
+          stats:
+            learning: 1
+      - text: "Build a night route between wards, convents, and kitchens."
+        goto: modernity_routes
+        effects:
+          flags:
+            modernity_built_relief_routes: true
+          stats:
+            obligation: 1
+            influence: 1
+      - text: "Ask who is feeding from frightened patients."
+        goto: modernity_predator
+        effects:
+          stats:
+            resolve: 1
+            risk: 1
+
+  modernity_split_records:
+    type: story
+    title: "Two Ledgers, Neither Complete"
+    text: |
+      The solution is not to erase everyone. Erasure makes people impossible to find after the danger passes.
+
+      You split the record. The ward keeps medical facts without useful addresses. Elena keeps a separate key in her head and, when memory is not enough, in fragments held by different people.
+
+      It resembles old refuge rules, old archive poison, old distributed presses. The technology changes. The problem keeps recognizing you.
+    choices:
+      - text: "Teach the split to two other shelters."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_distributed_identity_method: true
+          stats:
+            humanity: 1
+            influence: 1
+
+  modernity_routes:
+    type: story
+    title: "The City Between Checkpoints"
+    text: |
+      Every occupied city contains another city made of timing.
+
+      A bakery opens its back door six minutes before curfew. A sacristan rings one bell instead of two. A tram worker leaves a service gate unlatched. A widow keeps three coats in sizes nobody in her household wears.
+
+      No map contains the route. That is why it works.
+    choices:
+      - text: "Keep the route oral and accept that some knowledge will die."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_kept_routes_oral: true
+          stats:
+            resolve: 1
+      - text: "Encode the route as repair instructions for the water system."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_encoded_routes: true
+          stats:
+            learning: 1
+            risk: 1
+
+  modernity_court:
+    type: story
+    title: "Neutrality"
+    text: |
+      The nocturnal court meets beneath a bank whose directors have already left the city.
+
+      The Prince calls the occupation a mortal conflict. Feeding must remain discreet. Domains must remain stable. No Kindred may endanger the Masquerade for politics.
+
+      You have heard this kind of neutrality before. It always seems to preserve the person already holding the keys.
+
+      A younger vampire named Sabina asks whether the rule against politics applies to those feeding from prisoners. Nobody answers her directly.
+    choices:
+      - text: "Demand a ban on feeding from prisons, hospitals, and shelters."
+        goto: modernity_court_vote
+        effects:
+          flags:
+            modernity_demanded_feeding_ban: true
+          stats:
+            influence: 1
+            risk: 2
+      - text: "Leave with Sabina and enforce the rule without permission."
+        goto: modernity_predator
+        effects:
+          flags:
+            modernity_allied_sabina: true
+          stats:
+            obligation: 1
+            resolve: 1
+      - text: "Listen for which domains are suddenly becoming profitable."
+        goto: modernity_domain_map
+        effects:
+          flags:
+            modernity_mapped_predatory_domains: true
+          stats:
+            learning: 1
+
+  modernity_court_vote:
+    type: story
+    title: "The Motion Fails"
+    text: |
+      The vote fails by one.
+
+      The Prince praises your conscience. It is the most insulting thing anyone has said to you this century.
+
+      Sabina catches you outside. "Good," she says. "Now we know exactly who voted for the feeding grounds."
+
+      Failure has produced a list.
+    choices:
+      - text: "Use the list. Follow the profitable domains."
+        goto: modernity_domain_map
+        effects:
+          flags:
+            modernity_court_vote_exposed: true
+
+  modernity_domain_map:
+    type: story
+    title: "A Map of Appetite"
+    text: |
+      The pattern is visible once you stop looking at territory and start looking at movement.
+
+      Detention sites create fear. Fear creates isolation. Isolation creates easy feeding. Three Kindred domains have expanded along that chain.
+
+      One of them belongs to an elder who once lectured you about preserving civilization.
+    choices:
+      - text: "Give the pattern to Sabina and break the chain at its routes."
+        goto: modernity_predator
+        effects:
+          flags:
+            modernity_shared_domain_map: true
+          stats:
+            influence: 1
+
+  modernity_predator:
+    type: story
+    title: "The Ward After Midnight"
+    text: |
+      You find him in a dark ward wearing a stolen doctor's coat.
+
+      He is not frenzied. That would be easier. He is careful, polite, and convinced that taking a little from people already terrified is efficient.
+
+      "History is happening outside," he says. "Do not confuse feeding with authorship."
+
+      Behind the curtain, someone is awake and listening.
+    choices:
+      - text: "Drive him out publicly enough that the court must notice."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_exposed_kindred_predator: true
+          stats:
+            risk: 2
+            humanity: 1
+      - text: "Threaten his routes, retainers, and alibis until he leaves."
+        goto: modernity_raid
+        effects:
+          flags:
+            modernity_broke_predator_network: true
+          stats:
+            influence: 1
+            resolve: 1
+
+  modernity_raid:
+    type: story
+    title: "The Knock"
+    text: |
+      The knock comes before dawn.
+
+      Not at your door. At Lucia's.
+
+      By the time you arrive, the first press is wrecked. Type lies across the floor like metal teeth. The searchers have taken Lucia and two others. They missed the second site, if you built it. They missed the route network, if nobody wrote it plainly. They missed the hospital key, if it was split.
+
+      Systems survive differently from people. This is not comforting.
+    choices:
+      - text: "Use every route and favor to find where Lucia was taken."
+        goto: modernity_lucia
+        effects:
+          flags:
+            modernity_searched_for_lucia: true
+          stats:
+            obligation: 2
+            risk: 1
+      - text: "Keep the surviving network moving. Do not let one arrest expose everyone."
+        goto: modernity_network_survives
+        effects:
+          flags:
+            modernity_preserved_network: true
+          stats:
+            resolve: 1
+            humanity: -1
+
+  modernity_lucia:
+    type: story
+    title: "A Name on a Transport List"
+    text: |
+      You find Lucia's name because a railway clerk makes a copy he was ordered not to make.
+
+      The list gives you hours, not power. You can move warnings through the routes you built, pressure a guard through the court, or destroy the local copy so no second roundup can use the addresses attached to it.
+
+      There is no choice that rescues everyone named on the page.
+    choices:
+      - text: "Send the warning through every route you still trust."
+        goto: modernity_liberation
+        effects:
+          flags:
+            modernity_warned_transport_targets: true
+          stats:
+            humanity: 1
+            risk: 2
+      - text: "Destroy the address copy and save the network from the next raid."
+        goto: modernity_liberation
+        effects:
+          flags:
+            modernity_destroyed_transport_addresses: true
+          stats:
+            resolve: 1
+
+  modernity_network_survives:
+    type: story
+    title: "No Headquarters"
+    text: |
+      The work continues without Lucia.
+
+      That is what she built it to do. It is also a terrible thing to learn about someone you miss.
+
+      Warnings still appear. Cards still circulate. Patients still acquire diseases that keep inspectors away. Nobody can point to the center because there is no center left to betray.
+    choices:
+      - text: "Keep it moving until the occupation breaks."
+        goto: modernity_liberation
+        effects:
+          flags:
+            modernity_network_outlived_leaders: true
+          stats:
+            influence: 1
+            obligation: 1
+
+  modernity_liberation:
+    type: ending
+    title: "June 1944"
+    text: |
+      Allied soldiers enter Rome. Crowds fill streets that were dangerous to cross a week before.
+
+      People emerge from rooms, convents, hospitals, cellars, and false biographies. Others do not return. The city begins immediately to argue about who resisted, who collaborated, who survived by luck, and who is entitled to write the first clean version.
+
+      You stand outside the ruined print shop while someone sweeps broken type into a box.
+
+      Lucia once told you that a press is not a machine. It is an agreement between people who keep making copies.
+
+      You have lived long enough to know the same is true of memory.
