@@ -1,2 +1,333 @@
-# Chapter 6 placeholder
-passages: {}
+# Chapter 6: The Printed Lie
+# Rome, 1517 CE. Printing, patronage, and forgery turn private memory into reproducible power.
+passages:
+  renaissance_arrival:
+    type: story
+    title: "Ink Under the Fingernails"
+    text: |
+      Rome, 1517.
+
+      The city smells of wet plaster, horse dung, lamp oil, and ink.
+
+      A printer named Beatrice has sent for you. She works behind a stationer's shop near Campo de' Fiori, where forbidden pamphlets share shelves with indulgence forms, poems, calendars, and advertisements for cures that cannot possibly work.
+
+      On her table lies a woodcut of a woman holding a loaf before a burning oven. Beneath it: SAINT PRISCA OF THE OPEN DOOR.
+
+      You know the face is invented. You know the name is not.
+    choices:
+      - text: "Ask who commissioned the saint."
+        goto: renaissance_prisca
+      - text: "Ask where the printer found the refuge rules in the border."
+        goto: renaissance_rules
+        requires:
+          flag: plague_refuge_rules_copied
+      - text: "Examine the property list being set in type."
+        goto: renaissance_property
+        requires:
+          flag: plague_copied_empty_houses
+      - text: "Ask why Beatrice sent for a creature of the night."
+        goto: renaissance_beatrice
+
+  renaissance_prisca:
+    type: story
+    title: "A Saint Who Swore at Tax Collectors"
+    text: |
+      Beatrice says the commission came from a confraternity of bakers.
+
+      Their version of Prisca cured plague with hot bread, sheltered pilgrims, embarrassed a bishop, and died at the age of one hundred and twelve. Only one of those claims is remotely plausible.
+
+      "They want five hundred copies," Beatrice says. "I can print truth, devotion, or five hundred copies. Usually two at once. Never three."
+
+      In the margin of the manuscript, a later hand has added: SHE HATED BEING CALLED A SAINT.
+    choices:
+      - text: "Print the legend, but keep the angry note in the margin."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_printed_prisca: true
+            renaissance_kept_margin_note: true
+          stats:
+            humanity: 1
+            influence: 1
+      - text: "Replace the miracle story with the oldest account you remember."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_corrected_prisca: true
+          stats:
+            learning: 1
+            risk: 1
+      - text: "Let the bakers have their saint. Ask for a share of the run."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_profited_from_legend: true
+          stats:
+            wealth: 2
+            humanity: -1
+
+  renaissance_rules:
+    type: story
+    title: "Rules Without a Plague"
+    text: |
+      The decorative border is not decorative.
+
+      One household per room. Water outside the door. Names without judgments. No powerful person may displace a guest because the room is useful.
+
+      The plague rules have survived as printer's ornaments, copied by apprentices who cannot read the cramped Latin. Beatrice noticed because one customer asked her to remove the last rule from a hospital charter.
+
+      "The patron says it insults donors," she says.
+    choices:
+      - text: "Print the charter with the rule intact."
+        goto: renaissance_patron
+        effects:
+          flags:
+            renaissance_preserved_refuge_rule: true
+          stats:
+            resolve: 1
+            risk: 1
+      - text: "Hide the rule in the border again, where it can travel."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_hid_rule_in_border: true
+          stats:
+            learning: 1
+      - text: "Remove it from the charter and print it separately as a broadsheet."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_printed_refuge_broadsheet: true
+          stats:
+            influence: 1
+            risk: 1
+
+  renaissance_property:
+    type: story
+    title: "The Dead Own Excellent Houses"
+    text: |
+      The list is two centuries old and freshly dangerous.
+
+      During the plague, someone copied addresses before merchants and monasteries could quietly absorb them. Now a banker has purchased the copy and hired genealogists to turn old uncertainty into modern claims.
+
+      Beatrice points to a house you remember. A girl once defended its upper room with roof tiles.
+
+      The proposed genealogy gives her no descendants. The banker does.
+    choices:
+      - text: "Alter the genealogy so the claim collapses under scrutiny."
+        goto: renaissance_forgery
+        effects:
+          flags:
+            renaissance_forged_genealogy: true
+          stats:
+            learning: 1
+            risk: 2
+      - text: "Find the living occupants before the banker does."
+        goto: renaissance_house
+        effects:
+          flags:
+            renaissance_warned_household: true
+          stats:
+            obligation: 1
+      - text: "Sell the banker a convincing copy with three deliberate errors."
+        goto: renaissance_forgery
+        effects:
+          flags:
+            renaissance_poisoned_archive: true
+          stats:
+            wealth: 1
+            influence: 1
+
+  renaissance_house:
+    type: story
+    title: "Roof Tiles"
+    text: |
+      The house is still occupied.
+
+      Its residents are dyers, six adults and nine children across three related households. They have no idea why a banker wants their walls. An old woman named Marta listens to your warning, climbs onto the roof, and begins stacking loose tiles beside the parapet.
+
+      "Family custom," she says.
+
+      You decide not to ask.
+    choices:
+      - text: "Bring Beatrice. Documents will last longer than tiles."
+        goto: renaissance_forgery
+        effects:
+          flags:
+            renaissance_documented_household: true
+          stats:
+            humanity: 1
+            learning: 1
+      - text: "Introduce the household to the bakers' confraternity."
+        goto: renaissance_pressroom
+        requires:
+          flag: medieval_found_bakers
+        effects:
+          flags:
+            renaissance_linked_household_bakers: true
+          stats:
+            obligation: 1
+            influence: 1
+
+  renaissance_beatrice:
+    type: story
+    title: "The Printer's Question"
+    text: |
+      Beatrice closes the shutters.
+
+      "My grandmother printed a notice about a cardinal," she says. "The cardinal died. My grandmother died. The notice keeps appearing. Venice. Florence. Lyon. Someone even translated it badly into German."
+
+      She taps the type case.
+
+      "You people hoard secrets for centuries. We make a secret impossible to kill before breakfast. I wanted to know whether that frightens you."
+
+      It does.
+    choices:
+      - text: "Tell her the truth: yes."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_trusted_beatrice: true
+          stats:
+            humanity: 1
+      - text: "Tell her information has always had owners."
+        goto: renaissance_patron
+        effects:
+          flags:
+            renaissance_warned_printer: true
+          stats:
+            influence: 1
+      - text: "Ask what she wants printed that frightens her patrons."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_backed_secret_press: true
+          stats:
+            risk: 2
+            obligation: 1
+
+  renaissance_patron:
+    type: story
+    title: "The Cardinal's Table"
+    text: |
+      Cardinal Orsini receives you after midnight because powerful mortals keep strange hours when they want stranger favors.
+
+      He wants Beatrice's press protected. He also wants first refusal on everything it prints.
+
+      "Ideas are weather," he says. "A sensible man owns roofs."
+
+      On his desk sits the hospital charter. The disputed refuge rule has been scraped from the draft so hard the parchment is nearly transparent.
+    choices:
+      - text: "Take his protection and quietly keep a second archive."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_double_archive: true
+          stats:
+            influence: 2
+            obligation: 1
+      - text: "Refuse. A protected press with one reader is a private secretary."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_refused_patron_control: true
+          stats:
+            resolve: 1
+            risk: 2
+      - text: "Offer him harmless first editions while the real press runs elsewhere."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_decoy_press: true
+          stats:
+            learning: 1
+            influence: 1
+
+  renaissance_forgery:
+    type: story
+    title: "A Better Past"
+    text: |
+      Forgery is easier when the truth is already untidy.
+
+      Beatrice lays out inks, seals, paper stocks, and four versions of the same family tree. Each version is internally convincing. Each creates a different owner.
+
+      "People think a false document is the opposite of a true one," she says. "Usually it is the rival of another false document."
+
+      The press can multiply your chosen past faster than any monastery can denounce it.
+    choices:
+      - text: "Make many contradictory copies. No claimant gets certainty."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_flooded_claims: true
+          stats:
+            risk: 1
+            learning: 1
+      - text: "Make one careful record for the people currently living there."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_forged_for_occupants: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Keep the plates. A reusable lie is leverage."
+        goto: renaissance_pressroom
+        effects:
+          flags:
+            renaissance_kept_forgery_plates: true
+          stats:
+            influence: 2
+            humanity: -1
+
+  renaissance_pressroom:
+    type: story
+    title: "Five Hundred Copies"
+    text: |
+      The press works through the night.
+
+      Metal letters click into lines. Ink rolls across type. Paper rises in stacks. One argument becomes fifty sheets, then two hundred, then five hundred. By dawn, apprentices carry bundles toward inns, churches, markets, universities, and roads you have never walked.
+
+      Beatrice watches the last stack leave.
+
+      "There," she says. "Now regret it efficiently."
+
+      A messenger waits outside with news from the north: a German monk has written an argument about indulgences. Rome expects the usual paperwork.
+    choices:
+      - text: "Build a network to collect printed arguments before rulers can suppress them."
+        goto: renaissance_end
+        effects:
+          flags:
+            renaissance_built_print_network: true
+          stats:
+            learning: 1
+            obligation: 1
+      - text: "Use the press to preserve ordinary names, prices, routes, and disputes."
+        goto: renaissance_end
+        effects:
+          flags:
+            renaissance_printed_common_record: true
+          stats:
+            humanity: 1
+            learning: 1
+      - text: "Use the press carefully. Reproducibility makes mistakes immortal too."
+        goto: renaissance_end
+        effects:
+          flags:
+            renaissance_cautious_printer: true
+          stats:
+            resolve: 1
+
+  renaissance_end:
+    type: ending
+    title: "The Noise of Paper"
+    text: |
+      Rome has always lied about itself.
+
+      The difference is speed.
+
+      A baker's story can cross a border without the baker. A hospital rule can survive inside decoration. A forged ancestor can evict a living family. A joke can outlive a cardinal.
+
+      For centuries, you survived by remembering what others forgot.
+
+      Now forgetting has competition.
