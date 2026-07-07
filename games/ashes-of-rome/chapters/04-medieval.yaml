@@ -1,2 +1,381 @@
 # Chapter 4: Medieval awakening
-passages: {}
+# Rome, 1143 CE. The player wakes into a city that remembers selectively.
+passages:
+  medieval_arrival:
+    type: story
+    title: "A Bell You Do Not Know"
+    text: |
+      A bell wakes you.
+
+      Not the bell itself. The argument around it.
+
+      Men are shouting above the chamber where you slept. One insists the wall belongs to a monastery. Another says the neighborhood commune ordered it opened. A third is trying to sell both sides the same cart of stone.
+
+      Rome has changed languages around you and kept its habits.
+
+      Your mouth is dry. Your clothes are grave goods. Somewhere above, daylight presses against the masonry.
+    choices:
+      - text: "Stay still and listen until you understand the argument."
+        goto: medieval_listen
+        effects:
+          stats:
+            learning: 1
+            hunger: 1
+      - text: "Break through the inner wall before they reach you."
+        goto: medieval_escape
+        effects:
+          stats:
+            resolve: 1
+            risk: 1
+
+  medieval_listen:
+    type: story
+    title: "The Republic Upstairs"
+    text: |
+      The names come slowly. Pope. Senate. Commune. Pierleoni. Frangipani.
+
+      Rome has invented a republic again.
+
+      The men above are not excavators. They are neighbors reclaiming stone from an abandoned structure for a meeting hall. One complains that the church keeps records of every wall it wants and none of the drains it neglects.
+
+      That complaint feels like home.
+
+      When night falls, you move the loose stones quietly and step into a city of towers, shrines, workshops, livestock, fortified family compounds, and ruins so ordinary that children play inside them.
+    choices:
+      - text: "Find the old fountain. Start with water."
+        goto: medieval_fountain
+      - text: "Find what became of the hospice records."
+        goto: medieval_archive
+        requires:
+          flag: fall_saved_archive
+      - text: "Find Prisca's family, if a family can survive seven centuries."
+        goto: medieval_bread
+        requires:
+          flag: fall_saved_family
+
+  medieval_escape:
+    type: story
+    title: "Bad Masonry"
+    text: |
+      The repair was poor when you chose the chamber. Time has not improved it.
+
+      You shoulder through mortar and brick into a storage room full of lamp oil. A young man drops a jug. You catch it before it hits the floor.
+
+      He stares at your hand, then at the wall.
+
+      "Saints preserve me."
+
+      You remember enough to answer, "They have had ample opportunity."
+
+      He laughs despite himself. His name is Matteo. He assumes you are a thief hiding from a family feud. This explanation is useful enough to keep.
+    choices:
+      - text: "Ask Matteo where people gather after dark."
+        goto: medieval_market
+        effects:
+          flags:
+            medieval_met_matteo: true
+      - text: "Ask him where the public fountains are."
+        goto: medieval_fountain
+        effects:
+          flags:
+            medieval_met_matteo: true
+
+  medieval_fountain:
+    type: story
+    title: "Water Remembers Gravity"
+    text: |
+      The fountain is gone.
+
+      The water is not.
+
+      A narrow channel feeds a basin beside a church wall. Women fill jars beneath a painted saint whose face has been repaired three times. The old route of the pipe is still there under newer stone.
+
+      An old woman notices you tracing the line with your eyes.
+
+      "You a surveyor?"
+
+      "No."
+
+      "Good. Surveyors charge money to discover where we already live."
+
+      She tells you the basin is called Prisca's Cup. Nobody agrees who Prisca was.
+    choices:
+      - text: "Ask for every version of the story."
+        goto: medieval_prisca_stories
+        effects:
+          flags:
+            medieval_found_cup: true
+          stats:
+            learning: 1
+      - text: "Follow the old pipe route toward the Subura."
+        goto: medieval_market
+        effects:
+          flags:
+            medieval_found_cup: true
+
+  medieval_prisca_stories:
+    type: story
+    title: "Six Different Women"
+    text: |
+      By midnight you have met six different Priscas.
+
+      A baker who poisoned a tax collector. A widow who paid for the pipe. A saint who gave water to prisoners. A witch who cursed a magistrate. A noblewoman who never existed. A mule, in one child's version, clever enough to find water underground.
+
+      None is the woman you knew. All of them have something of her stubbornness.
+
+      Memory has not preserved Prisca. It has recruited her.
+    choices:
+      - text: "Leave the stories alone. They belong to the living now."
+        goto: medieval_market
+        effects:
+          stats:
+            humanity: 1
+      - text: "Write down the contradictions before they change again."
+        goto: medieval_market
+        effects:
+          flags:
+            medieval_recorded_prisca: true
+          stats:
+            learning: 1
+
+  medieval_archive:
+    type: story
+    title: "The Hand in the Margin"
+    text: |
+      The hospice is a monastery property now. The building has been rebuilt twice and renamed more often than that.
+
+      You enter as a petitioner and leave as a thief.
+
+      In a register copied from an older register copied from something older still, you find a list of households sheltered during the sack. A later hand has added judgments beside the names: faithful, suspect, debtor, widow, useful.
+
+      Junia saved people from erasure. Someone else turned survival into a classification system.
+    choices:
+      - text: "Steal the register."
+        goto: medieval_register_theft
+        effects:
+          flags:
+            medieval_stole_register: true
+          stats:
+            risk: 2
+      - text: "Copy only the names and leave the institution its categories."
+        goto: medieval_market
+        effects:
+          flags:
+            medieval_copied_names: true
+          stats:
+            humanity: 1
+            learning: 1
+
+  medieval_register_theft:
+    type: story
+    title: "A Familiar Crime"
+    text: |
+      You hide the register under your borrowed cloak.
+
+      At the courtyard gate, a monk says your name.
+
+      Not the name you gave at the door. Your name.
+
+      He is young, apparently. Clean hands. Patient eyes.
+
+      "The book is not worth dying for," he says.
+
+      "That depends who is reading it."
+
+      His smile shows no teeth. "Good. You are awake enough to be difficult."
+    choices:
+      - text: "Ask who told him your name."
+        goto: medieval_kindred_contact
+      - text: "Run. Questions are cheaper from a distance."
+        goto: medieval_market
+        effects:
+          stats:
+            risk: 1
+            resolve: 1
+
+  medieval_bread:
+    type: story
+    title: "The Oven Is Somewhere Else"
+    text: |
+      There is no bakery where Prisca's stood.
+
+      There is, however, a family of bakers three streets away who use her grandmother's insult for tax collectors.
+
+      They do not know why.
+
+      Their eldest, Sabina, thinks it is a prayer against auditors. Her brother insists it is simply what one says when dough refuses to rise. They argue while shaping loaves and you have to look away.
+
+      Seven centuries of grief collapse into the smell of hot bread.
+    choices:
+      - text: "Buy a loaf you cannot eat and stay until closing."
+        goto: medieval_bread_closing
+        effects:
+          flags:
+            medieval_found_bakers: true
+          stats:
+            humanity: 1
+      - text: "Leave before nostalgia becomes surveillance."
+        goto: medieval_market
+        effects:
+          flags:
+            medieval_found_bakers: true
+          stats:
+            resolve: 1
+
+  medieval_bread_closing:
+    type: story
+    title: "What Families Keep"
+    text: |
+      Sabina lets you sit because you paid too much and asked no questions about politics.
+
+      At closing she wraps the unsold bread for a church kitchen. Her brother complains that they cannot afford generosity. She tells him their grandmother said the same thing, and her grandmother before that.
+
+      There is no secret archive. No pure bloodline. No hidden inheritance waiting for you.
+
+      There is a habit of feeding people when the city is cruel.
+
+      That survived.
+    choices:
+      - text: "Offer help carrying the bread."
+        goto: medieval_market
+        effects:
+          stats:
+            obligation: 1
+            humanity: 1
+      - text: "Ask Sabina who controls this street after sunset."
+        goto: medieval_kindred_contact
+
+  medieval_market:
+    type: story
+    title: "A City of Towers"
+    text: |
+      Night Rome is smaller than the city you remember and harder to read.
+
+      Noble families have turned ancient monuments into fortresses. Workshops crowd old ceremonial roads. Pilgrims buy relics beside people selling onions. The Capitol belongs to a new Senate that speaks of Roman liberty while powerful families sharpen knives behind it.
+
+      Then you notice the second map.
+
+      A beggar leaves one doorway untouched. A butcher closes early when a certain procession passes. Three taverns use the same mark beneath their lamps.
+
+      The dead have politics here too.
+    choices:
+      - text: "Follow the marked taverns."
+        goto: medieval_kindred_contact
+        effects:
+          stats:
+            learning: 1
+      - text: "Ignore their map and follow Matteo's neighborhood gossip."
+        goto: medieval_commune
+        requires:
+          flag: medieval_met_matteo
+
+  medieval_kindred_contact:
+    type: story
+    title: "The Courtesy of Predators"
+    text: |
+      The meeting is held in a room above a cooper's shop.
+
+      No throne. No candles arranged for drama. Just a table, cheap wine for appearances, and three Kindred arguing over whether the new Senate will last.
+
+      The young monk is there. So is a woman called Agnese who controls access to several pilgrim hostels. Neither asks your lineage first.
+
+      Agnese asks a better question.
+
+      "When you knew Rome before, what did you mistake for permanent?"
+    choices:
+      - text: "Power. I watched its owners change while its habits survived."
+        goto: medieval_offer
+        effects:
+          flags:
+            medieval_answered_power: true
+          stats:
+            influence: 1
+      - text: "People. I thought remembering them would be enough."
+        goto: medieval_offer
+        effects:
+          flags:
+            medieval_answered_memory: true
+          stats:
+            humanity: 1
+      - text: "The city itself. I was wrong in ways I still do not understand."
+        goto: medieval_offer
+        effects:
+          flags:
+            medieval_answered_city: true
+          stats:
+            learning: 1
+
+  medieval_offer:
+    type: story
+    title: "Terms Without Ceremony"
+    text: |
+      Agnese offers no welcome.
+
+      She offers information in exchange for work.
+
+      The commune on the Capitol is disrupting old arrangements. Mortal families are fortifying towers. The church is expanding its records. Pilgrims bring money, rumors, and blood into the city by the thousands.
+
+      "You can serve an old order," she says, "or learn why it is frightened."
+
+      Below, the cooper starts work before dawn.
+    choices:
+      - text: "Work with Agnese long enough to learn the nocturnal city."
+        goto: medieval_end
+        effects:
+          flags:
+            medieval_joined_agneses_network: true
+          stats:
+            influence: 1
+      - text: "Choose the commune. Mortal politics changed Rome before. They can do it again."
+        goto: medieval_commune
+        effects:
+          flags:
+            medieval_backed_commune: true
+          stats:
+            risk: 1
+            humanity: 1
+
+  medieval_commune:
+    type: story
+    title: "The Hill"
+    text: |
+      Matteo takes you to the Capitol through streets where every family seems to own a tower and every tower seems to be arguing with another tower.
+
+      The new Senate is messy, vain, compromised, and alive.
+
+      Petitioners wait outside. Craftsmen argue over tolls. A clerk has run out of ink. Someone is loudly accusing a noble family of stealing public stone while standing inside a building made of stolen public stone.
+
+      You recognize the feeling before the institutions: people attempting to make power answer questions in public.
+    choices:
+      - text: "Offer what you know about the hidden routes beneath the old city."
+        goto: medieval_end
+        effects:
+          flags:
+            medieval_gave_routes_to_commune: true
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Keep the old routes secret. Help with the boring work instead."
+        goto: medieval_end
+        effects:
+          flags:
+            medieval_helped_commune_records: true
+          stats:
+            obligation: 1
+            humanity: 1
+
+  medieval_end:
+    type: ending
+    title: "Another Rome"
+    text: |
+      By winter, you can cross the city without getting lost more than once a night.
+
+      This is not the Rome you lost. That fact becomes less painful when you stop asking it to be.
+
+      The city has become a republic, a church capital, a market for saints, a battlefield for families, and a home for people who still complain about water.
+
+      You begin keeping a new map.
+
+      Not of streets.
+
+      Of obligations.
