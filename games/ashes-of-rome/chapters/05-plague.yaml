@@ -1,2 +1,414 @@
-# Chapter 5: Plague era
-passages: {}
+# Chapter 5: The Pestilence
+# Rome, 1348 CE. The city is struck by plague while institutions, rumors, and old obligations compete to define who receives care.
+passages:
+  plague_arrival:
+    type: story
+    title: "The Bells Stop Counting"
+    text: |
+      Rome, 1348.
+
+      For three nights the bells count the dead. On the fourth, one parish stops trying.
+
+      Carts move before dawn. Doors carry chalk marks whose meanings change by neighborhood: sickness, death, prayer, warning, extortion. Everyone has a theory. Bad air. God's anger. Foreign poison. A conjunction of planets. The theories disagree; the graves do not.
+
+      You wake hungry beneath a city afraid to touch itself.
+    choices:
+      - text: "Go first to the baker quarter."
+        goto: plague_bakers
+        requires:
+          flag: medieval_found_bakers
+      - text: "Find what became of the copied names."
+        goto: plague_register
+        requires:
+          flag: medieval_copied_names
+      - text: "Find Agnese's network."
+        goto: plague_agneses
+        requires:
+          flag: medieval_joined_agneses_network
+      - text: "Go to the Capitol and ask what the city is doing."
+        goto: plague_commune
+      - text: "Walk the alleys and learn what people actually need."
+        goto: plague_streets
+
+  plague_bakers:
+    type: story
+    title: "The Oven Still Burns"
+    text: |
+      The bakery is open.
+
+      Not for customers. Sabina's descendants have dragged a table across the doorway and pass small loaves across it with wooden paddles. A boy keeps a tally on broken roof tiles. Nobody agrees whether the tally records debts, gifts, or names of the missing.
+
+      The family no longer remembers Prisca. They still swear at tax collectors when dough refuses to rise.
+
+      A woman named Lucia runs the oven. She has sent half her household outside the walls and stayed with three apprentices who have nowhere else to go.
+    choices:
+      - text: "Help them build a night route for flour and firewood."
+        goto: plague_routes
+        effects:
+          flags:
+            plague_bakery_route: true
+          stats:
+            obligation: 1
+            humanity: 1
+      - text: "Tell Lucia the oldest version of Prisca's story you remember."
+        goto: plague_prisca_name
+        effects:
+          flags:
+            plague_restored_prisca_name: true
+          stats:
+            humanity: 1
+
+  plague_prisca_name:
+    type: story
+    title: "A Name Returned"
+    text: |
+      Lucia listens while shaping dough.
+
+      You tell her about a woman at a fountain, a rent dispute, and the particular way she could make an insult sound like a civic principle.
+
+      "So the saint was a baker?" Lucia asks.
+
+      "She was not a saint."
+
+      Lucia laughs. "That is what a saint would say."
+
+      By the next night, someone has chalked PRISCA KEEP THE OVEN HOT beside the door.
+
+      History does not accept correction. It accepts new material.
+    choices:
+      - text: "Leave the chalk alone."
+        goto: plague_streets
+      - text: "Add: SHE HATED BEING CALLED A SAINT."
+        goto: plague_streets
+        effects:
+          stats:
+            humanity: 1
+
+  plague_register:
+    type: story
+    title: "Useful, Suspect, Dead"
+    text: |
+      The copied names survived. The categories multiplied.
+
+      A charitable house near the river now keeps three lists: households receiving bread, houses under watch, and properties whose owners are presumed dead. The same clerk maintains all three.
+
+      You recognize the structure before you recognize any name. Junia once kept people from vanishing. Centuries of copying turned rescue into administration, and administration has discovered property.
+
+      A frightened clerk asks whether you are there to help with the lists.
+    choices:
+      - text: "Separate relief records from property claims."
+        goto: plague_records_reform
+        effects:
+          flags:
+            plague_separated_records: true
+          stats:
+            learning: 1
+            influence: 1
+      - text: "Copy the names of empty houses before someone profits from them."
+        goto: plague_empty_houses
+        effects:
+          flags:
+            plague_copied_empty_houses: true
+          stats:
+            risk: 1
+
+  plague_records_reform:
+    type: story
+    title: "Two Books"
+    text: |
+      You insist on two books.
+
+      One records who needs food. The other records property claims. No cross-marks. No helpful abbreviations. No quiet transfer of a sick widow from one column to another.
+
+      The clerk calls this inefficient.
+
+      "Good," you say. "Make theft work for its supper."
+
+      It is a tiny reform. It will not stop the plague. By morning, however, six households receive bread without being declared dead first.
+    choices:
+      - text: "Take the relief book into the neighborhoods."
+        goto: plague_streets
+      - text: "Follow a suspicious property claim."
+        goto: plague_empty_houses
+
+  plague_empty_houses:
+    type: story
+    title: "The House With Three Owners"
+    text: |
+      One house has been claimed by a monastery, a merchant, and a cousin who cannot remember the dead owner's first name.
+
+      Inside, someone is alive.
+
+      A girl of perhaps fourteen has barred the upper room. Her mother is dead downstairs. She has been drinking rainwater from a basin and throwing roof tiles at anyone who enters the courtyard.
+
+      She has excellent aim.
+    choices:
+      - text: "Bring her food and arrange a place at the bakery."
+        goto: plague_streets
+        requires:
+          flag: medieval_found_bakers
+        effects:
+          flags:
+            plague_saved_girl: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Guard the house until a legitimate relative can be found."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_guarded_house: true
+          stats:
+            resolve: 1
+            hunger: 1
+
+  plague_agneses:
+    type: story
+    title: "The Closed Hostel"
+    text: |
+      Agnese's old pilgrim network has become a chain of locked doors.
+
+      Her childe, Tommaso, receives you in an empty hostel. He has stopped accepting travelers and started selling information about which roads remain open. He calls this prudence.
+
+      In the cellar, three mortal servants are sick. Tommaso has forbidden anyone to enter.
+
+      "We cannot save everyone," he says.
+
+      The sentence is true. The way he uses it is not.
+    choices:
+      - text: "Open the hostel as a night refuge with strict separation between rooms."
+        goto: plague_refuge
+        effects:
+          flags:
+            plague_opened_refuge: true
+          stats:
+            risk: 1
+            influence: 1
+      - text: "Use the network only to move food and messages."
+        goto: plague_routes
+        effects:
+          flags:
+            plague_used_network_for_relief: true
+          stats:
+            obligation: 1
+      - text: "Accept Tommaso's logic and secure the domain."
+        goto: plague_kindred_council
+        effects:
+          flags:
+            plague_secured_domain: true
+          stats:
+            influence: 1
+            humanity: -1
+
+  plague_commune:
+    type: story
+    title: "Authority With a Fever"
+    text: |
+      The Capitol has orders and no certainty.
+
+      Officials argue about burial crews, market hours, abandoned property, and whether public gatherings spread sickness or merely panic. Every answer creates a new problem by sunset.
+
+      An old clerk recognizes a route map in your hand. Not you. The map.
+
+      "My grandfather copied one like that for the Senate," he says.
+    choices:
+      - text: "Use the old routes to organize night deliveries."
+        goto: plague_routes
+        requires:
+          flag: medieval_gave_routes_to_commune
+        effects:
+          flags:
+            plague_routes_reused: true
+          stats:
+            influence: 1
+      - text: "Help make a plain list of wells, ovens, and burial crews still operating."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_civic_ledger: true
+          stats:
+            learning: 1
+            obligation: 1
+
+  plague_routes:
+    type: story
+    title: "After Curfew"
+    text: |
+      The useful city appears after dark.
+
+      A flour cart leaves one street. Firewood crosses another. A priest who thinks you are a smuggler gives you a key. A smuggler who thinks you are a priest gives you better directions.
+
+      The routes work because no single authority controls them. They also fail for the same reason.
+
+      Near dawn, two carts arrive at once: one carrying flour, the other carrying bodies. The alley is too narrow for either to turn.
+    choices:
+      - text: "The flour goes first. The living are waiting."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_chose_flour: true
+          stats:
+            resolve: 1
+      - text: "The dead go first. Their families are waiting too."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_chose_burial: true
+          stats:
+            humanity: 1
+
+  plague_refuge:
+    type: story
+    title: "Rules for a Bad Night"
+    text: |
+      You make rules because fear invents worse ones.
+
+      One household per room. Water left outside doors. Bedding burned after a death. Names written down without judgments beside them. No priest, physician, noble, merchant, or Kindred gets to move someone out because their room would be useful.
+
+      The rules are imperfect. Some are probably wrong. But people can understand them, and understanding is scarce.
+    choices:
+      - text: "Put the rules in writing and copy them for other houses."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_refuge_rules_copied: true
+          stats:
+            learning: 1
+      - text: "Keep the refuge small enough that you can enforce the rules yourself."
+        goto: plague_streets
+        effects:
+          flags:
+            plague_refuge_kept_small: true
+          stats:
+            resolve: 1
+
+  plague_streets:
+    type: story
+    title: "What Fear Invents"
+    text: |
+      By the second month, the city is full of explanations.
+
+      A crowd gathers outside a rented room where a foreign cloth merchant lived. Someone says he poisoned a well. Someone else says his neighbors saw strange powders. A third person admits the merchant left Rome weeks ago, but this does not improve the mood.
+
+      The accusation is becoming useful to people who want his property.
+    choices:
+      - text: "Break the crowd's momentum in public."
+        goto: plague_crowd
+        effects:
+          flags:
+            plague_opposed_scapegoating: true
+          stats:
+            risk: 2
+            humanity: 1
+      - text: "Find who benefits from the accusation."
+        goto: plague_profiteer
+        effects:
+          flags:
+            plague_traced_rumor: true
+          stats:
+            learning: 1
+
+  plague_crowd:
+    type: story
+    title: "A Better Target"
+    text: |
+      You do not give a speech.
+
+      You ask who saw the poison.
+
+      Three hands point to two different wells. You ask who owns the room now. The answer changes twice. You ask why a man who left weeks ago waited until after leaving to poison anyone.
+
+      Anger dislikes arithmetic. The crowd does not become kind, but it becomes embarrassed, and embarrassment is enough to make some people go home.
+
+      The landlord remembers your face.
+    choices:
+      - text: "Let him remember."
+        goto: plague_kindred_council
+        effects:
+          stats:
+            resolve: 1
+      - text: "Make sure the merchant's remaining goods are inventoried publicly."
+        goto: plague_kindred_council
+        effects:
+          flags:
+            plague_public_inventory: true
+          stats:
+            influence: 1
+
+  plague_profiteer:
+    type: story
+    title: "The Healthy Heir"
+    text: |
+      The rumor began with a notary's assistant.
+
+      He has produced six convenient witnesses and three property transfers in four days. None of the witnesses can be found. All three properties now belong to clients of the same merchant house.
+
+      The conspiracy is disappointingly mortal.
+    choices:
+      - text: "Put copies of the transfers where rival notaries will find them."
+        goto: plague_kindred_council
+        effects:
+          flags:
+            plague_exposed_profiteer: true
+          stats:
+            influence: 1
+      - text: "Blackmail the merchant house for supplies."
+        goto: plague_kindred_council
+        effects:
+          flags:
+            plague_extorted_supplies: true
+          stats:
+            influence: 2
+            humanity: -1
+
+  plague_kindred_council:
+    type: story
+    title: "Predators Discuss Scarcity"
+    text: |
+      Rome's Kindred meet beneath a shuttered bathhouse.
+
+      The argument is practical. Feeding has become dangerous. Familiar households are empty. Travelers avoid the city. Some want rigid territories. Others want the sick districts abandoned entirely.
+
+      Tommaso proposes that the desperate be directed toward controlled shelters. He does not say feeding grounds.
+
+      Agnese would have heard the omission.
+    choices:
+      - text: "Reject the shelters. Hunger does not make people inventory."
+        goto: plague_end
+        effects:
+          flags:
+            plague_rejected_feeding_shelters: true
+          stats:
+            humanity: 1
+            risk: 1
+      - text: "Propose shared feeding limits and rotating territories instead."
+        goto: plague_end
+        effects:
+          flags:
+            plague_shared_feeding_compact: true
+          stats:
+            influence: 1
+            obligation: 1
+      - text: "Say nothing. Preserve your own routes and people."
+        goto: plague_end
+        effects:
+          flags:
+            plague_kept_routes_secret: true
+          stats:
+            resolve: 1
+
+  plague_end:
+    type: ending
+    title: "The City After Counting"
+    text: |
+      The bells begin counting again eventually.
+
+      Not because fewer people die. Someone has decided that numbers matter.
+
+      Rome survives in pieces: an oven kept hot, a ledger split in two, a route remembered, a door opened or kept shut, a rumor interrupted before it became permission.
+
+      You have lived long enough to know that survival is not innocence.
+
+      Before the century ends, people will argue about what the plague meant. You already know what it did.
+
+      It made every obligation expensive.
