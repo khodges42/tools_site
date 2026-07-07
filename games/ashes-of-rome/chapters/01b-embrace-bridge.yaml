@@ -1,0 +1,318 @@
+# Chapter 1b: The Embrace
+# Overrides Chapter 1's former ending passages and turns the observer hook into playable continuity.
+passages:
+  rome_nightfall_debt_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Livia wakes. So do you. On the stair, where the old man's feet should have left dust, there is only the faint round mark of a ring pressed into damp clay. He noticed the way borrowed names can open a door, and the way you let one debt bite another.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Stand before Livia can."
+        goto: embrace_threshold
+
+  rome_nightfall_public_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      By morning, someone has scratched the bathhouse owner's name into the fountain curb in letters too neat for a drunk and too shallow for a worker with time. The old man did not need to hear bravery. He needed to see whether your words could make other mouths dangerous.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Answer before the household becomes a witness."
+        goto: embrace_threshold
+
+  rome_nightfall_learning_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      The ash under your nails has gone pale, almost silver, though you scrubbed until your fingers hurt. Somewhere below, a boy whispers a line he should not know by heart. The old man noticed what you protected, what you surrendered, and whether forbidden words made you careful or hungry.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Hide the tablets, then face him."
+        goto: embrace_threshold
+
+  rome_nightfall_art_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      In the brazier's last light, every face in the room looks briefly more honest than it should: tired, frightened, unwilling to forgive you for seeing them. The old man noticed the private likeness, not because it was beautiful, but because truth became useful in your hands.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Look at the old man as if he has a face worth studying."
+        goto: embrace_threshold
+
+  rome_nightfall_record_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      The hidden tablet has been turned one finger-width from where you left it. Not stolen. Not read aloud. Only corrected, as if someone wanted you to know that records have witnesses even when people do not. The old man noticed the copy behind the copy.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Touch the corrected tablet and wait."
+        goto: embrace_threshold
+
+  rome_nightfall_bare_end:
+    type: story
+    title: "A Mercy With Teeth"
+    text: |
+      The collector leaves eventually. Rome does not. It settles around the room: smoke in the beams, debt in the tablet, footsteps on the stairs, the sour warmth of bodies pretending they can sleep.
+
+      Near midnight, someone knocks once at the street door below and does not knock again.
+
+      Nothing has been moved. No name appears where it should not. No gift waits on the threshold. The old man noticed restraint, or emptiness, or the discipline of carrying no useful handle. In Rome, even that can be a kind of bait.
+
+      The second knock comes from inside the room.
+    choices:
+      - text: "Keep your hands empty and meet him."
+        goto: embrace_threshold
+
+  embrace_threshold:
+    type: story
+    title: "The Man Who Entered Without Opening the Door"
+    text: |
+      The old man stands between the brazier and the door. Livia does not see him until you move. When she does, her face changes from fear of rent to fear of weather: the kind of thing no argument can shame.
+
+      "I watched you spend a mortal life in one day," he says. His Latin is old-fashioned in the places where it should be ordinary. "Debt. Witness. Forbidden words. Useful beauty. Secret proof. Emptiness. Rome teaches all of them badly. I can teach one of them well."
+
+      He names himself Valerius. Not a patron. Not a god. Not yet your sire, though the room is already bending around that possibility.
+    choices:
+      - text: "Ask what he wants from your debts."
+        goto: embrace_sire_debt
+        requires:
+          flag: rome_observer_debt
+      - text: "Ask why public words interested him."
+        goto: embrace_sire_public
+        requires:
+          flag: rome_observer_public
+      - text: "Ask what forbidden words are worth to the dead."
+        goto: embrace_sire_learning
+        requires:
+          flag: rome_observer_learning
+      - text: "Ask whether he wants truth or the use of truth."
+        goto: embrace_sire_art
+        requires:
+          flag: rome_observer_art
+      - text: "Ask how long he has been correcting records."
+        goto: embrace_sire_records
+        requires:
+          flag: rome_observer_records
+      - text: "Say nothing. Let him explain why emptiness matters."
+        goto: embrace_sire_bare
+        requires:
+          flag: rome_observer_bare
+
+  embrace_sire_debt:
+    type: story
+    title: "A Sire's First Account"
+    text: |
+      Valerius touches the rent tablet with one dry finger. "A debt is a leash that lets the dog believe it chose the street. You saw that. You used it. You hated it less when it protected someone you loved."
+
+      Livia says your name. Valerius does not look at her. "You may remain prey to every ledger in Rome, or you may learn which ledgers deserve teeth."
+    choices:
+      - text: "Accept his lesson and keep Livia out of the bargain."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_debt: true
+          stats:
+            obligation: 1
+            hunger: 1
+
+  embrace_sire_public:
+    type: story
+    title: "The Crowd as Weapon"
+    text: |
+      "You think courage lives in the chest," Valerius says. "It does not. It lives between mouths. One person says a name, another repeats it, and suddenly power has to spend coin suppressing sound."
+
+      He smiles toward the fountain you cannot see from here. "I do not need brave fledglings. I need dangerous witnesses."
+    choices:
+      - text: "Accept his lesson, but not his contempt for the crowd."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_public: true
+          stats:
+            influence: 1
+            hunger: 1
+
+  embrace_sire_learning:
+    type: story
+    title: "Ash and Verse"
+    text: |
+      Valerius asks for one line of the forbidden poem. You give him none. His approval is worse than anger.
+
+      "Good. Treasure should not come when called. The dead collect secrets because mortals mistake forgetting for safety. You already know better."
+    choices:
+      - text: "Accept his lesson and remember Gaius as more than bait."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_learning: true
+          stats:
+            learning: 1
+            hunger: 1
+
+  embrace_sire_art:
+    type: story
+    title: "The Face Under the Face"
+    text: |
+      "An artist is only tolerated while beauty flatters power," Valerius says. "Truth is a different craft. Truth makes owners nervous."
+
+      He studies you with the same still attention he gave the wax. "You saw the person under the commission. Perhaps you can learn to see the monster under the manners."
+    choices:
+      - text: "Accept his lesson without promising to flatter him."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_art: true
+          stats:
+            resolve: 1
+            hunger: 1
+
+  embrace_sire_records:
+    type: story
+    title: "The Correction"
+    text: |
+      Valerius turns the hidden tablet back to its original angle. "A record is not truth. It is an invitation for power to impersonate memory."
+
+      He gives you the stylus. "You copied a copy and made a future. Imagine what you could do after death stops interrupting your work."
+    choices:
+      - text: "Accept his lesson and keep your own copy of him."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_records: true
+          stats:
+            learning: 1
+            hunger: 1
+
+  embrace_sire_bare:
+    type: story
+    title: "No Handle"
+    text: |
+      Valerius circles you once. "No patron's ring. No public oath. No forbidden tablet. No beautiful leverage. No clever proof. Do you know how rare it is to meet someone the city has not already labeled?"
+
+      He stops close enough that his shadow covers your hands. "Emptiness is not innocence. It is room."
+    choices:
+      - text: "Accept his lesson because the room is already closing."
+        goto: embrace_clan_choice
+        effects:
+          flags:
+            embrace_sire_bare: true
+          stats:
+            resolve: 1
+            hunger: 1
+
+  embrace_clan_choice:
+    type: story
+    title: "The Blood Has a Shape"
+    text: |
+      Valerius does not bite at first. He makes you choose what part of the night you can bear to inherit.
+
+      "Clan is not a costume," he says. "It is a wound with manners. Mine can open several ways. Rome will decide which one looks most like you."
+    choices:
+      - text: "Rule the leash: become Ventrue, hungry for authority and repayment."
+        goto: embrace_first_hunger
+        effects:
+          flags:
+            embraced: true
+            clan_chosen: true
+            clan_ventrue: true
+          stats:
+            influence: 1
+            hunger: 2
+      - text: "Keep the beautiful wound: become Toreador, unable to stop seeing what power edits out."
+        goto: embrace_first_hunger
+        effects:
+          flags:
+            embraced: true
+            clan_chosen: true
+            clan_toreador: true
+          stats:
+            humanity: 1
+            hunger: 2
+      - text: "Follow the hidden correction: become Malkavian, hearing patterns in memory's fractures."
+        goto: embrace_first_hunger
+        effects:
+          flags:
+            embraced: true
+            clan_chosen: true
+            clan_malkavian: true
+          stats:
+            learning: 1
+            hunger: 2
+      - text: "Refuse his categories even as his blood takes: become Caitiff, named by absence."
+        goto: embrace_first_hunger
+        effects:
+          flags:
+            embraced: true
+            clan_chosen: true
+            clan_caitiff: true
+          stats:
+            resolve: 1
+            hunger: 2
+
+  embrace_first_hunger:
+    type: story
+    title: "First Hunger"
+    text: |
+      The bite is smaller than fear promised and larger than the room can hold.
+
+      You die with Livia's hand over your mouth to keep the neighbors from hearing. You wake before dawn with every heartbeat in the insula speaking through the walls. The collector below. The dyer and his wife. Gaius dreaming of poems. Prisca's oven cooling three streets away. Rome becomes a map made of throats.
+
+      Valerius offers his wrist before you can crawl toward the stairs. "First lesson," he says. "You are not less responsible because you are hungry."
+    choices:
+      - text: "Drink from your sire and leave the household alive."
+        goto: embrace_departure
+        effects:
+          flags:
+            embrace_spared_household: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Demand to know what happens to Livia before you drink."
+        goto: embrace_departure
+        effects:
+          flags:
+            embrace_bound_to_livia: true
+          stats:
+            resolve: 1
+            hunger: 1
+
+  embrace_departure:
+    type: story
+    title: "Dawn Without You"
+    text: |
+      Valerius takes you below before dawn. Livia watches from the stair and does not call your name. That mercy hurts worse than grief.
+
+      The city above continues without permission. Rent comes due. Bread burns. Records are copied. The fountain argument grows new lies. Gaius survives or does not. Prisca remembers or refuses. You learn the underground routes, the names that cannot be spoken in daylight, and the first rule of immortality: nothing is preserved by merely lasting.
+
+      When you next walk the Subura openly, Rome has changed its prayers.
+    choices:
+      - text: "Wake into the changed city."
+        goto: late_empire_arrival
