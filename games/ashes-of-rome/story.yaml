@@ -1,7 +1,7 @@
 title: "Ashes of Rome"
 slug: "ashes-of-rome"
 author: "Kass"
-version: 11
+version: 12
 description: "A historical Vampire: The Masquerade interactive fiction about one life surviving the centuries."
 ui:
   auto_save: true
@@ -171,6 +171,32 @@ flags:
   revolution_chose_people_over_institutions: false
   revolution_chose_methods: false
   revolution_chose_records: false
+  modernity_joined_press: false
+  modernity_joined_hospital: false
+  modernity_confronted_court: false
+  modernity_printed_warnings: false
+  modernity_forged_ration_cards: false
+  modernity_destroyed_safehouse_list: false
+  modernity_built_redundant_press: false
+  modernity_distributed_forgery_method: false
+  modernity_cellular_network: false
+  modernity_split_identity_records: false
+  modernity_built_relief_routes: false
+  modernity_distributed_identity_method: false
+  modernity_kept_routes_oral: false
+  modernity_encoded_routes: false
+  modernity_demanded_feeding_ban: false
+  modernity_allied_sabina: false
+  modernity_mapped_predatory_domains: false
+  modernity_court_vote_exposed: false
+  modernity_shared_domain_map: false
+  modernity_exposed_kindred_predator: false
+  modernity_broke_predator_network: false
+  modernity_searched_for_lucia: false
+  modernity_preserved_network: false
+  modernity_warned_transport_targets: false
+  modernity_destroyed_transport_addresses: false
+  modernity_network_outlived_leaders: false
 inventory: [family_token, workshop_key, forbidden_text, patron_ring, rent_tablet, wax_portrait]
 context:
   rome:
