@@ -1,2 +1,310 @@
-# Chapter 3: Fall of the Western Empire
-passages: {}
+# Chapter 3: The Sack
+# Rome, 410 CE. The city is breached; old obligations become immediate choices.
+passages:
+  fall_arrival:
+    type: story
+    title: "The Salarian Gate"
+    text: |
+      The first warning is not a trumpet. It is the price of bread.
+
+      By sunset the Salarian Gate is open and Alaric's soldiers are inside Rome. Bells answer shouting across the hills. Families drag trunks into churches. Senators discover that marble walls are not the same thing as defenses.
+
+      In the Subura, Junia is carrying archive bundles into the hospice courtyard. Prisca has barred the bakery door. Water runs unattended at the old fountain.
+
+      You have enough strength to save something. Not everything.
+    choices:
+      - text: "Help Junia move the hospice records and the people sheltering with them."
+        goto: fall_hospice
+        effects:
+          flags:
+            fall_saved_archive: true
+          stats:
+            obligation: 1
+            humanity: 1
+      - text: "Go to Prisca's bakery before the street closes."
+        goto: fall_bakery
+        effects:
+          flags:
+            fall_saved_family: true
+          stats:
+            obligation: 1
+      - text: "Follow the armed men heading toward the old bathhouse ruins."
+        goto: fall_bathhouse
+        effects:
+          flags:
+            fall_followed_kindred: true
+          stats:
+            risk: 1
+
+  fall_hospice:
+    type: story
+    title: "Paper Burns Quickly"
+    text: |
+      Junia has made three piles: property records, household rolls, and names of the dead. She keeps changing which pile she carries first.
+
+      "Don't stand there looking ancient," she snaps. "Take something."
+
+      The courtyard is filling with neighbors who have nowhere safer to go. A child sleeps on a ledger. Two old women argue over whether the soldiers will respect a church hospice. Nobody asks whether the church will respect the records once the soldiers leave.
+    choices:
+      - text: "Carry the household rolls. People should be harder to erase than property."
+        goto: fall_hospice_people
+        effects:
+          stats:
+            humanity: 1
+            influence: -1
+      - text: "Carry the property records. They are ugly, but power will be rebuilt from them."
+        goto: fall_hospice_property
+        effects:
+          stats:
+            learning: 1
+            influence: 1
+
+  fall_hospice_people:
+    type: story
+    title: "Names in a Grain Cellar"
+    text: |
+      You hide the household rolls beneath sacks of barley in a cellar two streets away.
+
+      On the return trip, smoke has swallowed the upper windows. Junia is still in the courtyard, refusing to abandon a feverish stranger who cannot walk.
+
+      You carry him. Junia carries the last book of names. Behind you, two centuries of property disputes begin to burn.
+    choices:
+      - text: "Get them through the alley toward the basilica shelter."
+        goto: fall_night
+
+  fall_hospice_property:
+    type: story
+    title: "The City After the Fire"
+    text: |
+      The deeds and boundaries go into the cellar first.
+
+      Junia understands your choice immediately. "So when this is over," she says, "the men with paper get the city back."
+
+      "The men with swords will have it otherwise."
+
+      She hates the answer because it is useful. Together you save enough records to make future arguments possible, including several lies you recognize from your own century.
+    choices:
+      - text: "Leave the cellar and help Junia reach shelter."
+        goto: fall_night
+        effects:
+          stats:
+            humanity: -1
+            learning: 1
+
+  fall_bakery:
+    type: story
+    title: "The Last Oven"
+    text: |
+      Prisca opens the door only after you say her grandmother's insult for tax collectors.
+
+      Twelve people are inside. The oven is cold. Flour covers the floor where someone dropped a sack while moving it away from the windows.
+
+      Prisca has a cart, one mule, and room for six.
+
+      "You know the city," she says. "Tell me which road is safe."
+
+      You know roads. Safety is another profession.
+    choices:
+      - text: "Take the children and the two people who cannot walk quickly."
+        goto: fall_bakery_cart
+        effects:
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Keep everyone together and use the old water-service passage."
+        goto: fall_bakery_tunnel
+        requires:
+          flag: late_empire_fountain_found
+        effects:
+          stats:
+            risk: 2
+            resolve: 1
+
+  fall_bakery_cart:
+    type: story
+    title: "Six Places"
+    text: |
+      Choosing takes less than a minute. Living with the choice takes longer.
+
+      Prisca drives. You walk beside the cart. Nobody in the bakery says goodbye properly because proper goodbyes admit what may happen next.
+
+      At the first crossing, a soldier reaches for the mule's bridle. You catch his wrist before he sees you move.
+
+      His fear arrives before his understanding.
+    choices:
+      - text: "Let him see enough to run."
+        goto: fall_hunger
+        effects:
+          flags:
+            fall_masquerade_risk: true
+          stats:
+            risk: 2
+      - text: "Release him, apologize, and pay with the last coin you carry."
+        goto: fall_night
+        effects:
+          stats:
+            wealth: -1
+            humanity: 1
+
+  fall_bakery_tunnel:
+    type: story
+    title: "Where the Water Used to Go"
+    text: |
+      The old service passage is half collapsed and smells of wet stone.
+
+      Prisca laughs once when she realizes where you have brought them. Her family spent generations arguing about stolen water. Now the abandoned channel is carrying them out of danger.
+
+      Halfway through, someone has marked the wall with a symbol you recognize from another kind of city: three cuts around a circle, fresh enough to glisten.
+
+      Someone else is using this route tonight.
+    choices:
+      - text: "Keep the families moving and follow the mark afterward."
+        goto: fall_bathhouse
+        effects:
+          flags:
+            fall_followed_kindred: true
+      - text: "Seal the side passage behind you and get everyone out."
+        goto: fall_night
+        effects:
+          stats:
+            resolve: 1
+            humanity: 1
+
+  fall_bathhouse:
+    type: story
+    title: "The Owners Beneath the Owners"
+    text: |
+      Beneath the ruined bathhouse, four figures are dividing the city.
+
+      Not the Goths. Not the Senate. Not the bishop.
+
+      Domains. Feeding rights. Safe cellars. Which mortal institutions are worth preserving and which can be allowed to burn.
+
+      One of them is the sandal-mender from the fountain. He looks exactly as old as he did the last time you saw him.
+
+      "You took your time," he says.
+    choices:
+      - text: "Ask who gave them the right to divide your neighborhood."
+        goto: fall_court_defy
+        effects:
+          stats:
+            resolve: 1
+            risk: 2
+      - text: "Listen. Learn who intends to own what survives."
+        goto: fall_court_listen
+        effects:
+          stats:
+            learning: 1
+            influence: 1
+
+  fall_court_defy:
+    type: story
+    title: "A Neighborhood Is Not a Domain"
+    text: |
+      The room goes quiet.
+
+      The sandal-mender smiles. "There. That's the person I remember."
+
+      Another Kindred does not smile. She asks what you own. You think of a rented room that became a hospice storeroom, a fountain moved stone by stone, a bakery that remembers an argument better than any archive.
+
+      "Nothing," you say. "That's why I know the difference."
+    choices:
+      - text: "Leave before courage becomes permission to destroy you."
+        goto: fall_night
+        effects:
+          flags:
+            fall_refused_domain: true
+          stats:
+            influence: 1
+
+  fall_court_listen:
+    type: story
+    title: "Minutes of a Different Meeting"
+    text: |
+      You listen while immortals make the same mistake as clerks: they confuse a map with possession.
+
+      The hospice matters because frightened people gather there. The bakery matters because grain moves through its family. The fountain matters because everyone must drink.
+
+      Their supernatural politics rest on mortal habits. Break the habits and the map becomes fiction.
+
+      You leave knowing exactly which corner of the Subura someone expects you to defend for them.
+    choices:
+      - text: "Decide later whether knowledge is service or leverage."
+        goto: fall_night
+        effects:
+          flags:
+            fall_knows_domains: true
+          stats:
+            learning: 1
+
+  fall_hunger:
+    type: story
+    title: "Smoke Makes Hunger Worse"
+    text: |
+      The soldier runs. Your hands shake after he is gone.
+
+      Fire, fear, and blood have turned the streets into an assault on every sense. The Beast offers a simple argument: catastrophe means nobody will notice one more victim.
+
+      Nearby, a looter is trapped beneath a fallen beam. He sees you and asks for help.
+    choices:
+      - text: "Lift the beam and send him away alive."
+        goto: fall_night
+        effects:
+          stats:
+            hunger: 1
+            humanity: 1
+            resolve: 1
+      - text: "Feed only enough to quiet the Beast, then pull him free."
+        goto: fall_night
+        effects:
+          stats:
+            hunger: -1
+            humanity: -1
+
+  fall_night:
+    type: story
+    title: "Three Days"
+    text: |
+      Rome is not destroyed. That almost makes it worse.
+
+      After three days, the army leaves. Doors open. People count the missing, then the stolen, then the things they can pretend never mattered.
+
+      Junia's hospice still stands. Prisca's oven will be lit again. The fountain keeps running through a city that has learned it can be entered.
+
+      Beneath the noise, you feel a heavier exhaustion. The day is coming when sleep will stop being a choice made one sunrise at a time.
+    choices:
+      - text: "Stay awake. There are debts here with living names attached."
+        goto: fall_stay
+        effects:
+          flags:
+            fall_chose_vigil: true
+          stats:
+            obligation: 1
+            resolve: 1
+      - text: "Prepare a hidden place and trust the city to become strange without you."
+        goto: fall_torpor
+        effects:
+          flags:
+            fall_chose_torpor: true
+
+  fall_stay:
+    type: ending
+    title: "Keep Watch"
+    text: |
+      You remain.
+
+      Not as Rome's guardian. Cities do not have guardians. They have residents, predators, workers, thieves, saints, bureaucrats, and people who keep showing up because somebody has to relight the oven.
+
+      You stay long enough to see which stories the sack creates, and which lies become useful first.
+
+  fall_torpor:
+    type: ending
+    title: "Under the City"
+    text: |
+      You choose a chamber beneath old masonry, behind a wall repaired badly enough that nobody will suspect another room.
+
+      You bring no archive. No map. One small object from the life you had when Rome still seemed permanent.
+
+      Above you, the city continues without permission.
+
+      Sleep comes like earth filling a grave.
