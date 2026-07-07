@@ -1,2 +1,268 @@
-# Chapter 7 placeholder
-passages: {}
+# Chapter 7: The Republic at Dawn
+# Rome, 1849 CE. Revolution, siege, newspapers, and old networks forced into public life.
+passages:
+  revolution_arrival:
+    type: story
+    title: "A City Printing Itself"
+    text: |
+      Rome, 1849.
+
+      The pope has fled. A republic has been declared. Every wall has become a newspaper.
+
+      Printers work with doors open. Students carry rifles badly. Priests argue with republicans under pasted proclamations. French troops are coming to restore the old order, and everyone knows it except the men giving speeches about permanence.
+
+      In Trastevere, a young typesetter named Lucia Bellandi has found a crate of old printing blocks behind a false wall. One bears a woman with a loaf before a burning oven. Another is a decorative border made of tiny rules for opening a refuge.
+
+      Lucia wants to know why your face changed when you saw them.
+    choices:
+      - text: "Tell Lucia the blocks have survived worse governments than this one."
+        goto: revolution_lucia
+      - text: "Read the refuge border and ask where the wounded are being taken."
+        goto: revolution_hospital
+        requires:
+          any:
+            - flag: renaissance_hid_rule_in_border
+            - flag: renaissance_printed_refuge_broadsheet
+            - flag: renaissance_preserved_refuge_rule
+      - text: "Ask what the Republic is printing besides speeches."
+        goto: revolution_records
+      - text: "Find the Kindred who think the Republic is merely mortal weather."
+        goto: revolution_court
+
+  revolution_lucia:
+    type: story
+    title: "The Printer's Descendant"
+    text: |
+      Lucia laughs at the idea that old wood can be political.
+
+      Then she shows you Beatrice's printer's mark, copied so many times that the original name has become a family joke: a small open eye inside a capital B.
+
+      Lucia is not Beatrice's daughter. Too many generations have passed for that relationship to matter cleanly. But somebody taught somebody, who taught somebody else, that a press should always have a second door and a ledger nobody important knows exists.
+
+      "We print casualty lists now," Lucia says. "The government says morale. Families say names. Which one do you want?"
+    choices:
+      - text: "Print every confirmed name, including deserters and foreigners."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_public_casualty_roll: true
+          stats:
+            humanity: 1
+            risk: 1
+      - text: "Print the wounded and missing separately. Uncertainty is not death."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_precise_casualty_roll: true
+          stats:
+            learning: 1
+            resolve: 1
+      - text: "Keep a private complete ledger and let the public sheet protect morale."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_hidden_casualty_ledger: true
+          stats:
+            influence: 1
+            humanity: -1
+
+  revolution_hospital:
+    type: story
+    title: "The Open Door, Again"
+    text: |
+      The convent hospital has thirty beds and eighty people on the floor.
+
+      A surgeon wants the fever cases moved out. A republican officer wants beds reserved for soldiers. Three neighborhood women have already ignored both men and started sorting water, linen, broth, and names.
+
+      On the wall, someone has copied the old rule in fresh ink: NO POWERFUL PERSON MAY DISPLACE A GUEST BECAUSE THE ROOM IS USEFUL.
+
+      Nobody here knows where it came from.
+    choices:
+      - text: "Back the rule publicly and make the officer argue against it in front of the ward."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_defended_open_ward: true
+          stats:
+            humanity: 1
+            influence: 1
+      - text: "Split the building by need, not uniform, and make the rule operational."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_triage_by_need: true
+          stats:
+            learning: 1
+            resolve: 1
+      - text: "Use the nocturnal network to move the most vulnerable before the siege closes."
+        goto: revolution_siege
+        requires:
+          any:
+            - flag: medieval_joined_agneses_network
+            - flag: plague_used_network_for_relief
+        effects:
+          flags:
+            revolution_night_evacuation: true
+          stats:
+            obligation: 1
+            risk: 1
+
+  revolution_records:
+    type: story
+    title: "Citizens on Paper"
+    text: |
+      The Republic is printing tax notices, ration cards, military orders, voting instructions, and lists of confiscated church property.
+
+      One list includes a building whose ownership you have watched change by plague, forgery, inheritance, occupation, and force. The Republic calls the matter settled in one line of type.
+
+      A clerk named Enzo asks whether your objection is political or personal.
+
+      After fifteen centuries, the distinction seems optimistic.
+    choices:
+      - text: "Document the living occupants before another regime rewrites ownership."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_recorded_occupants: true
+          stats:
+            humanity: 1
+            learning: 1
+      - text: "Use the old contradictory claims to make seizure legally impossible to finish."
+        goto: revolution_press
+        requires:
+          any:
+            - flag: renaissance_flooded_claims
+            - flag: renaissance_poisoned_archive
+        effects:
+          flags:
+            revolution_weaponized_archive_noise: true
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Give Enzo the cleanest surviving record, even if you dislike its answer."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_backed_public_record: true
+          stats:
+            resolve: 1
+
+  revolution_court:
+    type: story
+    title: "The Court Beneath the Republic"
+    text: |
+      The Roman Kindred gather beneath a palazzo whose owner has changed allegiance three times this month.
+
+      Their argument is familiar. Mortals are temporary. Republics are temporary. Newspapers are temporary. Artillery is temporary.
+
+      An elder named Sabina proposes closing feeding territory around the hospitals before refugees make hunting unpredictable. A younger vampire proposes selling information to both the Republic and its enemies.
+
+      Above you, a press begins another run. The floor trembles with every pull of the lever.
+    choices:
+      - text: "Refuse hospital feeding grounds and make the refusal a domain rule."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_protected_hospitals_from_feeding: true
+          stats:
+            humanity: 1
+            influence: -1
+      - text: "Trade military information only to keep civilian routes open."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_brokered_safe_routes: true
+          stats:
+            influence: 1
+            obligation: 1
+      - text: "Leave them arguing. Lucia's press matters more tonight."
+        goto: revolution_press
+        effects:
+          flags:
+            revolution_abandoned_court: true
+          stats:
+            resolve: 1
+
+  revolution_press:
+    type: story
+    title: "Ink During Bombardment"
+    text: |
+      The first French shells land while Lucia is locking type.
+
+      Dust falls from the ceiling. Nobody stops working.
+
+      The press has room for one more sheet before the apprentices carry the forms and paper into separate hiding places. Lucia offers three drafts: casualty names, a map of water and aid stations, and a furious editorial promising victory.
+
+      "Only one of these is useful tomorrow," she says. "I don't know which tomorrow we get."
+    choices:
+      - text: "Print the names. A republic that forgets people is only a flag."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_printed_names: true
+          stats:
+            humanity: 1
+      - text: "Print the aid map and accept that the enemy may read it too."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_printed_aid_map: true
+          stats:
+            risk: 2
+            obligation: 1
+      - text: "Print instructions for copying records before offices burn."
+        goto: revolution_siege
+        effects:
+          flags:
+            revolution_distributed_archive_method: true
+          stats:
+            learning: 1
+            influence: 1
+
+  revolution_siege:
+    type: story
+    title: "The Wall at Night"
+    text: |
+      The siege compresses the city into errands.
+
+      Carry water. Find linen. Move type. Count bread. Dig. Lie to a sentry. Tell a mother the list is incomplete. Tell a vampire the hospital is forbidden ground and decide whether you can enforce it.
+
+      Near the wall, Lucia finds you before dawn. She has ink on her cheek and a pistol she has not fired.
+
+      "If they take the city," she asks, "what survives?"
+    choices:
+      - text: "People, if we spend institutions to save them."
+        goto: revolution_end
+        effects:
+          flags:
+            revolution_chose_people_over_institutions: true
+          stats:
+            humanity: 1
+      - text: "Methods. Teach enough people how to rebuild the network."
+        goto: revolution_end
+        effects:
+          flags:
+            revolution_chose_methods: true
+          stats:
+            learning: 1
+      - text: "Records. Power returns; evidence must be waiting for it."
+        goto: revolution_end
+        effects:
+          flags:
+            revolution_chose_records: true
+          stats:
+            resolve: 1
+
+  revolution_end:
+    type: ending
+    title: "After the Republic"
+    text: |
+      The Republic falls.
+
+      French troops enter Rome. Offices change hands. Proclamations are torn down or pasted over. Men who called themselves permanent discover the speed of exile.
+
+      Lucia's press is gone when soldiers search the shop. So are the type cases, the casualty ledger, the old blocks, and the apprentices.
+
+      Weeks later, you find a fresh handbill in a market across the river. The printer's mark is a small open eye inside a capital B.
+
+      Governments keep learning the same lesson too late: a network is not a building.
