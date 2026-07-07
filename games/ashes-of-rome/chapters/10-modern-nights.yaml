@@ -1,2 +1,469 @@
-# Chapter 10: Modern nights
-passages: {}
+# Chapter 10: Modern Nights
+# Rome, 2026. The archive problem returns as platforms, cameras, brokers, and models.
+# The chapter asks what an immortal does when forgetting becomes expensive.
+passages:
+  modern_nights_arrival:
+    type: story
+    title: "The City Remembers Too Much"
+    text: |
+      Rome, 2026.
+
+      The first camera catches you outside Termini. The second belongs to a pharmacy. The third is mounted over a door that used to be a bakery.
+
+      None of them knows what you are. Together, they know where you went.
+
+      Teresa is dead. Her granddaughter Elena has inherited one box of paper, three passwords, and a suspicion that the same face appears in family photographs taken fifty years apart. She has asked to meet in a crowded bar where every customer is carrying a camera.
+
+      At the same time, Sabina sends a message through the court: someone is selling a dataset of nocturnal movement patterns in Rome. The buyer does not know it has found vampires. Not yet.
+    choices:
+      - text: "Meet Elena and find out what Teresa left behind."
+        goto: modern_nights_elena
+        effects:
+          flags:
+            modern_nights_met_elena: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Trace the movement dataset before a mortal buyer understands it."
+        goto: modern_nights_broker
+        effects:
+          flags:
+            modern_nights_traced_broker: true
+          stats:
+            learning: 1
+            risk: 1
+      - text: "Answer Sabina. The court helped create this problem."
+        goto: modern_nights_court
+        effects:
+          flags:
+            modern_nights_confronted_court: true
+          stats:
+            influence: 1
+            risk: 1
+
+  modern_nights_elena:
+    type: story
+    title: "A Box That Does Not Sync"
+    text: |
+      Elena brings Teresa's papers in a grocery bag.
+
+      Query logs. Hand-drawn arrows. A photograph of a condemned tailor's shop. Notes about a hospital registry split into pieces so no raid could find everyone at once.
+
+      Then she places her phone beside them. A genealogy service has connected three false wartime identities to living families. A photo app has suggested that the same unknown woman appears in pictures from 1978, 1994, and last Tuesday.
+
+      "My grandmother wrote that forgetting can protect people," Elena says. "The machines disagree."
+    choices:
+      - text: "Tell Elena enough truth to make her a partner, not a witness."
+        goto: modern_nights_elena_truth
+        effects:
+          flags:
+            modern_nights_told_elena: true
+          stats:
+            humanity: 1
+            obligation: 2
+      - text: "Help her break the automatic links without explaining why."
+        goto: modern_nights_identity_cleanup
+        effects:
+          flags:
+            modern_nights_broke_identity_links: true
+          stats:
+            learning: 1
+            humanity: -1
+      - text: "Ask what Teresa wanted done with the paper box."
+        goto: modern_nights_teresa_request
+
+  modern_nights_elena_truth:
+    type: story
+    title: "The Impossible Biography"
+    text: |
+      You do not begin with the word vampire.
+
+      You begin with Teresa. The municipal basement. The clinic that had been closed for fifteen years. The false person invented above a tailor's shop. Details no family story should have preserved.
+
+      Elena listens until denial becomes more complicated than belief.
+
+      "So my grandmother trusted you?"
+
+      The question hurts because it has no clean answer. Teresa trusted you with some things. Feared you with others. Worked beside you anyway.
+    choices:
+      - text: "Say that Teresa trusted the work, not you."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_elena_kept_distance: true
+          stats:
+            humanity: 1
+      - text: "Say that trust was something you kept having to earn."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_elena_allied: true
+          stats:
+            obligation: 1
+            resolve: 1
+
+  modern_nights_identity_cleanup:
+    type: story
+    title: "You Cannot Delete a Copy You Cannot See"
+    text: |
+      The old instinct is to find the list and burn it.
+
+      There is no list.
+
+      One company has faces. Another has purchases. A landlord's app has addresses. Public archives have names. Advertising brokers have devices that sleep in the same rooms every night. Removing one connection only teaches you how many others exist.
+
+      Elena watches you close the sixth laptop window. "My grandmother would hate this," she says.
+    choices:
+      - text: "Stop chasing deletion. Create ordinary explanations for the links."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_built_cover_histories: true
+          stats:
+            learning: 1
+            influence: 1
+      - text: "Move the vulnerable people, not the data."
+        goto: modern_nights_routes
+        effects:
+          flags:
+            modern_nights_moved_people: true
+          stats:
+            humanity: 1
+            obligation: 1
+
+  modern_nights_teresa_request:
+    type: story
+    title: "Read This With Someone Else"
+    text: |
+      Teresa left one envelope sealed.
+
+      On the front: READ THIS WITH SOMEONE ELSE.
+
+      Inside is not a confession. It is a warning written in her blunt hand: no immortal should become the only keeper of a mortal community's history. Not because immortals are uniquely evil. Because eventually everyone starts mistaking endurance for authority.
+
+      Elena reads it twice, then looks at you.
+    choices:
+      - text: "Give Teresa's papers to Elena and keep no private copy."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_returned_teresa_archive: true
+          stats:
+            humanity: 1
+            influence: -1
+      - text: "Digitize only the methods, leaving names and addresses on paper."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_preserved_methods: true
+          stats:
+            learning: 1
+            obligation: 1
+
+  modern_nights_broker:
+    type: story
+    title: "People Who Move at 3:17"
+    text: |
+      The dataset is boring until you know what to look for.
+
+      Devices that appear after sunset. Cars that make the same routes but never in daylight. Apartments with deliveries and utility use but no ordinary daytime pattern. A cluster of late-night visits around a private clinic, a palace apartment, and three clubs.
+
+      The broker calls them high-value nightlife segments.
+
+      Sabina calls them feeding territories.
+
+      A mortal researcher named Davide has noticed that one cluster predicts disappearances better than nightclub spending. He thinks he has found organized crime.
+    choices:
+      - text: "Meet Davide before the court does."
+        goto: modern_nights_researcher
+        effects:
+          flags:
+            modern_nights_met_researcher: true
+          stats:
+            humanity: 1
+            risk: 1
+      - text: "Feed the broker ordinary nightlife data until the pattern blurs."
+        goto: modern_nights_noise
+        effects:
+          flags:
+            modern_nights_blurred_dataset: true
+          stats:
+            learning: 1
+            influence: 1
+      - text: "Use the pattern to identify Kindred feeding outside agreed limits."
+        goto: modern_nights_court
+        effects:
+          flags:
+            modern_nights_audited_domains: true
+          stats:
+            influence: 1
+            risk: 2
+
+  modern_nights_researcher:
+    type: story
+    title: "A Correct Conclusion for the Wrong Monster"
+    text: |
+      Davide is twenty-six, exhausted, and correct about the harm.
+
+      He shows you six disappearances near one nocturnal cluster. Three are unrelated. Two are mortal crimes. One belongs to a Kindred predator the court protected in 1944 and quietly renamed twice since.
+
+      Davide wants to publish the entire map because the pattern is real.
+
+      The map is real. So are the innocent people living inside it.
+    choices:
+      - text: "Give him evidence against the actual predator, not the whole map."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_exposed_predator: true
+          stats:
+            humanity: 1
+            risk: 2
+      - text: "Convince him the dataset is contaminated and help him document why."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_discredited_dataset: true
+          stats:
+            influence: 1
+            humanity: -1
+      - text: "Bring him to Elena. Let mortals decide what can be published safely."
+        goto: modern_nights_common_room
+        requires:
+          flag: modern_nights_met_elena
+        effects:
+          flags:
+            modern_nights_mortal_review_group: true
+          stats:
+            obligation: 1
+            humanity: 1
+
+  modern_nights_noise:
+    type: story
+    title: "Crowd the Night"
+    text: |
+      You do not hack the broker. You make its categories less useful.
+
+      Night workers carry borrowed devices. Delivery routes overlap court roads. Club promoters run legitimate events near old feeding territories. The signal does not vanish; it becomes expensive to interpret.
+
+      The tactic protects more than Kindred. It also hides people who use the night because daylight institutions are dangerous to them.
+
+      Sabina hates that the solution cannot belong to the court alone.
+    choices:
+      - text: "Keep the method public enough that ordinary people can use it."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_shared_obfuscation: true
+          stats:
+            humanity: 1
+            influence: 1
+      - text: "Keep the method inside the court and demand feeding reforms in exchange."
+        goto: modern_nights_court
+        effects:
+          flags:
+            modern_nights_traded_obfuscation: true
+          stats:
+            influence: 2
+            obligation: 2
+
+  modern_nights_court:
+    type: story
+    title: "The Masquerade Has a Terms of Service"
+    text: |
+      The court's youngest members want new phones. Its oldest members want phones forbidden. Neither faction understands the problem.
+
+      Sabina does.
+
+      "The danger is not that a camera sees us," she says. "The danger is that a thousand harmless records can be joined by someone who does not know what they found."
+
+      The court proposes a familiar answer: control the data, punish leaks, centralize decisions.
+
+      You have watched that answer wear togas, vestments, uniforms, and suits.
+    choices:
+      - text: "Demand the court stop protecting predators before asking mortals to hide them."
+        goto: modern_nights_court_reform
+        effects:
+          flags:
+            modern_nights_demanded_reform: true
+          stats:
+            humanity: 1
+            risk: 2
+      - text: "Build a compact: no feeding from people identified through surveillance data."
+        goto: modern_nights_court_compact
+        effects:
+          flags:
+            modern_nights_surveillance_feeding_ban: true
+          stats:
+            influence: 1
+            obligation: 2
+      - text: "Refuse the court and work through the mortal networks that already survived it."
+        goto: modern_nights_routes
+        effects:
+          flags:
+            modern_nights_refused_court: true
+          stats:
+            humanity: 1
+            influence: -1
+
+  modern_nights_court_reform:
+    type: story
+    title: "Names the Court Already Knows"
+    text: |
+      You read six names aloud.
+
+      Not mortals. Kindred.
+
+      One fed from hospital wards during the occupation. One used political violence as cover in the seventies. One now buys location data through a mortal intermediary and calls it hunting efficiency.
+
+      The room becomes very quiet.
+
+      The Masquerade cannot mean hiding monsters from consequences while demanding everyone else become invisible.
+    choices:
+      - text: "Make the evidence available to every domain holder, with witnesses."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_public_court_accounting: true
+          stats:
+            influence: 2
+            risk: 2
+      - text: "Force resignations quietly and protect the witnesses."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_quiet_court_accounting: true
+          stats:
+            influence: 1
+            obligation: 1
+
+  modern_nights_court_compact:
+    type: story
+    title: "A Rule With Teeth"
+    text: |
+      The first draft is useless. It bans automated hunting, which everyone immediately defines differently.
+
+      You rewrite it in ordinary language: if information was collected from a person without their knowledge for advertising, policing, housing, health care, or platform analytics, it cannot be used to choose them as prey.
+
+      Sabina reads the sentence and laughs. "You have made hunting less convenient. They will call you a radical."
+    choices:
+      - text: "Require public accusations and named witnesses for violations."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_compact_public_enforcement: true
+          stats:
+            influence: 1
+            risk: 1
+      - text: "Use a protected witness network outside the court."
+        goto: modern_nights_routes
+        effects:
+          flags:
+            modern_nights_compact_witness_network: true
+          stats:
+            obligation: 1
+            humanity: 1
+
+  modern_nights_routes:
+    type: story
+    title: "The Route Is Not an App"
+    text: |
+      The old network still exists, though nobody calls it old.
+
+      A baker knows a back room. A nurse knows which intake field can remain blank. A mechanic knows which camera has been broken for six months. A teenager knows that a group chat should disappear after the ride arrives.
+
+      No one has the whole map.
+
+      The technology changed. The method did not: trust small enough to inspect, information shared only when needed, and people who can still act when one door closes.
+    choices:
+      - text: "Connect Elena to the living network, but not as its owner."
+        goto: modern_nights_common_room
+        requires:
+          flag: modern_nights_met_elena
+        effects:
+          flags:
+            modern_nights_elena_joined_network: true
+          stats:
+            humanity: 1
+            obligation: 1
+      - text: "Teach the method without preserving a master list."
+        goto: modern_nights_common_room
+        effects:
+          flags:
+            modern_nights_distributed_method: true
+          stats:
+            learning: 1
+            influence: 1
+
+  modern_nights_common_room:
+    type: story
+    title: "Nine Days' Rent"
+    text: |
+      Near dawn, you return to the Subura.
+
+      The old room is gone. The street is not. Someone is arguing about rent. Someone is carrying bread upstairs. A delivery rider swears at a blocked lane while a tourist photographs a wall that used to matter for reasons the guidebook gets wrong.
+
+      You have spent centuries deciding what to save, what to hide, what to copy, and what to let die.
+
+      Elena asks the question no prince, clerk, patron, revolutionary, or machine ever asked correctly:
+
+      "What do you want to remember when nobody needs it as evidence?"
+    choices:
+      - text: "Remember the people as people, not as consequences."
+        goto: modern_nights_epilogue_people
+        effects:
+          flags:
+            modern_nights_final_people: true
+          stats:
+            humanity: 1
+      - text: "Remember the methods that let ordinary people protect one another."
+        goto: modern_nights_epilogue_methods
+        effects:
+          flags:
+            modern_nights_final_methods: true
+          stats:
+            resolve: 1
+      - text: "Remember your mistakes, including the ones nobody else can prove."
+        goto: modern_nights_epilogue_witness
+        effects:
+          flags:
+            modern_nights_final_witness: true
+          stats:
+            humanity: 1
+            obligation: 1
+
+  modern_nights_epilogue_people:
+    type: ending
+    title: "Bread, Water, Names"
+    text: |
+      You remember Livia counting lentils into bowls. Prisca with flour on her arms. Junia closing a record room. Teresa insisting that a machine only knew what people chose to encode.
+
+      None of them were lessons placed in your path. They were people with their own bad mornings, private jokes, debts, vanities, and work.
+
+      Immortality did not preserve them.
+
+      Attention did.
+
+  modern_nights_epilogue_methods:
+    type: ending
+    title: "No Single Door"
+    text: |
+      Empires wanted a center. Courts wanted a center. Archives, ministries, parties, and platforms kept inventing new ones.
+
+      The things that survived best were often smaller: a second copy, a back route, a rule carried by a nurse, a printer who taught three others, a person who knew only enough to help the next person move.
+
+      You do not own the network.
+
+      That may be why it survived you.
+
+  modern_nights_epilogue_witness:
+    type: ending
+    title: "An Unreliable Witness"
+    text: |
+      You remember the records you used as leverage. The truths you hid too long. The people you protected for reasons that were not pure. The institutions you distrusted only after they stopped serving you.
+
+      An immortal can become very good at editing a biography.
+
+      Tonight, you refuse.
+
+      Rome keeps changing its prayers. The rent is still due. Dawn reaches the roofs by argument.
