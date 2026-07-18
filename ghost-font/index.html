@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Font Generator</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0d0d0d;
+  --panel:#171717;
+  --border:#303030;
+  --text:#f3f3f3;
+  --muted:#9b9b9b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+main{width:min(1000px,calc(100% - 32px));margin:40px auto 72px}
+a{color:inherit}
+header{margin-bottom:24px}
+h1{font-size:clamp(2rem,6vw,4rem);margin:0 0 8px;letter-spacing:-.04em}
+header p,.about{color:var(--muted);line-height:1.6;max-width:760px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px}
+.controls{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin-bottom:12px}
+input,button,select{
+  min-height:44px;
+  border:1px solid #3b3b3b;
+  border-radius:9px;
+  background:#101010;
+  color:var(--text);
+  font:inherit;
+}
+input{padding:0 12px;min-width:0}
+button{padding:0 16px;cursor:pointer}
+button:hover{border-color:#777}
+button:disabled{opacity:.55;cursor:wait}
+.canvas-wrap{position:relative;overflow:hidden;border-radius:10px;border:1px solid #2c2c2c;background:#fff;aspect-ratio:16/9}
+canvas{display:block;width:100%;height:100%}
+.status{min-height:1.5em;margin:10px 2px 0;color:var(--muted);font-size:.9rem}
+.options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+label{font-size:.82rem;color:var(--muted);display:grid;gap:6px}
+input[type="range"]{width:100%;min-height:auto;padding:0}
+.about{margin-top:28px}
+.about h2{color:var(--text);margin-bottom:6px}
+@media(max-width:700px){
+  .controls{grid-template-columns:1fr 1fr}
+  .controls input{grid-column:1/-1}
+  .options{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <a href="/">← tools.khod.net</a>
+    <h1>Ghost Font</h1>
+    <p>Type a message, watch it emerge from opposing motion, then export the animation as a GIF.</p>
+  </header>
+
+  <section class="panel">
+    <div class="controls">
+      <input id="message" value="GHOST FONT" maxlength="32" aria-label="Message">
+      <button id="randomize" type="button">Reseed dots</button>
+      <button id="export" type="button">Export GIF</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="ghost" width="960" height="540"></canvas>
+    </div>
+
+    <div class="options">
+      <label>Dot count <input id="density" type="range" min="5000" max="30000" step="1000" value="17000"></label>
+      <label>Speed <input id="speed" type="range" min="12" max="80" step="1" value="38"></label>
+      <label>Text size <input id="textSize" type="range" min="60" max="220" step="2" value="150"></label>
+    </div>
+
+    <div class="status" id="status" aria-live="polite"></div>
+  </section>
+
+  <section class="about">
+    <h2>How it works</h2>
+    <p>
+      Every dot looks identical in a still image. Most drift one way, while dots currently crossing the hidden letter shapes drift the opposite way. The message exists in temporal change rather than in any single frame, so pausing or inspecting frames individually reveals little more than noise. It is not encryption, but it is a neat example of information encoded in motion.
+    </p>
+  </section>
+</main>
+
+<script type="module">
+import { GIFEncoder, quantize, applyPalette } from "https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm";
+
+const canvas = document.querySelector('#ghost');
+const ctx = canvas.getContext('2d', { alpha:false });
+const maskCanvas = document.createElement('canvas');
+const maskCtx = maskCanvas.getContext('2d', { willReadFrequently:true });
+const messageInput = document.querySelector('#message');
+const densityInput = document.querySelector('#density');
+const speedInput = document.querySelector('#speed');
+const textSizeInput = document.querySelector('#textSize');
+const randomizeButton = document.querySelector('#randomize');
+const exportButton = document.querySelector('#export');
+const status = document.querySelector('#status');
+
+let particles = [];
+let mask = null;
+let previousTime = performance.now();
+let exporting = false;
+
+function resizeBackingStore(){
+  const rect = canvas.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const width = Math.max(640, Math.round(rect.width * ratio));
+  const height = Math.round(width * 9 / 16);
+  if(canvas.width !== width || canvas.height !== height){
+    canvas.width = width;
+    canvas.height = height;
+    maskCanvas.width = width;
+    maskCanvas.height = height;
+    buildMask();
+    seedParticles();
+  }
+}
+
+function fitText(text, requestedSize){
+  let size = requestedSize * canvas.width / 960;
+  maskCtx.font = `900 ${size}px Arial Black, Inter, sans-serif`;
+  const maxWidth = canvas.width * .84;
+  const measured = maskCtx.measureText(text).width;
+  if(measured > maxWidth) size *= maxWidth / measured;
+  return Math.max(18, size);
+}
+
+function buildMask(){
+  const text = (messageInput.value.trim() || 'GHOST FONT').toUpperCase();
+  maskCtx.clearRect(0,0,maskCanvas.width,maskCanvas.height);
+  maskCtx.fillStyle = '#000';
+  maskCtx.fillRect(0,0,maskCanvas.width,maskCanvas.height);
+  const size = fitText(text, Number(textSizeInput.value));
+  maskCtx.font = `900 ${size}px Arial Black, Inter, sans-serif`;
+  maskCtx.textAlign = 'center';
+  maskCtx.textBaseline = 'middle';
+  maskCtx.fillStyle = '#fff';
+  maskCtx.fillText(text, maskCanvas.width/2, maskCanvas.height/2);
+  mask = maskCtx.getImageData(0,0,maskCanvas.width,maskCanvas.height).data;
+}
+
+function seedParticles(){
+  const count = Number(densityInput.value);
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    phase:Math.random()*Math.PI*2,
+    drift:(Math.random()-.5)*.18,
+    size:.55+Math.random()*1.15
+  }));
+}
+
+function insideText(x,y){
+  if(!mask) return false;
+  const ix = Math.max(0,Math.min(canvas.width-1,x|0));
+  const iy = Math.max(0,Math.min(canvas.height-1,y|0));
+  return mask[(iy*canvas.width+ix)*4] > 127;
+}
+
+function step(dt){
+  const baseSpeed = Number(speedInput.value) * canvas.width / 960;
+  for(const p of particles){
+    const direction = insideText(p.x,p.y) ? -1 : 1;
+    p.x += direction * baseSpeed * dt;
+    p.y += Math.sin(p.phase + p.x*.012) * p.drift;
+    if(p.x < 0) p.x += canvas.width;
+    else if(p.x >= canvas.width) p.x -= canvas.width;
+    if(p.y < 0) p.y += canvas.height;
+    else if(p.y >= canvas.height) p.y -= canvas.height;
+  }
+}
+
+function draw(){
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#090909';
+  ctx.beginPath();
+  for(const p of particles){
+    ctx.moveTo(p.x+p.size,p.y);
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+  }
+  ctx.fill();
+}
+
+function animate(now){
+  resizeBackingStore();
+  const dt = Math.min((now-previousTime)/1000,.04);
+  previousTime = now;
+  if(!exporting) step(dt);
+  draw();
+  requestAnimationFrame(animate);
+}
+
+function updateMask(){buildMask()}
+messageInput.addEventListener('input',updateMask);
+textSizeInput.addEventListener('input',updateMask);
+densityInput.addEventListener('change',seedParticles);
+randomizeButton.addEventListener('click',seedParticles);
+window.addEventListener('resize',resizeBackingStore);
+
+async function exportGif(){
+  exporting = true;
+  exportButton.disabled = true;
+  status.textContent = 'Rendering GIF…';
+
+  try{
+    const gif = GIFEncoder();
+    const frames = 48;
+    const delay = 1000/24;
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = 640;
+    exportCanvas.height = 360;
+    const exportCtx = exportCanvas.getContext('2d',{alpha:false});
+
+    for(let i=0;i<frames;i++){
+      step(1/24);
+      draw();
+      exportCtx.drawImage(canvas,0,0,exportCanvas.width,exportCanvas.height);
+      const image = exportCtx.getImageData(0,0,exportCanvas.width,exportCanvas.height);
+      const palette = quantize(image.data, 16);
+      const index = applyPalette(image.data, palette);
+      gif.writeFrame(index, exportCanvas.width, exportCanvas.height, {palette,delay});
+      if(i % 6 === 0){
+        status.textContent = `Rendering GIF… ${Math.round((i+1)/frames*100)}%`;
+        await new Promise(requestAnimationFrame);
+      }
+    }
+
+    gif.finish();
+    const blob = new Blob([gif.bytes()], {type:'image/gif'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ghost-font.gif';
+    link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status.textContent = 'GIF exported.';
+  }catch(error){
+    console.error(error);
+    status.textContent = 'GIF export failed. Try a smaller dot count or reload the page.';
+  }finally{
+    exporting = false;
+    exportButton.disabled = false;
+    previousTime = performance.now();
+  }
+}
+
+exportButton.addEventListener('click',exportGif);
+resizeBackingStore();
+buildMask();
+seedParticles();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
