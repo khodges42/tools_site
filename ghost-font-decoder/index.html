@@ -6,34 +6,64 @@
 <title>Ghost Font Decoder</title>
 <style>
   :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #0d0d0d; color: #eee; font: 16px/1.5 system-ui, sans-serif; }
-  main { width: min(1100px, calc(100% - 28px)); margin: 28px auto 60px; }
+  body {
+    margin: 0;
+    background: #101010;
+    color: #eee;
+    font: 16px/1.45 system-ui, sans-serif;
+  }
+  main {
+    max-width: 1000px;
+    margin: 24px auto 60px;
+    padding: 0 14px;
+  }
   a { color: inherit; }
-  h1 { margin: 12px 0 6px; font-size: 2rem; }
-  h2 { margin: 28px 0 8px; font-size: 1.15rem; }
-  p { max-width: 820px; }
-  .intro, .small { color: #bbb; }
-  .controls { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 18px 0; align-items: end; }
-  label { display: grid; gap: 4px; color: #bbb; font-size: .9rem; }
-  input, button { border: 1px solid #555; border-radius: 2px; background: #111; color: #eee; font: inherit; min-height: 38px; }
-  input[type="file"] { padding: 6px; max-width: 100%; }
-  input[type="range"] { min-height: auto; width: 190px; }
-  button { padding: 6px 12px; cursor: pointer; }
+  h1 { font-size: 1.8rem; margin: 12px 0 4px; }
+  h2 { font-size: 1.05rem; margin: 28px 0 6px; }
+  p { max-width: 760px; }
+  .muted, figcaption, label, #status { color: #aaa; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin: 18px 0 10px;
+    align-items: end;
+  }
+  label { display: grid; gap: 3px; font-size: .9rem; }
+  input, select, button {
+    font: inherit;
+    color: #eee;
+    background: #151515;
+    border: 1px solid #555;
+    border-radius: 0;
+  }
+  input[type="file"] { max-width: 100%; padding: 5px; }
+  input[type="range"] { width: 170px; }
+  select, button { min-height: 36px; padding: 5px 9px; }
+  button { cursor: pointer; }
   button:disabled { opacity: .5; cursor: wait; }
   output { color: #eee; font-variant-numeric: tabular-nums; }
-  .status { min-height: 1.5em; margin: 8px 0; color: #bbb; }
-  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  #status { min-height: 1.5em; margin: 8px 0 16px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
   figure { margin: 0; }
-  figcaption { margin-bottom: 6px; color: #bbb; font-size: .9rem; }
-  .canvas-box { border: 1px solid #555; background: #fff; overflow: hidden; }
-  canvas { display: block; width: 100%; height: auto; }
-  #sourcePreview { max-height: 460px; object-fit: contain; width: 100%; background: #fff; border: 1px solid #555; }
+  figcaption { margin-bottom: 4px; font-size: .9rem; }
+  canvas, #sourcePreview {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: white;
+    border: 1px solid #555;
+  }
+  #sourcePreview { max-height: 440px; object-fit: contain; }
   .wide { grid-column: 1 / -1; }
-  @media (max-width: 720px) {
+  @media (max-width: 700px) {
     .grid { grid-template-columns: 1fr; }
     .wide { grid-column: auto; }
-    input[type="range"] { width: min(280px, 80vw); }
+    input[type="range"] { width: min(270px, 80vw); }
   }
 </style>
 </head>
@@ -41,31 +71,67 @@
 <main>
   <a href="/">← tools.khod.net</a>
   <h1>Ghost Font Decoder</h1>
-  <p class="intro">Load an animated GIF and watch a small motion-analysis pipeline try to recover the message. Everything runs locally in your browser. Nothing is uploaded.</p>
+  <p class="muted">Drop in a Ghost Font GIF and this tries to pull the text back out. It runs in your browser. Nothing gets uploaded.</p>
 
   <div class="controls">
-    <label>GIF file <input id="file" type="file" accept="image/gif"></label>
-    <label>frame gap: <output id="gapValue">3</output><input id="gap" type="range" min="1" max="12" step="1" value="3"></label>
-    <label>tile size: <output id="tileValue">8</output> px<input id="tile" type="range" min="4" max="20" step="2" value="8"></label>
-    <label>motion distance: <output id="shiftValue">auto</output><input id="shift" type="range" min="0" max="12" step="1" value="0"></label>
-    <label>confidence: <output id="thresholdValue">0.08</output><input id="threshold" type="range" min="0" max="0.35" step="0.01" value="0.08"></label>
+    <label>GIF
+      <input id="file" type="file" accept="image/gif">
+    </label>
+    <label>analysis width
+      <select id="resolution">
+        <option value="360">360 px</option>
+        <option value="480">480 px</option>
+        <option value="640" selected>640 px</option>
+        <option value="800">800 px</option>
+      </select>
+    </label>
+    <label>frame gap: <output id="gapValue">1</output>
+      <input id="gap" type="range" min="1" max="12" step="1" value="1">
+    </label>
+    <label>window: <output id="tileValue">4</output> px
+      <input id="tile" type="range" min="4" max="20" step="2" value="4">
+    </label>
+    <label>motion: <output id="shiftValue">auto</output>
+      <input id="shift" type="range" min="0" max="16" step="1" value="0">
+    </label>
+    <label>confidence: <output id="thresholdValue">0.06</output>
+      <input id="threshold" type="range" min="0" max="0.35" step="0.01" value="0.06">
+    </label>
     <button id="analyze" type="button" disabled>analyze</button>
   </div>
 
-  <div id="status" class="status" aria-live="polite">Choose a GIF to begin.</div>
+  <div id="status" aria-live="polite">Choose a GIF.</div>
 
   <div class="grid">
-    <figure class="wide"><figcaption>original animation</figcaption><img id="sourcePreview" alt="Uploaded GIF preview"></figure>
-    <figure><figcaption>frame A</figcaption><div class="canvas-box"><canvas id="frameA"></canvas></div></figure>
-    <figure><figcaption>frame B</figcaption><div class="canvas-box"><canvas id="frameB"></canvas></div></figure>
-    <figure><figcaption>absolute frame difference</figcaption><div class="canvas-box"><canvas id="difference"></canvas></div></figure>
-    <figure><figcaption>local motion direction</figcaption><div class="canvas-box"><canvas id="motion"></canvas></div></figure>
-    <figure class="wide"><figcaption>accumulated recovered mask</figcaption><div class="canvas-box"><canvas id="recovered"></canvas></div></figure>
+    <figure class="wide">
+      <figcaption>the GIF</figcaption>
+      <img id="sourcePreview" alt="Uploaded GIF preview">
+    </figure>
+    <figure>
+      <figcaption>frame A</figcaption>
+      <canvas id="frameA"></canvas>
+    </figure>
+    <figure>
+      <figcaption>frame B</figcaption>
+      <canvas id="frameB"></canvas>
+    </figure>
+    <figure>
+      <figcaption>difference</figcaption>
+      <canvas id="difference"></canvas>
+    </figure>
+    <figure>
+      <figcaption>left/right guess</figcaption>
+      <canvas id="motion"></canvas>
+    </figure>
+    <figure class="wide">
+      <figcaption>recovered mask</figcaption>
+      <canvas id="recovered"></canvas>
+    </figure>
   </div>
 
-  <h2>What this is doing</h2>
-  <p>Each tile is tested against two hypotheses: “did this patch move left?” and “did it move right?” The decoder compares many frame pairs, accumulates the winning direction for every tile, and thresholds the result. It is deliberately narrow, not a general optical-flow implementation.</p>
-  <p class="small">Large GIFs are sampled and downscaled before analysis so the page does not keep every full-resolution frame in memory.</p>
+  <h2>What it does</h2>
+  <p>It compares two frames and asks whether each small patch lines up better after shifting left or right. Then it repeats that across the GIF and averages the guesses.</p>
+  <p class="muted">This is still rough. Small frame gaps and small windows usually work best. The windows overlap now, so the final mask is less blocky. Higher analysis width keeps more detail, but it uses more memory and takes longer.</p>
 </main>
 
 <script type="module">
@@ -73,6 +139,7 @@ import { parseGIF, decompressFrames } from 'https://cdn.jsdelivr.net/npm/gifuct-
 
 const $ = selector => document.querySelector(selector);
 const fileInput = $('#file');
+const resolutionInput = $('#resolution');
 const analyzeButton = $('#analyze');
 const status = $('#status');
 const sourcePreview = $('#sourcePreview');
@@ -84,10 +151,19 @@ const gapValue = $('#gapValue');
 const tileValue = $('#tileValue');
 const shiftValue = $('#shiftValue');
 const thresholdValue = $('#thresholdValue');
-const canvases = { frameA: $('#frameA'), frameB: $('#frameB'), difference: $('#difference'), motion: $('#motion'), recovered: $('#recovered') };
+const canvases = {
+  frameA: $('#frameA'),
+  frameB: $('#frameB'),
+  difference: $('#difference'),
+  motion: $('#motion'),
+  recovered: $('#recovered'),
+};
 
 let objectUrl = null;
 let decoded = null;
+let loadGeneration = 0;
+
+if (matchMedia('(max-width: 700px)').matches) resolutionInput.value = '480';
 
 function updateOutputs() {
   gapValue.textContent = gapInput.value;
@@ -95,19 +171,28 @@ function updateOutputs() {
   shiftValue.textContent = Number(shiftInput.value) === 0 ? 'auto' : `${shiftInput.value}px`;
   thresholdValue.textContent = Number(thresholdInput.value).toFixed(2);
 }
-for (const input of [gapInput, tileInput, shiftInput, thresholdInput]) input.addEventListener('input', updateOutputs);
+for (const input of [gapInput, tileInput, shiftInput, thresholdInput]) {
+  input.addEventListener('input', updateOutputs);
+}
 updateOutputs();
 
 const yieldToBrowser = () => new Promise(resolve => requestAnimationFrame(resolve));
-function setCanvasSize(canvas, width, height) { canvas.width = width; canvas.height = height; }
+
+function setCanvasSize(canvas, width, height) {
+  canvas.width = width;
+  canvas.height = height;
+}
 
 function drawGray(canvas, gray, width, height) {
   setCanvasSize(canvas, width, height);
   const ctx = canvas.getContext('2d');
   const image = ctx.createImageData(width, height);
   for (let i = 0; i < gray.length; i++) {
-    const value = gray[i], p = i * 4;
-    image.data[p] = image.data[p + 1] = image.data[p + 2] = value;
+    const value = gray[i];
+    const p = i * 4;
+    image.data[p] = value;
+    image.data[p + 1] = value;
+    image.data[p + 2] = value;
     image.data[p + 3] = 255;
   }
   ctx.putImageData(image, 0, 0);
@@ -117,7 +202,9 @@ function makeSampleIndices(frameCount, maxFrames) {
   const count = Math.min(frameCount, maxFrames);
   const indices = new Set();
   if (count <= 1) return new Set([0]);
-  for (let i = 0; i < count; i++) indices.add(Math.round(i * (frameCount - 1) / (count - 1)));
+  for (let i = 0; i < count; i++) {
+    indices.add(Math.round(i * (frameCount - 1) / (count - 1)));
+  }
   return indices;
 }
 
@@ -125,11 +212,13 @@ function createGrayScaler(sourceWidth, sourceHeight, maxWidth) {
   const scale = Math.min(1, maxWidth / sourceWidth);
   const width = Math.max(1, Math.round(sourceWidth * scale));
   const height = Math.max(1, Math.round(sourceHeight * scale));
+
   const source = document.createElement('canvas');
   source.width = sourceWidth;
   source.height = sourceHeight;
   const sourceCtx = source.getContext('2d');
   const sourceImage = sourceCtx.createImageData(sourceWidth, sourceHeight);
+
   const target = document.createElement('canvas');
   target.width = width;
   target.height = height;
@@ -142,12 +231,14 @@ function createGrayScaler(sourceWidth, sourceHeight, maxWidth) {
     scale(gray) {
       const rgba = sourceImage.data;
       for (let i = 0; i < gray.length; i++) {
-        const p = i * 4, value = gray[i];
-        rgba[p] = rgba[p + 1] = rgba[p + 2] = value;
+        const value = gray[i];
+        const p = i * 4;
+        rgba[p] = value;
+        rgba[p + 1] = value;
+        rgba[p + 2] = value;
         rgba[p + 3] = 255;
       }
       sourceCtx.putImageData(sourceImage, 0, 0);
-      targetCtx.clearRect(0, 0, width, height);
       targetCtx.drawImage(source, 0, 0, width, height);
       const pixels = targetCtx.getImageData(0, 0, width, height).data;
       const result = new Uint8Array(width * height);
@@ -157,12 +248,11 @@ function createGrayScaler(sourceWidth, sourceHeight, maxWidth) {
   };
 }
 
-async function compositeSampledFrames(gif, rawFrames) {
+async function compositeSampledFrames(gif, rawFrames, maxWidth, generation) {
   const width = gif.lsd.width;
   const height = gif.lsd.height;
-  const isSmallScreen = matchMedia('(max-width: 720px)').matches;
-  const maxFrames = isSmallScreen ? 48 : 72;
-  const maxWidth = isSmallScreen ? 280 : 360;
+  const isSmallScreen = matchMedia('(max-width: 700px)').matches;
+  const maxFrames = isSmallScreen ? 56 : 84;
   const selected = makeSampleIndices(rawFrames.length, maxFrames);
   const scaler = createGrayScaler(width, height, maxWidth);
   const composed = new Uint8Array(width * height);
@@ -171,6 +261,7 @@ async function compositeSampledFrames(gif, rawFrames) {
   let restore = null;
 
   for (let index = 0; index < rawFrames.length; index++) {
+    if (generation !== loadGeneration) throw new Error('superseded');
     const frame = rawFrames[index];
     if (frame.disposalType === 3) restore = composed.slice();
 
@@ -192,19 +283,29 @@ async function compositeSampledFrames(gif, rawFrames) {
     if (selected.has(index)) frames.push(scaler.scale(composed));
 
     if (frame.disposalType === 2) {
-      for (let y = 0; y < fh; y++) composed.fill(255, (top + y) * width + left, (top + y) * width + left + fw);
+      for (let y = 0; y < fh; y++) {
+        const start = (top + y) * width + left;
+        composed.fill(255, start, start + fw);
+      }
     } else if (frame.disposalType === 3 && restore) {
       composed.set(restore);
       restore = null;
     }
 
     if (index % 8 === 0) {
-      status.textContent = `Compositing frame ${index + 1} of ${rawFrames.length}…`;
+      status.textContent = `reading frame ${index + 1}/${rawFrames.length}`;
       await yieldToBrowser();
     }
   }
 
-  return { width: scaler.width, height: scaler.height, frames, sourceWidth: width, sourceHeight: height, sourceFrames: rawFrames.length };
+  return {
+    width: scaler.width,
+    height: scaler.height,
+    frames,
+    sourceWidth: width,
+    sourceHeight: height,
+    sourceFrames: rawFrames.length,
+  };
 }
 
 function frameDifference(a, b) {
@@ -213,10 +314,13 @@ function frameDifference(a, b) {
   return result;
 }
 
-function tileErrors(a, b, width, height, startX, startY, tileSize, shift) {
-  let left = 0, right = 0, samples = 0;
-  const endX = Math.min(startX + tileSize, width);
-  const endY = Math.min(startY + tileSize, height);
+function tileErrors(a, b, width, height, startX, startY, size, shift) {
+  let left = 0;
+  let right = 0;
+  let samples = 0;
+  const endX = Math.min(startX + size, width);
+  const endY = Math.min(startY + size, height);
+
   for (let y = startY; y < endY; y++) {
     const row = y * width;
     for (let x = startX; x < endX; x++) {
@@ -230,120 +334,204 @@ function tileErrors(a, b, width, height, startX, startY, tileSize, shift) {
   return { left, right, samples };
 }
 
-function scorePair(a, b, width, height, tileSize, shift) {
-  const cols = Math.ceil(width / tileSize), rows = Math.ceil(height / tileSize);
+function scorePair(a, b, width, height, windowSize, shift) {
+  const step = Math.max(1, Math.floor(windowSize / 2));
+  const cols = Math.max(1, Math.floor((width - 1) / step) + 1);
+  const rows = Math.max(1, Math.floor((height - 1) / step) + 1);
   const scores = new Float32Array(cols * rows);
+
   for (let ty = 0; ty < rows; ty++) {
     for (let tx = 0; tx < cols; tx++) {
-      const { left, right, samples } = tileErrors(a, b, width, height, tx * tileSize, ty * tileSize, tileSize, shift);
+      const x = tx * step;
+      const y = ty * step;
+      const { left, right, samples } = tileErrors(a, b, width, height, x, y, windowSize, shift);
       if (samples) scores[ty * cols + tx] = (right - left) / Math.max(left + right, 1);
     }
   }
-  return { scores, cols, rows };
+  return { scores, cols, rows, step, windowSize };
 }
 
-function chooseShift(frames, width, height, gap, tileSize) {
+function chooseShift(frames, width, height, gap, windowSize) {
   const pairCount = Math.min(5, Math.max(1, frames.length - gap));
-  let bestShift = 1, bestStrength = -Infinity;
-  for (let shift = 1; shift <= 12; shift++) {
+  let bestShift = 1;
+  let bestStrength = -Infinity;
+  const maxShift = Math.min(16, Math.max(2, Math.floor(width / 30)));
+
+  for (let shift = 1; shift <= maxShift; shift++) {
     let strength = 0;
     for (let i = 0; i < pairCount; i++) {
-      const pair = scorePair(frames[i], frames[i + gap], width, height, tileSize, shift);
+      const pair = scorePair(frames[i], frames[i + gap], width, height, windowSize, shift);
       for (const score of pair.scores) strength += Math.abs(score);
     }
     strength /= pairCount;
-    if (strength > bestStrength) { bestStrength = strength; bestShift = shift; }
+    if (strength > bestStrength) {
+      bestStrength = strength;
+      bestShift = shift;
+    }
   }
   return bestShift;
 }
 
-function drawTileMap(canvas, scores, cols, rows, tileSize, width, height, threshold = 0) {
-  setCanvasSize(canvas, width, height);
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#888';
-  ctx.fillRect(0, 0, width, height);
+function paintScores(scores, cols, rows, step, windowSize, width, height) {
+  const sums = new Float32Array(width * height);
+  const counts = new Uint16Array(width * height);
+
   for (let ty = 0; ty < rows; ty++) {
     for (let tx = 0; tx < cols; tx++) {
       const score = scores[ty * cols + tx];
-      const value = Math.abs(score) < threshold ? 128 : score > 0 ? 235 : 20;
-      ctx.fillStyle = `rgb(${value},${value},${value})`;
-      ctx.fillRect(tx * tileSize, ty * tileSize, tileSize, tileSize);
+      const startX = tx * step;
+      const startY = ty * step;
+      const endX = Math.min(startX + windowSize, width);
+      const endY = Math.min(startY + windowSize, height);
+      for (let y = startY; y < endY; y++) {
+        const row = y * width;
+        for (let x = startX; x < endX; x++) {
+          const i = row + x;
+          sums[i] += score;
+          counts[i]++;
+        }
+      }
     }
   }
+
+  const result = new Float32Array(width * height);
+  for (let i = 0; i < result.length; i++) result[i] = counts[i] ? sums[i] / counts[i] : 0;
+  return result;
 }
 
-async function decodeFile(file) {
-  if (file.size > 100 * 1024 * 1024) throw new Error('GIF is larger than 100 MB');
+function blurScoreMap(input, width, height, radius = 1) {
+  if (radius <= 0) return input;
+  const output = new Float32Array(input.length);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let sum = 0;
+      let count = 0;
+      for (let dy = -radius; dy <= radius; dy++) {
+        const yy = y + dy;
+        if (yy < 0 || yy >= height) continue;
+        for (let dx = -radius; dx <= radius; dx++) {
+          const xx = x + dx;
+          if (xx < 0 || xx >= width) continue;
+          sum += input[yy * width + xx];
+          count++;
+        }
+      }
+      output[y * width + x] = sum / count;
+    }
+  }
+  return output;
+}
+
+function drawScoreMap(canvas, map, width, height, threshold, smooth = false) {
+  setCanvasSize(canvas, width, height);
+  const ctx = canvas.getContext('2d');
+  const source = smooth ? blurScoreMap(map, width, height, 1) : map;
+  const image = ctx.createImageData(width, height);
+
+  for (let i = 0; i < source.length; i++) {
+    const score = source[i];
+    let value = 128;
+    if (Math.abs(score) >= threshold) value = score > 0 ? 245 : 15;
+    const p = i * 4;
+    image.data[p] = value;
+    image.data[p + 1] = value;
+    image.data[p + 2] = value;
+    image.data[p + 3] = 255;
+  }
+  ctx.putImageData(image, 0, 0);
+}
+
+async function decodeFile(file, generation) {
+  if (file.size > 100 * 1024 * 1024) throw new Error('That GIF is over 100 MB. I am not fighting it in Safari.');
   const buffer = await file.arrayBuffer();
   const gif = parseGIF(buffer);
   const pixels = gif.lsd.width * gif.lsd.height;
-  if (pixels > 16_000_000) throw new Error('GIF dimensions are too large for this browser demo');
-  status.textContent = 'Decompressing indexed GIF frames…';
+  if (pixels > 16_000_000) throw new Error('Those dimensions are too large for this browser demo.');
+  status.textContent = 'unpacking GIF frames…';
   await yieldToBrowser();
   const rawFrames = decompressFrames(gif, false);
-  return compositeSampledFrames(gif, rawFrames);
+  return compositeSampledFrames(gif, rawFrames, Number(resolutionInput.value), generation);
 }
 
-fileInput.addEventListener('change', async () => {
+async function loadSelectedFile() {
   const file = fileInput.files?.[0];
   if (!file) return;
+  const generation = ++loadGeneration;
   analyzeButton.disabled = true;
   decoded = null;
-  status.textContent = 'Reading GIF…';
+  status.textContent = 'reading GIF…';
+
   if (objectUrl) URL.revokeObjectURL(objectUrl);
   objectUrl = URL.createObjectURL(file);
   sourcePreview.src = objectUrl;
 
   try {
-    decoded = await decodeFile(file);
+    const result = await decodeFile(file, generation);
+    if (generation !== loadGeneration) return;
+    decoded = result;
     gapInput.max = String(Math.max(1, Math.min(12, decoded.frames.length - 1)));
     if (Number(gapInput.value) > Number(gapInput.max)) gapInput.value = gapInput.max;
     updateOutputs();
     analyzeButton.disabled = decoded.frames.length < 2;
-    status.textContent = `Loaded ${decoded.sourceFrames} source frames at ${decoded.sourceWidth}×${decoded.sourceHeight}; retained ${decoded.frames.length} sampled frames at ${decoded.width}×${decoded.height}.`;
+    status.textContent = `${decoded.sourceFrames} frames, ${decoded.sourceWidth}×${decoded.sourceHeight}. Analyzing ${decoded.frames.length} samples at ${decoded.width}×${decoded.height}.`;
   } catch (error) {
+    if (error?.message === 'superseded') return;
     console.error(error);
+    decoded = null;
     status.textContent = error?.message || 'Could not decode this GIF.';
   }
+}
+
+fileInput.addEventListener('change', loadSelectedFile);
+resolutionInput.addEventListener('change', () => {
+  if (fileInput.files?.[0]) loadSelectedFile();
 });
 
 analyzeButton.addEventListener('click', async () => {
   if (!decoded) return;
   analyzeButton.disabled = true;
+
   try {
     const gap = Math.max(1, Math.min(Number(gapInput.value), decoded.frames.length - 1));
-    const tileSize = Number(tileInput.value);
+    const windowSize = Number(tileInput.value);
     const threshold = Number(thresholdInput.value);
     let shift = Number(shiftInput.value);
 
     if (shift === 0) {
-      status.textContent = 'Estimating horizontal motion distance…';
+      status.textContent = 'guessing motion distance…';
       await yieldToBrowser();
-      shift = chooseShift(decoded.frames, decoded.width, decoded.height, gap, tileSize);
+      shift = chooseShift(decoded.frames, decoded.width, decoded.height, gap, windowSize);
       shiftValue.textContent = `auto → ${shift}px`;
     }
 
-    const firstA = decoded.frames[0], firstB = decoded.frames[gap];
+    const firstA = decoded.frames[0];
+    const firstB = decoded.frames[gap];
     drawGray(canvases.frameA, firstA, decoded.width, decoded.height);
     drawGray(canvases.frameB, firstB, decoded.width, decoded.height);
     drawGray(canvases.difference, frameDifference(firstA, firstB), decoded.width, decoded.height);
 
-    const firstPair = scorePair(firstA, firstB, decoded.width, decoded.height, tileSize, shift);
-    drawTileMap(canvases.motion, firstPair.scores, firstPair.cols, firstPair.rows, tileSize, decoded.width, decoded.height, threshold);
+    const firstPair = scorePair(firstA, firstB, decoded.width, decoded.height, windowSize, shift);
+    const firstMap = paintScores(firstPair.scores, firstPair.cols, firstPair.rows, firstPair.step, firstPair.windowSize, decoded.width, decoded.height);
+    drawScoreMap(canvases.motion, firstMap, decoded.width, decoded.height, threshold, false);
 
     const evidence = new Float32Array(firstPair.scores.length);
     let pairs = 0;
-    const stride = Math.max(1, Math.floor((decoded.frames.length - gap) / 36));
+    const stride = Math.max(1, Math.floor((decoded.frames.length - gap) / 44));
+
     for (let i = 0; i + gap < decoded.frames.length; i += stride) {
-      const pair = scorePair(decoded.frames[i], decoded.frames[i + gap], decoded.width, decoded.height, tileSize, shift);
+      const pair = scorePair(decoded.frames[i], decoded.frames[i + gap], decoded.width, decoded.height, windowSize, shift);
       for (let j = 0; j < evidence.length; j++) evidence[j] += pair.scores[j];
       pairs++;
-      if (pairs % 5 === 0) { status.textContent = `Analyzing motion… ${pairs} frame pairs`; await yieldToBrowser(); }
+      if (pairs % 4 === 0) {
+        status.textContent = `analyzing… ${pairs} frame pairs`;
+        await yieldToBrowser();
+      }
     }
 
     for (let i = 0; i < evidence.length; i++) evidence[i] /= Math.max(pairs, 1);
-    drawTileMap(canvases.recovered, evidence, firstPair.cols, firstPair.rows, tileSize, decoded.width, decoded.height, threshold);
-    status.textContent = `Done. Compared ${pairs} sampled frame pairs using a ${gap}-frame gap and ${shift}px motion.`;
+    const recoveredMap = paintScores(evidence, firstPair.cols, firstPair.rows, firstPair.step, firstPair.windowSize, decoded.width, decoded.height);
+    drawScoreMap(canvases.recovered, recoveredMap, decoded.width, decoded.height, threshold, true);
+    status.textContent = `done. ${pairs} frame pairs, gap ${gap}, motion ${shift}px.`;
   } catch (error) {
     console.error(error);
     status.textContent = 'Analysis failed.';
