@@ -64,7 +64,7 @@
   </div>
 
   <div class="options">
-    <label>dot count: <output id="densityValue">16000</output><input id="density" type="range" min="6000" max="24000" step="1000" value="16000"></label>
+    <label>dot count: <output id="densityValue">10000</output><input id="density" type="range" min="4000" max="20000" step="1000" value="10000"></label>
     <label>loop time: <output id="speedValue">12s</output><input id="speed" type="range" min="6" max="20" step="1" value="12"></label>
     <label>text size: <output id="textSizeValue">150</output><input id="textSize" type="range" min="60" max="210" step="2" value="150"></label>
   </div>
@@ -115,38 +115,14 @@ function normalizeMessage(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
-function resizeBackingStore() {
-  const rect = canvas.getBoundingClientRect();
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
-  const width = Math.max(960, Math.round(rect.width * ratio));
-  const height = Math.round(width * 9 / 16);
-  const canvasChanged = canvas.width !== width || canvas.height !== height;
-  const maskChanged = maskCanvas.width !== width || maskCanvas.height !== height;
-
-  if (!canvasChanged && !maskChanged) return;
-
-  if (canvasChanged) {
-    canvas.width = width;
-    canvas.height = height;
-  }
-
-  if (maskChanged) {
-    maskCanvas.width = width;
-    maskCanvas.height = height;
-  }
-
-  buildMask();
-  seedParticles();
-}
-
-function chooseLines(text, requestedSize) {
-  const maxWidth = canvas.width * .84;
-  const scale = canvas.width / 960;
+function chooseLines(text, requestedSize, width, targetCtx) {
+  const maxWidth = width * .84;
+  const scale = width / 960;
   let size = requestedSize * scale;
 
   function widthOf(value, fontSize = size) {
-    maskCtx.font = `900 ${fontSize}px Arial, Helvetica, sans-serif`;
-    return maskCtx.measureText(value).width;
+    targetCtx.font = `900 ${fontSize}px Arial, Helvetica, sans-serif`;
+    return targetCtx.measureText(value).width;
   }
 
   if (widthOf(text) <= maxWidth) return { lines: [text], size, warning: '' };
@@ -172,73 +148,103 @@ function chooseLines(text, requestedSize) {
   };
 }
 
-function buildMask() {
+function makeMask(width, height, targetCanvas, targetCtx, showWarning = false) {
+  targetCanvas.width = width;
+  targetCanvas.height = height;
   const text = normalizeMessage(messageInput.value);
-  maskCtx.fillStyle = '#000';
-  maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+
+  targetCtx.fillStyle = '#000';
+  targetCtx.fillRect(0, 0, width, height);
 
   if (!text) {
-    mask = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height).data;
-    status.textContent = 'Enter a message.';
-    return;
+    if (showWarning) status.textContent = 'Enter a message.';
+    return targetCtx.getImageData(0, 0, width, height).data;
   }
 
-  const layout = chooseLines(text, Number(textSizeInput.value));
-  maskCtx.font = `900 ${layout.size}px Arial, Helvetica, sans-serif`;
-  maskCtx.textAlign = 'center';
-  maskCtx.textBaseline = 'middle';
-  maskCtx.fillStyle = '#fff';
+  const layout = chooseLines(text, Number(textSizeInput.value), width, targetCtx);
+  targetCtx.font = `900 ${layout.size}px Arial, Helvetica, sans-serif`;
+  targetCtx.textAlign = 'center';
+  targetCtx.textBaseline = 'middle';
+  targetCtx.fillStyle = '#fff';
 
   const lineHeight = layout.size * 1.05;
-  const startY = maskCanvas.height / 2 - ((layout.lines.length - 1) * lineHeight) / 2;
+  const startY = height / 2 - ((layout.lines.length - 1) * lineHeight) / 2;
   layout.lines.forEach((line, index) => {
-    maskCtx.fillText(line, maskCanvas.width / 2, startY + index * lineHeight, maskCanvas.width * .88);
+    targetCtx.fillText(line, width / 2, startY + index * lineHeight, width * .88);
   });
 
-  mask = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height).data;
-  status.textContent = layout.warning;
-  status.className = layout.warning ? 'status warning' : 'status';
+  if (showWarning) {
+    status.textContent = layout.warning;
+    status.className = layout.warning ? 'status warning' : 'status';
+  }
+  return targetCtx.getImageData(0, 0, width, height).data;
+}
+
+function rebuildLiveMask() {
+  mask = makeMask(canvas.width, canvas.height, maskCanvas, maskCtx, true);
+}
+
+function resizeBackingStore() {
+  const rect = canvas.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const width = Math.max(960, Math.round(rect.width * ratio));
+  const height = Math.round(width * 9 / 16);
+  const canvasChanged = canvas.width !== width || canvas.height !== height;
+  const maskChanged = maskCanvas.width !== width || maskCanvas.height !== height;
+  if (!canvasChanged && !maskChanged) return;
+  canvas.width = width;
+  canvas.height = height;
+  rebuildLiveMask();
+  seedParticles();
 }
 
 function seedParticles() {
   const count = Number(densityInput.value);
   particles = Array.from({ length: count }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: .7 + Math.random() * 1.25,
+    x: Math.random(),
+    y: Math.random(),
+    size: .65 + Math.random() * .85,
   }));
   offset = 0;
 }
 
-function insideText(x, y) {
-  if (!mask) return false;
-  const ix = Math.max(0, Math.min(canvas.width - 1, x | 0));
-  const iy = Math.max(0, Math.min(canvas.height - 1, y | 0));
-  return mask[(iy * canvas.width + ix) * 4] > 127;
+function wrapped(value) {
+  value %= 1;
+  return value < 0 ? value + 1 : value;
 }
 
-function wrappedX(x) {
-  x %= canvas.width;
-  return x < 0 ? x + canvas.width : x;
+function insideMask(maskData, width, height, x, y) {
+  const ix = Math.max(0, Math.min(width - 1, Math.floor(x * width)));
+  const iy = Math.max(0, Math.min(height - 1, Math.floor(y * height)));
+  return maskData[(iy * width + ix) * 4] > 127;
 }
 
-function drawField(direction, drawInside) {
-  ctx.beginPath();
-  for (const p of particles) {
-    const x = wrappedX(p.x + direction * offset);
-    if (insideText(x, p.y) !== drawInside) continue;
-    ctx.moveTo(x + p.size, p.y);
-    ctx.arc(x, p.y, p.size, 0, Math.PI * 2);
+function render(targetCtx, width, height, maskData, normalizedOffset, particleSet = particles) {
+  targetCtx.fillStyle = '#fff';
+  targetCtx.fillRect(0, 0, width, height);
+  targetCtx.fillStyle = '#090909';
+  const scale = width / 960;
+
+  function drawField(direction, drawInside) {
+    targetCtx.beginPath();
+    for (const p of particleSet) {
+      const nx = wrapped(p.x + direction * normalizedOffset);
+      if (insideMask(maskData, width, height, nx, p.y) !== drawInside) continue;
+      const x = nx * width;
+      const y = p.y * height;
+      const radius = p.size * scale;
+      targetCtx.moveTo(x + radius, y);
+      targetCtx.arc(x, y, radius, 0, Math.PI * 2);
+    }
+    targetCtx.fill();
   }
-  ctx.fill();
+
+  drawField(1, false);
+  drawField(-1, true);
 }
 
 function draw() {
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#090909';
-  drawField(1, false);
-  drawField(-1, true);
+  render(ctx, canvas.width, canvas.height, mask, offset);
 }
 
 function animate(now) {
@@ -246,8 +252,7 @@ function animate(now) {
   const dt = Math.min((now - previousTime) / 1000, .04);
   previousTime = now;
   if (!paused && !exporting) {
-    const loopSeconds = Number(speedInput.value);
-    offset = wrappedX(offset + canvas.width / loopSeconds * dt);
+    offset = wrapped(offset + dt / Number(speedInput.value));
   }
   draw();
   requestAnimationFrame(animate);
@@ -259,14 +264,14 @@ function updateOutputs() {
   textSizeValue.textContent = textSizeInput.value;
 }
 
-messageInput.addEventListener('input', buildMask);
+messageInput.addEventListener('input', rebuildLiveMask);
 messageInput.addEventListener('blur', () => {
   messageInput.value = normalizeMessage(messageInput.value);
-  buildMask();
+  rebuildLiveMask();
 });
 textSizeInput.addEventListener('input', () => {
   updateOutputs();
-  buildMask();
+  rebuildLiveMask();
 });
 densityInput.addEventListener('input', updateOutputs);
 densityInput.addEventListener('change', seedParticles);
@@ -285,33 +290,42 @@ async function exportGif() {
   exporting = true;
   exportButton.disabled = true;
   status.className = 'status';
-  status.textContent = 'Rendering 960×540 GIF…';
+
+  const exportWidth = 1280;
+  const exportHeight = 720;
+  const duration = Number(speedInput.value);
+  const fps = 20;
+  const frames = Math.round(duration * fps);
+  status.textContent = `Rendering ${exportWidth}×${exportHeight} GIF…`;
 
   try {
-    const { GIFEncoder, quantize, applyPalette } = await import('https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm');
+    const { GIFEncoder, applyPalette } = await import('https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm');
     const gif = GIFEncoder();
-    const duration = Number(speedInput.value);
-    const fps = 15;
-    const frames = Math.round(duration * fps);
     const delay = 1000 / fps;
     const exportCanvas = document.createElement('canvas');
-    exportCanvas.width = 960;
-    exportCanvas.height = 540;
     const exportCtx = exportCanvas.getContext('2d', { alpha: false });
-    exportCtx.imageSmoothingEnabled = true;
-    exportCtx.imageSmoothingQuality = 'high';
+    const exportMaskCanvas = document.createElement('canvas');
+    const exportMaskCtx = exportMaskCanvas.getContext('2d', { willReadFrequently: true });
+    exportCanvas.width = exportWidth;
+    exportCanvas.height = exportHeight;
+    const exportMask = makeMask(exportWidth, exportHeight, exportMaskCanvas, exportMaskCtx, false);
+    const palette = [
+      [255, 255, 255],
+      [170, 170, 170],
+      [85, 85, 85],
+      [9, 9, 9],
+    ];
     const savedOffset = offset;
 
     for (let i = 0; i < frames; i++) {
-      offset = canvas.width * i / frames;
-      draw();
-      exportCtx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
-      const image = exportCtx.getImageData(0, 0, exportCanvas.width, exportCanvas.height);
-      const palette = quantize(image.data, 4);
+      const frameOffset = i / frames;
+      render(exportCtx, exportWidth, exportHeight, exportMask, frameOffset);
+      const image = exportCtx.getImageData(0, 0, exportWidth, exportHeight);
       const index = applyPalette(image.data, palette);
-      gif.writeFrame(index, exportCanvas.width, exportCanvas.height, { palette, delay });
-      if (i % 5 === 0) {
-        status.textContent = `Rendering 960×540 GIF… ${Math.round((i + 1) / frames * 100)}%`;
+      gif.writeFrame(index, exportWidth, exportHeight, { palette, delay });
+
+      if (i % 4 === 0) {
+        status.textContent = `Rendering ${exportWidth}×${exportHeight} GIF… ${Math.round((i + 1) / frames * 100)}%`;
         await new Promise(requestAnimationFrame);
       }
     }
@@ -327,10 +341,10 @@ async function exportGif() {
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
-    status.textContent = `GIF exported at 960×540, ${duration}s.`;
+    status.textContent = `GIF exported at ${exportWidth}×${exportHeight}, ${duration}s, ${fps} fps.`;
   } catch (error) {
     console.error(error);
-    status.textContent = 'GIF export failed. The encoder may be unavailable, or this device may be low on memory.';
+    status.textContent = 'GIF export failed. This export is fairly large, so try a shorter loop or a desktop browser.';
   } finally {
     exporting = false;
     exportButton.disabled = false;
@@ -341,7 +355,7 @@ async function exportGif() {
 exportButton.addEventListener('click', exportGif);
 updateOutputs();
 resizeBackingStore();
-buildMask();
+rebuildLiveMask();
 seedParticles();
 requestAnimationFrame(animate);
 </script>
