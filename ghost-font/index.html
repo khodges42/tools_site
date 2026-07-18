@@ -36,6 +36,7 @@
   .options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
   label { display: grid; gap: 5px; color: #bbb; font-size: .9rem; }
   input[type="range"] { width: 100%; min-height: auto; }
+  output { color: #eee; font-variant-numeric: tabular-nums; }
   .status { min-height: 1.5em; margin-top: 8px; color: #bbb; font-size: .9rem; }
   .warning { color: #ffcf70; }
   .small { font-size: .92rem; color: #bbb; }
@@ -63,9 +64,9 @@
   </div>
 
   <div class="options">
-    <label>dot count <input id="density" type="range" min="6000" max="24000" step="1000" value="16000"></label>
-    <label>speed <input id="speed" type="range" min="18" max="80" step="1" value="42"></label>
-    <label>text size <input id="textSize" type="range" min="60" max="210" step="2" value="150"></label>
+    <label>dot count: <output id="densityValue">16000</output><input id="density" type="range" min="6000" max="24000" step="1000" value="16000"></label>
+    <label>loop time: <output id="speedValue">12s</output><input id="speed" type="range" min="6" max="20" step="1" value="12"></label>
+    <label>text size: <output id="textSizeValue">150</output><input id="textSize" type="range" min="60" max="210" step="2" value="150"></label>
   </div>
 
   <div class="status" id="status" aria-live="polite"></div>
@@ -92,6 +93,9 @@ const messageInput = document.querySelector('#message');
 const densityInput = document.querySelector('#density');
 const speedInput = document.querySelector('#speed');
 const textSizeInput = document.querySelector('#textSize');
+const densityValue = document.querySelector('#densityValue');
+const speedValue = document.querySelector('#speedValue');
+const textSizeValue = document.querySelector('#textSizeValue');
 const pauseButton = document.querySelector('#pause');
 const randomizeButton = document.querySelector('#randomize');
 const exportButton = document.querySelector('#export');
@@ -114,7 +118,7 @@ function normalizeMessage(value) {
 function resizeBackingStore() {
   const rect = canvas.getBoundingClientRect();
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
-  const width = Math.max(640, Math.round(rect.width * ratio));
+  const width = Math.max(960, Math.round(rect.width * ratio));
   const height = Math.round(width * 9 / 16);
   if (canvas.width === width && canvas.height === height) return;
   canvas.width = width;
@@ -191,7 +195,7 @@ function seedParticles() {
   particles = Array.from({ length: count }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    size: .55 + Math.random() * 1.1,
+    size: .7 + Math.random() * 1.25,
   }));
   offset = 0;
 }
@@ -232,23 +236,31 @@ function animate(now) {
   const dt = Math.min((now - previousTime) / 1000, .04);
   previousTime = now;
   if (!paused && !exporting) {
-    offset = wrappedX(offset + Number(speedInput.value) * canvas.width / 960 * dt);
+    const loopSeconds = Number(speedInput.value);
+    offset = wrappedX(offset + canvas.width / loopSeconds * dt);
   }
   draw();
   requestAnimationFrame(animate);
 }
 
-function updateMask() {
-  buildMask();
+function updateOutputs() {
+  densityValue.textContent = densityInput.value;
+  speedValue.textContent = `${speedInput.value}s`;
+  textSizeValue.textContent = textSizeInput.value;
 }
 
-messageInput.addEventListener('input', updateMask);
+messageInput.addEventListener('input', buildMask);
 messageInput.addEventListener('blur', () => {
   messageInput.value = normalizeMessage(messageInput.value);
   buildMask();
 });
-textSizeInput.addEventListener('input', updateMask);
+textSizeInput.addEventListener('input', () => {
+  updateOutputs();
+  buildMask();
+});
+densityInput.addEventListener('input', updateOutputs);
 densityInput.addEventListener('change', seedParticles);
+speedInput.addEventListener('input', updateOutputs);
 randomizeButton.addEventListener('click', seedParticles);
 pauseButton.addEventListener('click', () => {
   paused = !paused;
@@ -263,17 +275,21 @@ async function exportGif() {
   exporting = true;
   exportButton.disabled = true;
   status.className = 'status';
-  status.textContent = 'Rendering GIF…';
+  status.textContent = 'Rendering 960×540 GIF…';
 
   try {
     const { GIFEncoder, quantize, applyPalette } = await import('https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm');
     const gif = GIFEncoder();
-    const frames = 72;
-    const delay = 1000 / 24;
+    const duration = Number(speedInput.value);
+    const fps = 15;
+    const frames = Math.round(duration * fps);
+    const delay = 1000 / fps;
     const exportCanvas = document.createElement('canvas');
-    exportCanvas.width = 640;
-    exportCanvas.height = 360;
+    exportCanvas.width = 960;
+    exportCanvas.height = 540;
     const exportCtx = exportCanvas.getContext('2d', { alpha: false });
+    exportCtx.imageSmoothingEnabled = true;
+    exportCtx.imageSmoothingQuality = 'high';
     const savedOffset = offset;
 
     for (let i = 0; i < frames; i++) {
@@ -281,11 +297,11 @@ async function exportGif() {
       draw();
       exportCtx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
       const image = exportCtx.getImageData(0, 0, exportCanvas.width, exportCanvas.height);
-      const palette = quantize(image.data, 16);
+      const palette = quantize(image.data, 4);
       const index = applyPalette(image.data, palette);
       gif.writeFrame(index, exportCanvas.width, exportCanvas.height, { palette, delay });
-      if (i % 6 === 0) {
-        status.textContent = `Rendering GIF… ${Math.round((i + 1) / frames * 100)}%`;
+      if (i % 5 === 0) {
+        status.textContent = `Rendering 960×540 GIF… ${Math.round((i + 1) / frames * 100)}%`;
         await new Promise(requestAnimationFrame);
       }
     }
@@ -301,7 +317,7 @@ async function exportGif() {
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
-    status.textContent = 'GIF exported.';
+    status.textContent = `GIF exported at 960×540, ${duration}s.`;
   } catch (error) {
     console.error(error);
     status.textContent = 'GIF export failed. The encoder may be unavailable, or this device may be low on memory.';
@@ -313,6 +329,7 @@ async function exportGif() {
 }
 
 exportButton.addEventListener('click', exportGif);
+updateOutputs();
 resizeBackingStore();
 buildMask();
 seedParticles();
