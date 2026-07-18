@@ -85,7 +85,7 @@ input[type="range"]{width:100%;min-height:auto;padding:0}
   <section class="about">
     <h2>How it works</h2>
     <p>
-      Every dot looks identical in a still image. Most drift one way, while dots currently crossing the hidden letter shapes drift the opposite way. The message exists in temporal change rather than in any single frame, so pausing or inspecting frames individually reveals little more than noise. It is not encryption, but it is a neat example of information encoded in motion.
+      Every dot looks identical in a still image. One uniform field drifts one way outside the hidden letter shapes, while a second statistically identical field drifts the opposite way inside them. Because both regions have the same density and appearance, the message is carried by motion rather than by a visible shape in any single frame. It is not encryption, but it is a neat example of information encoded in temporal change.
     </p>
   </section>
 </main>
@@ -105,7 +105,8 @@ const randomizeButton = document.querySelector('#randomize');
 const exportButton = document.querySelector('#export');
 const status = document.querySelector('#status');
 
-let particles = [];
+let backgroundParticles = [];
+let textParticles = [];
 let mask = null;
 let previousTime = performance.now();
 let exporting = false;
@@ -148,15 +149,20 @@ function buildMask(){
   mask = maskCtx.getImageData(0,0,maskCanvas.width,maskCanvas.height).data;
 }
 
-function seedParticles(){
-  const count = Number(densityInput.value);
-  particles = Array.from({length:count},()=>({
+function makeParticle(){
+  return {
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
     phase:Math.random()*Math.PI*2,
     drift:(Math.random()-.5)*.18,
     size:.55+Math.random()*1.15
-  }));
+  };
+}
+
+function seedParticles(){
+  const count = Number(densityInput.value);
+  backgroundParticles = Array.from({length:count},makeParticle);
+  textParticles = Array.from({length:count},makeParticle);
 }
 
 function insideText(x,y){
@@ -166,10 +172,9 @@ function insideText(x,y){
   return mask[(iy*canvas.width+ix)*4] > 127;
 }
 
-function step(dt){
+function moveField(field,direction,dt){
   const baseSpeed = Number(speedInput.value) * canvas.width / 960;
-  for(const p of particles){
-    const direction = insideText(p.x,p.y) ? -1 : 1;
+  for(const p of field){
     p.x += direction * baseSpeed * dt;
     p.y += Math.sin(p.phase + p.x*.012) * p.drift;
     if(p.x < 0) p.x += canvas.width;
@@ -179,16 +184,27 @@ function step(dt){
   }
 }
 
-function draw(){
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = '#090909';
+function step(dt){
+  moveField(backgroundParticles,1,dt);
+  moveField(textParticles,-1,dt);
+}
+
+function drawField(field,drawInside){
   ctx.beginPath();
-  for(const p of particles){
+  for(const p of field){
+    if(insideText(p.x,p.y) !== drawInside) continue;
     ctx.moveTo(p.x+p.size,p.y);
     ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
   }
   ctx.fill();
+}
+
+function draw(){
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#090909';
+  drawField(backgroundParticles,false);
+  drawField(textParticles,true);
 }
 
 function animate(now){
