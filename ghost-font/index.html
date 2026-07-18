@@ -120,11 +120,21 @@ function resizeBackingStore() {
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
   const width = Math.max(960, Math.round(rect.width * ratio));
   const height = Math.round(width * 9 / 16);
-  if (canvas.width === width && canvas.height === height) return;
-  canvas.width = width;
-  canvas.height = height;
-  maskCanvas.width = width;
-  maskCanvas.height = height;
+  const canvasChanged = canvas.width !== width || canvas.height !== height;
+  const maskChanged = maskCanvas.width !== width || maskCanvas.height !== height;
+
+  if (!canvasChanged && !maskChanged) return;
+
+  if (canvasChanged) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  if (maskChanged) {
+    maskCanvas.width = width;
+    maskCanvas.height = height;
+  }
+
   buildMask();
   seedParticles();
 }
